@@ -7,6 +7,29 @@
     "undo": "Undo",
     "close": "Close"
   },
+  "auth": {
+    "welcome": "Welcome to Veyra",
+    "tagline": "Your home's shopping, chores and money, in one place.",
+    "emailLabel": "Email",
+    "emailHint": "We'll send you a one-time code. No password.",
+    "sendCode": "Send code",
+    "verifyTitle": "Check your email",
+    "verifySubtitle": "We sent a code to {{email}}. It works for one hour.",
+    "codeLabel": "Verification code",
+    "verify": "Sign in",
+    "resend": "Send a new code",
+    "resendIn": "New code in {{seconds}}s",
+    "resent": "New code sent. Check your spam folder too.",
+    "changeEmail": "Use a different email",
+    "errors": {
+      "invalidEmail": "That email address doesn't look right.",
+      "invalidCode": "The code is wrong or has expired.",
+      "rateLimit": "Too many attempts. Try again in a few minutes.",
+      "notAuthorized": "During testing, only approved emails can sign in.",
+      "network": "No internet connection. Check it and try again.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
   "tabs": {
     "home": "Home",
     "shopping": "Shopping",
@@ -38,7 +61,9 @@
     "settings": "Settings"
   },
   "settings": {
-    "language": "Language"
+    "language": "Language",
+    "signOut": "Sign out",
+    "signedInAs": "Signed in as {{email}}"
   },
   "placeholder": {
     "title": "This screen is under construction",

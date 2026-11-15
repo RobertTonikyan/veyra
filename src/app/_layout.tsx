@@ -12,6 +12,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { View } from 'react-native';
 
+import { AuthProvider, useAuth } from '@/auth/AuthProvider';
 import { I18nProvider, useI18n } from '@/i18n';
 import { checkSupabaseConnection } from '@/services/supabase';
 import { colors } from '@/ui/tokens';
@@ -31,28 +32,41 @@ export default function RootLayout() {
 
   return (
     <I18nProvider>
-      <RootNavigator />
+      <AuthProvider>
+        <RootNavigator />
+      </AuthProvider>
     </I18nProvider>
   );
 }
 
 function RootNavigator() {
   const { ready, direction } = useI18n();
+  const { session, loading } = useAuth();
+  const isReady = ready && !loading;
+  const signedIn = !!session;
 
   useEffect(() => {
-    if (ready) SplashScreen.hideAsync();
-  }, [ready]);
+    if (isReady) SplashScreen.hideAsync();
+  }, [isReady]);
 
   useEffect(() => {
     if (__DEV__) checkSupabaseConnection();
   }, []);
 
-  if (!ready) return null;
+  if (!isReady) return null;
 
   return (
     <View style={{ flex: 1, direction, backgroundColor: colors.bg }}>
       <StatusBar style="light" />
-      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.bg } }} />
+      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.bg } }}>
+        {/* Signed in → the app. Signed out → sign-in flow. Switching is automatic. */}
+        <Stack.Protected guard={signedIn}>
+          <Stack.Screen name="(tabs)" />
+        </Stack.Protected>
+        <Stack.Protected guard={!signedIn}>
+          <Stack.Screen name="(auth)" />
+        </Stack.Protected>
+      </Stack>
     </View>
   );
 }

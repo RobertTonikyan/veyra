@@ -7,6 +7,29 @@
     "undo": "בטל",
     "close": "סגירה"
   },
+  "auth": {
+    "welcome": "ברוכים הבאים ל־Veyra",
+    "tagline": "קניות, מטלות וכסף של הבית, במקום אחד.",
+    "emailLabel": "מייל",
+    "emailHint": "נשלח לך קוד חד־פעמי. בלי סיסמה.",
+    "sendCode": "שליחת קוד",
+    "verifyTitle": "בודקים את המייל",
+    "verifySubtitle": "שלחנו קוד אל {{email}}. הוא תקף לשעה.",
+    "codeLabel": "קוד אימות",
+    "verify": "כניסה",
+    "resend": "שליחת קוד חדש",
+    "resendIn": "קוד חדש בעוד {{seconds}} שניות",
+    "resent": "שלחנו קוד חדש. בדקו גם בספאם.",
+    "changeEmail": "להחליף מייל",
+    "errors": {
+      "invalidEmail": "כתובת המייל לא נראית תקינה.",
+      "invalidCode": "הקוד שגוי או שפג תוקפו.",
+      "rateLimit": "יותר מדי ניסיונות. נסו שוב בעוד כמה דקות.",
+      "notAuthorized": "בשלב הבדיקות אפשר להיכנס רק עם מיילים מאושרים.",
+      "network": "אין חיבור לאינטרנט. בדקו את החיבור ונסו שוב.",
+      "generic": "משהו השתבש. נסו שוב."
+    }
+  },
   "tabs": {
     "home": "בית",
     "shopping": "קניות",
@@ -39,7 +62,9 @@
     "settings": "הגדרות"
   },
   "settings": {
-    "language": "שפה"
+    "language": "שפה",
+    "signOut": "התנתקות",
+    "signedInAs": "מחובר/ת עם {{email}}"
   },
   "placeholder": {
     "title": "המסך הזה בבנייה",

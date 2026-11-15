@@ -3,12 +3,15 @@ import {
   ChevronLeft,
   ChevronRight,
   Heart,
+  LogOut,
   Settings,
   UtensilsCrossed,
   type LucideIcon,
 } from 'lucide-react-native';
+import { useState } from 'react';
 import { Pressable, View } from 'react-native';
 
+import { useAuth } from '@/auth/AuthProvider';
 import { LANGUAGES, useI18n } from '@/i18n';
 import { Button, Card, Screen, Text, colors, space } from '@/ui';
 
@@ -21,6 +24,8 @@ const ITEMS: { key: string; Icon: LucideIcon }[] = [
 
 export default function MoreScreen() {
   const { t, isRTL, language, setLanguage } = useI18n();
+  const { session, signOut } = useAuth();
+  const [signingOut, setSigningOut] = useState(false);
   const Chevron = isRTL ? ChevronLeft : ChevronRight;
 
   return (
@@ -68,6 +73,23 @@ export default function MoreScreen() {
             />
           ))}
         </View>
+      </Card>
+
+      <Card style={{ gap: space.md }}>
+        <Text variant="small" color="textMuted">
+          {t('settings.signedInAs', { email: session?.user.email ?? '' })}
+        </Text>
+        <Button
+          variant="danger"
+          label={t('settings.signOut')}
+          icon={<LogOut size={18} color={colors.roseText} />}
+          loading={signingOut}
+          onPress={async () => {
+            setSigningOut(true);
+            await signOut();
+          }}
+          fullWidth
+        />
       </Card>
     </Screen>
   );

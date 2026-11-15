@@ -7,3 +7,4 @@ export { TabBar, TAB_BAR_HEIGHT, tabBarBottomOffset } from './TabBar';
 export { Fab } from './Fab';
 export { Sheet } from './Sheet';
 export { EmptyState } from './EmptyState';
+export { TextField, type TextFieldProps } from './TextField';
