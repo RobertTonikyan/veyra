@@ -4,7 +4,8 @@
     "save": "Save",
     "cancel": "Cancel",
     "delete": "Delete",
-    "undo": "Undo"
+    "undo": "Undo",
+    "close": "Close"
   },
   "tabs": {
     "home": "Home",
@@ -23,12 +24,24 @@
       "other": "{{count}} chores"
     }
   },
+  "quickAdd": {
+    "open": "Quick add",
+    "title": "What are you adding?",
+    "item": "Shopping item",
+    "chore": "Chore",
+    "expense": "Expense"
+  },
+  "more": {
+    "meals": "Meals",
+    "us": "Us",
+    "calendar": "Calendar",
+    "settings": "Settings"
+  },
   "settings": {
     "language": "Language"
   },
-  "dev": {
-    "stepTitle": "Step 0.3 · Languages & direction",
-    "rowDemo": "Sample row: avatar, text and badge",
-    "pluralDemo": "Plural forms"
+  "placeholder": {
+    "title": "This screen is under construction",
+    "body": "We'll build it in phase 3, following the mockup."
   }
 }
