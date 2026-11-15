@@ -5,7 +5,20 @@
     "cancel": "Cancel",
     "delete": "Delete",
     "undo": "Undo",
-    "close": "Close"
+    "close": "Close",
+    "back": "Back",
+    "retry": "Try again",
+    "loading": "Loading"
+  },
+  "errors": {
+    "loadFailed": "We couldn't load your data. Check your internet connection.",
+    "invalidInvite": "That code was not found, has expired or was already used. Ask for a new one.",
+    "householdFull": "This home is already full (up to 20 members).",
+    "notAMember": "You don't have access to this home.",
+    "balanceNotZero": "You still have an open balance here. Settle up before leaving.",
+    "sharesNotSet": "Not everyone has a percentage yet. You can set them in settings.",
+    "network": "No internet connection. Check it and try again.",
+    "generic": "Something went wrong. Please try again."
   },
   "auth": {
     "welcome": "Welcome to Veyra",
@@ -28,6 +41,72 @@
       "notAuthorized": "During testing, only approved emails can sign in.",
       "network": "No internet connection. Check it and try again.",
       "generic": "Something went wrong. Please try again."
+    }
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "Nice to meet you!",
+      "body": "Let's set up your home in a moment. First, what should we call you?",
+      "nameLabel": "Your name",
+      "nameHint": "This is how the rest of your home will see you.",
+      "nameRequired": "Please enter a name, up to 40 characters.",
+      "create": "Create a new home",
+      "join": "I have an invite code"
+    },
+    "create": {
+      "title": "New home",
+      "whoLives": "Who lives here?",
+      "types": {
+        "couple": {
+          "title": "Couple",
+          "desc": "Two people sharing a home."
+        },
+        "roommates": {
+          "title": "Roommates",
+          "desc": "A shared apartment, up to 20 people."
+        },
+        "family": {
+          "title": "Family",
+          "desc": "Parents, kids and anyone living together."
+        }
+      },
+      "nameLabel": "Home name",
+      "nameRequired": "Please name your home, up to 40 characters.",
+      "defaultName": {
+        "couple": "Our home",
+        "roommates": "The apartment",
+        "family": "The family"
+      },
+      "splitTitle": "How do you split expenses?",
+      "split": {
+        "equal": {
+          "title": "Equally",
+          "desc": "Each expense is split evenly between the people in it. The simplest option, and right for most homes."
+        },
+        "percent": {
+          "title": "By percentage",
+          "desc": "Everyone pays a fixed share, e.g. 60/40 by income or room size. You set the percentages once everyone has joined."
+        }
+      },
+      "splitNote": "You can change this anytime in settings.",
+      "submit": "Create home"
+    },
+    "invite": {
+      "titleCouple": "Now invite your partner",
+      "titleGroup": "Now invite the rest of your home",
+      "body": "Send them the code. They install Veyra and choose \"I have an invite code\".",
+      "codeLabel": "Invite code",
+      "validity": "Valid for 7 days, single use.",
+      "validityGroup": "Valid for 7 days. Share it with everyone in your home.",
+      "share": "Share code",
+      "shareMessage": "Join our home on Veyra! Invite code: {{code}}",
+      "continue": "Continue to the app"
+    },
+    "join": {
+      "title": "Join a home",
+      "body": "Ask someone in your home for the 6-character invite code.",
+      "codeLabel": "Invite code",
+      "submit": "Join"
     }
   },
   "tabs": {

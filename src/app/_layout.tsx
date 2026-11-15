@@ -9,13 +9,14 @@ import {
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
 import { AuthProvider, useAuth } from '@/auth/AuthProvider';
+import { HouseholdProvider, useHousehold } from '@/household/HouseholdProvider';
 import { I18nProvider, useI18n } from '@/i18n';
 import { checkSupabaseConnection } from '@/services/supabase';
-import { colors } from '@/ui/tokens';
+import { Button, Text, colors, space } from '@/ui';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -33,17 +34,22 @@ export default function RootLayout() {
   return (
     <I18nProvider>
       <AuthProvider>
-        <RootNavigator />
+        <HouseholdProvider>
+          <RootNavigator />
+        </HouseholdProvider>
       </AuthProvider>
     </I18nProvider>
   );
 }
 
 function RootNavigator() {
-  const { ready, direction } = useI18n();
-  const { session, loading } = useAuth();
-  const isReady = ready && !loading;
+  const { ready: i18nReady, direction } = useI18n();
+  const { session, loading: authLoading } = useAuth();
+  const { household, ready: householdReady, error } = useHousehold();
+
   const signedIn = !!session;
+  const hasHouse = !!household;
+  const isReady = i18nReady && !authLoading && householdReady;
 
   useEffect(() => {
     if (isReady) SplashScreen.hideAsync();
@@ -58,15 +64,45 @@ function RootNavigator() {
   return (
     <View style={{ flex: 1, direction, backgroundColor: colors.bg }}>
       <StatusBar style="light" />
-      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.bg } }}>
-        {/* Signed in → the app. Signed out → sign-in flow. Switching is automatic. */}
-        <Stack.Protected guard={signedIn}>
-          <Stack.Screen name="(tabs)" />
-        </Stack.Protected>
-        <Stack.Protected guard={!signedIn}>
-          <Stack.Screen name="(auth)" />
-        </Stack.Protected>
-      </Stack>
+      {signedIn && error ? (
+        <LoadError />
+      ) : (
+        <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.bg } }}>
+          {/* signed out → sign in · signed in, no house → onboarding · otherwise → the app */}
+          <Stack.Protected guard={signedIn && hasHouse}>
+            <Stack.Screen name="(tabs)" />
+          </Stack.Protected>
+          <Stack.Protected guard={signedIn && !hasHouse}>
+            <Stack.Screen name="(onboarding)" />
+          </Stack.Protected>
+          <Stack.Protected guard={!signedIn}>
+            <Stack.Screen name="(auth)" />
+          </Stack.Protected>
+        </Stack>
+      )}
+    </View>
+  );
+}
+
+function LoadError() {
+  const { t } = useI18n();
+  const { refresh } = useHousehold();
+  const [retrying, setRetrying] = useState(false);
+
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: space.xl, gap: space.lg }}>
+      <Text variant="heading" align="center" accessibilityRole="alert">
+        {t('errors.loadFailed')}
+      </Text>
+      <Button
+        label={t('common.retry')}
+        loading={retrying}
+        onPress={async () => {
+          setRetrying(true);
+          await refresh();
+          setRetrying(false);
+        }}
+      />
     </View>
   );
 }

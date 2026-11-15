@@ -2,11 +2,13 @@ import { House, ReceiptText, ShoppingBasket, CircleCheck } from 'lucide-react-na
 import { useState } from 'react';
 import { View } from 'react-native';
 
+import { useHousehold } from '@/household/HouseholdProvider';
 import { useI18n } from '@/i18n';
 import { Button, EmptyState, Fab, Screen, Sheet, Text, colors, space } from '@/ui';
 
 export default function HomeScreen() {
   const { t } = useI18n();
+  const { profile } = useHousehold();
   const [quickAddOpen, setQuickAddOpen] = useState(false);
   const close = () => setQuickAddOpen(false);
 
@@ -14,7 +16,7 @@ export default function HomeScreen() {
     <View style={{ flex: 1 }}>
       <Screen>
         <Text variant="display" accessibilityRole="header">
-          {t('home.greeting', { name: 'Robert' })}
+          {t('home.greeting', { name: profile?.display_name ?? '' })}
         </Text>
         <EmptyState Icon={House} title={t('placeholder.title')} body={t('placeholder.body')} />
       </Screen>
