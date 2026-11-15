@@ -13,12 +13,13 @@ import { useEffect } from 'react';
 import { View } from 'react-native';
 
 import { I18nProvider, useI18n } from '@/i18n';
-import { colors } from '@/ui';
+import { checkSupabaseConnection } from '@/services/supabase';
+import { colors } from '@/ui/tokens';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const [fontsLoaded, fontError] = useFonts({
+  const [fontsLoaded] = useFonts({
     Rubik_400Regular,
     Rubik_500Medium,
     Rubik_600SemiBold,
@@ -26,9 +27,7 @@ export default function RootLayout() {
     Rubik_800ExtraBold,
   });
 
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
+  if (!fontsLoaded) return null;
 
   return (
     <I18nProvider>
@@ -38,11 +37,15 @@ export default function RootLayout() {
 }
 
 function RootNavigator() {
-  const { direction, ready } = useI18n();
+  const { ready, direction } = useI18n();
 
   useEffect(() => {
     if (ready) SplashScreen.hideAsync();
   }, [ready]);
+
+  useEffect(() => {
+    if (__DEV__) checkSupabaseConnection();
+  }, []);
 
   if (!ready) return null;
 
