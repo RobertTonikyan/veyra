@@ -1,0 +1,36 @@
+{
+  "common": {
+    "appName": "Veyra",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "undo": "Отменить"
+  },
+  "tabs": {
+    "home": "Дом",
+    "shopping": "Покупки",
+    "chores": "Дела",
+    "money": "Деньги",
+    "more": "Ещё"
+  },
+  "home": {
+    "greeting": "Доброе утро, {{name}}",
+    "houseAsks": "Дом просит"
+  },
+  "chores": {
+    "count": {
+      "one": "{{count}} дело",
+      "few": "{{count}} дела",
+      "many": "{{count}} дел",
+      "other": "{{count}} дела"
+    }
+  },
+  "settings": {
+    "language": "Язык"
+  },
+  "dev": {
+    "stepTitle": "Шаг 0.3 · Языки и направление",
+    "rowDemo": "Пример строки: аватар, текст и метка",
+    "pluralDemo": "Формы множественного числа"
+  }
+}

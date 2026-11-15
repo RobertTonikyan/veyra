@@ -1,72 +1,84 @@
-import { ScrollView, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View } from 'react-native';
 
-import { Button, Card, Text, colors, memberColors, radius, space } from '@/ui';
+import { LANGUAGES, useI18n } from '@/i18n';
+import { Button, Card, Screen, Text, colors, memberColor, radius, space } from '@/ui';
 
 export default function Index() {
+  const { t, language, setLanguage, direction } = useI18n();
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colors.bg }}>
-      <ScrollView contentContainerStyle={{ padding: space.xl, gap: space.lg }}>
-        <Text variant="small" color="textMuted">
-          שלב 0.2 · מערכת עיצוב
+    <Screen>
+      <Text variant="small" color="textMuted">
+        {t('dev.stepTitle')} · {direction.toUpperCase()}
+      </Text>
+      <Text variant="display">{t('home.greeting', { name: 'Robert' })}</Text>
+
+      <Card style={{ gap: space.md }}>
+        <Text variant="label" color="textMuted">
+          {t('settings.language')}
         </Text>
-        <Text variant="display">Veyra</Text>
-        <Text color="textSoft">קניות, מטלות וכסף משותף במקום אחד.</Text>
-
-        <Card tone="accent" style={{ gap: space.sm }}>
-          <Text variant="label" color="onAccent">
-            הבית מבקש
-          </Text>
-          <Text variant="title" color="onAccent">
-            הזבל מחכה מאתמול. מי לוקח?
-          </Text>
-        </Card>
-
-        <Card style={{ gap: space.md }}>
-          <Text variant="label" color="textMuted">
-            צבעי חברים
-          </Text>
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: space.sm }}>
-            {memberColors.map((c, i) => (
-              <View
-                key={c}
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: radius.pill,
-                  borderWidth: 1.5,
-                  borderColor: c,
-                  backgroundColor: `${c}2E`,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Text variant="label" style={{ color: c }}>
-                  {i + 1}
-                </Text>
-              </View>
-            ))}
-          </View>
-        </Card>
-
-        <Card style={{ gap: space.xs }}>
-          <Text variant="label" color="textMuted">
-            הוצאות נובמבר
-          </Text>
-          <Text variant="number">₪3,860</Text>
-          <Text variant="small" color="sage">
-            בקצב הזה תסיימו כ־₪400 מתחת לתקציב
-          </Text>
-        </Card>
-
-        <View style={{ gap: space.sm }}>
-          <Button label="אני על זה · 15 נק׳" fullWidth />
-          <Button label="דחה למחר" variant="secondary" fullWidth />
-          <Button label="לכל המטלות" variant="ghost" />
-          <Button label="מחיקת החשבון" variant="danger" fullWidth />
-          <Button label="שומר..." loading fullWidth />
+        <View style={{ flexDirection: 'row', gap: space.sm, flexWrap: 'wrap' }}>
+          {LANGUAGES.map((lang) => (
+            <Button
+              key={lang.code}
+              label={lang.nativeName}
+              variant={lang.code === language ? 'primary' : 'secondary'}
+              accessibilityState={{ selected: lang.code === language }}
+              onPress={() => setLanguage(lang.code)}
+            />
+          ))}
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </Card>
+
+      <Card tone="accent" style={{ gap: space.xs }}>
+        <Text variant="label" color="onAccent">
+          {t('home.houseAsks')}
+        </Text>
+        <Text variant="title" color="onAccent">
+          {t('chores.count', { count: 3 })}
+        </Text>
+      </Card>
+
+      <Card style={{ gap: space.md }}>
+        <Text variant="label" color="textMuted">
+          {t('dev.rowDemo')}
+        </Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: space.md }}>
+          <View
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: radius.pill,
+              borderWidth: 1.5,
+              borderColor: memberColor(0),
+              backgroundColor: `${memberColor(0)}2E`,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Text variant="label" align="center" style={{ color: memberColor(0) }}>
+              R
+            </Text>
+          </View>
+          <Text style={{ flex: 1 }}>{t('tabs.chores')}</Text>
+          <View style={{ paddingHorizontal: space.sm, paddingVertical: 2, borderRadius: radius.pill, backgroundColor: colors.raised }}>
+            <Text variant="label" color="honey">
+              +15
+            </Text>
+          </View>
+        </View>
+      </Card>
+
+      <Card style={{ gap: space.xs }}>
+        <Text variant="label" color="textMuted">
+          {t('dev.pluralDemo')}
+        </Text>
+        {[1, 2, 3, 5, 11, 21].map((n) => (
+          <Text key={n} color="textSoft">
+            {n} → {t('chores.count', { count: n })}
+          </Text>
+        ))}
+      </Card>
+    </Screen>
   );
 }

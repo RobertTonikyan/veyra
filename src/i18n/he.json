@@ -1,0 +1,35 @@
+{
+  "common": {
+    "appName": "Veyra",
+    "save": "שמירה",
+    "cancel": "ביטול",
+    "delete": "מחיקה",
+    "undo": "בטל"
+  },
+  "tabs": {
+    "home": "בית",
+    "shopping": "קניות",
+    "chores": "מטלות",
+    "money": "כסף",
+    "more": "עוד"
+  },
+  "home": {
+    "greeting": "בוקר טוב, {{name}}",
+    "houseAsks": "הבית מבקש"
+  },
+  "chores": {
+    "count": {
+      "one": "מטלה אחת",
+      "two": "שתי מטלות",
+      "other": "{{count}} מטלות"
+    }
+  },
+  "settings": {
+    "language": "שפה"
+  },
+  "dev": {
+    "stepTitle": "שלב 0.3 · שפות וכיוון",
+    "rowDemo": "שורה לדוגמה: אווטאר, טקסט ותג",
+    "pluralDemo": "צורות רבים"
+  }
+}

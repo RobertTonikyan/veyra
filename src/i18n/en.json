@@ -1,0 +1,34 @@
+{
+  "common": {
+    "appName": "Veyra",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "undo": "Undo"
+  },
+  "tabs": {
+    "home": "Home",
+    "shopping": "Shopping",
+    "chores": "Chores",
+    "money": "Money",
+    "more": "More"
+  },
+  "home": {
+    "greeting": "Good morning, {{name}}",
+    "houseAsks": "The house asks"
+  },
+  "chores": {
+    "count": {
+      "one": "1 chore",
+      "other": "{{count}} chores"
+    }
+  },
+  "settings": {
+    "language": "Language"
+  },
+  "dev": {
+    "stepTitle": "Step 0.3 · Languages & direction",
+    "rowDemo": "Sample row: avatar, text and badge",
+    "pluralDemo": "Plural forms"
+  }
+}

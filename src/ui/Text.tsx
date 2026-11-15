@@ -1,5 +1,7 @@
 import { Text as RNText, type TextProps as RNTextProps } from 'react-native';
 
+import { useIsRTL } from '@/i18n';
+
 import {
   colors,
   fonts,
@@ -30,6 +32,7 @@ export function Text({
   maxFontSizeMultiplier = 2, // supports system text size up to 200%
   ...rest
 }: TextProps) {
+  const isRTL = useIsRTL();
   const t = typography[variant];
 
   return (
@@ -42,7 +45,9 @@ export function Text({
           lineHeight: t.line,
           letterSpacing: 'tracking' in t ? t.tracking : 0,
           color: resolveColor(color),
-          textAlign: align,
+          // Explicit alignment: new-arch iOS and Android disagree when it's unset.
+          textAlign: align ?? (isRTL ? 'right' : 'left'),
+          writingDirection: isRTL ? 'rtl' : 'ltr',
         },
         style,
       ]}
