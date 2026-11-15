@@ -166,8 +166,7 @@
     "addNamed": "הוספת {{name}} לרשימה",
     "buyAgain": "קונים שוב",
     "addedBy": "{{name}} הוסיף/ה",
-    "rowHint": "הקשה מסמנת שנאסף. לחיצה ארוכה מוחקת.",
-    "deleteTitle": "למחוק את \"{{name}}\"?",
+    "rowHint": "הקשה מסמנת שנאסף. לחיצה ארוכה פותחת עריכה.",
     "clearChecked": "ניקוי מה שנאסף",
     "allDone": "הכל נאסף. כל הכבוד!",
     "emptyTitle": "הרשימה ריקה",
@@ -183,6 +182,37 @@
       "cleaning": "ניקיון",
       "personal": "טיפוח",
       "other": "שונות"
-    }
+    },
+    "search": "חיפוש ברשימה",
+    "closeSearch": "סגירת החיפוש",
+    "searchPlaceholder": "מה מחפשים?",
+    "noResults": "\"{{query}}\" לא ברשימה.",
+    "quantity": "כמות",
+    "noAmount": "בלי כמות",
+    "less": "פחות",
+    "more": "יותר",
+    "clearAmount": "בלי כמות",
+    "units": {
+      "unit": "יחידות",
+      "pack": "אריזות",
+      "kg": "ק״ג",
+      "g": "גרם",
+      "l": "ליטר",
+      "ml": "מ״ל"
+    },
+    "unitsShort": {
+      "unit": "{{amount}} יח׳",
+      "pack": "{{amount}} אריזות",
+      "kg": "{{amount}} ק״ג",
+      "g": "{{amount}} גרם",
+      "l": "{{amount}} ליטר",
+      "ml": "{{amount}} מ״ל"
+    },
+    "editTitle": "עריכת פריט",
+    "itemName": "שם הפריט",
+    "category": "קטגוריה",
+    "unsorted": "לסיווג",
+    "whichCategory": "לאן שייך \"{{name}}\"?",
+    "whichCategoryHint": "נזכור את הבחירה, ובפעם הבאה זה יסודר לבד."
   }
 }

@@ -1,46 +1,46 @@
 import { Check } from 'lucide-react-native';
-import { Alert, Pressable, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 
 import type { Member } from '@/household/useMembers';
 import { useI18n } from '@/i18n';
 import { Avatar, Text, colors, radius, space } from '@/ui';
 
 import type { ShoppingItem } from './api';
+import { formatQuantity } from './units';
 
 type Props = {
   item: ShoppingItem;
   addedBy?: Member;
   first: boolean;
   onToggle: (item: ShoppingItem) => void;
+  onEdit: (item: ShoppingItem) => void;
   onDelete: (item: ShoppingItem) => void;
 };
 
-export function ShoppingRow({ item, addedBy, first, onToggle, onDelete }: Props) {
+export function ShoppingRow({ item, addedBy, first, onToggle, onEdit, onDelete }: Props) {
   const { t } = useI18n();
   const checked = !!item.checked_at;
+  const quantity = formatQuantity(t, item);
 
-  function confirmDelete() {
-    Alert.alert(t('shopping.deleteTitle', { name: item.name }), undefined, [
-      { text: t('common.cancel'), style: 'cancel' },
-      { text: t('common.delete'), style: 'destructive', onPress: () => onDelete(item) },
-    ]);
-  }
-
-  const meta = [item.quantity, addedBy ? t('shopping.addedBy', { name: addedBy.display_name }) : null]
+  const meta = [quantity, addedBy ? t('shopping.addedBy', { name: addedBy.display_name }) : null]
     .filter(Boolean)
     .join(' · ');
 
   return (
     <Pressable
       onPress={() => onToggle(item)}
-      onLongPress={confirmDelete}
-      delayLongPress={400}
+      onLongPress={() => onEdit(item)}
+      delayLongPress={350}
       accessibilityRole="checkbox"
       accessibilityState={{ checked }}
-      accessibilityLabel={item.quantity ? `${item.name}, ${item.quantity}` : item.name}
+      accessibilityLabel={quantity ? `${item.name}, ${quantity}` : item.name}
       accessibilityHint={t('shopping.rowHint')}
-      accessibilityActions={[{ name: 'delete', label: t('common.delete') }]}
+      accessibilityActions={[
+        { name: 'edit', label: t('shopping.editTitle') },
+        { name: 'delete', label: t('common.delete') },
+      ]}
       onAccessibilityAction={(e) => {
+        if (e.nativeEvent.actionName === 'edit') onEdit(item);
         if (e.nativeEvent.actionName === 'delete') onDelete(item);
       }}
       style={({ pressed }) => ({

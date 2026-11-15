@@ -163,8 +163,7 @@
     "addNamed": "Add {{name}} to the list",
     "buyAgain": "Buy again",
     "addedBy": "added by {{name}}",
-    "rowHint": "Tap to mark as collected. Long press to delete.",
-    "deleteTitle": "Delete \"{{name}}\"?",
+    "rowHint": "Tap to mark as collected. Long press to edit.",
     "clearChecked": "Clear collected",
     "allDone": "Everything is collected. Nice work!",
     "emptyTitle": "The list is empty",
@@ -180,6 +179,37 @@
       "cleaning": "Cleaning",
       "personal": "Personal care",
       "other": "Other"
-    }
+    },
+    "search": "Search the list",
+    "closeSearch": "Close search",
+    "searchPlaceholder": "What are you looking for?",
+    "noResults": "\"{{query}}\" isn't on the list.",
+    "quantity": "Amount",
+    "noAmount": "No amount",
+    "less": "Less",
+    "more": "More",
+    "clearAmount": "No amount",
+    "units": {
+      "unit": "Units",
+      "pack": "Packs",
+      "kg": "kg",
+      "g": "g",
+      "l": "L",
+      "ml": "ml"
+    },
+    "unitsShort": {
+      "unit": "×{{amount}}",
+      "pack": "{{amount}} pack",
+      "kg": "{{amount}} kg",
+      "g": "{{amount}} g",
+      "l": "{{amount}} L",
+      "ml": "{{amount}} ml"
+    },
+    "editTitle": "Edit item",
+    "itemName": "Item name",
+    "category": "Category",
+    "unsorted": "To sort",
+    "whichCategory": "Where does \"{{name}}\" go?",
+    "whichCategoryHint": "We'll remember your choice and sort it automatically next time."
   }
 }

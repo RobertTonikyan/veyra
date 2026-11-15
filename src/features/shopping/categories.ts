@@ -1,17 +1,3 @@
-import {
-  Apple,
-  Beef,
-  Croissant,
-  CupSoda,
-  Milk,
-  Package,
-  ShoppingBag,
-  Snowflake,
-  SprayCan,
-  Wheat,
-  type LucideIcon,
-} from 'lucide-react-native';
-
 export type ShoppingCategory =
   | 'produce'
   | 'dairy'
@@ -38,24 +24,26 @@ export const CATEGORY_ORDER: ShoppingCategory[] = [
   'other',
 ];
 
-export const CATEGORY_ICON: Record<ShoppingCategory, LucideIcon> = {
-  produce: Apple,
-  dairy: Milk,
-  bakery: Croissant,
-  meat: Beef,
-  pantry: Wheat,
-  frozen: Snowflake,
-  drinks: CupSoda,
-  cleaning: SprayCan,
-  personal: Package,
-  other: ShoppingBag,
+/** One color per category, from the Warm Ember palette. Used by CategoryIcon tiles. */
+export const CATEGORY_COLOR: Record<ShoppingCategory, string> = {
+  produce: '#9CC6A3',
+  dairy: '#8EB4F0',
+  bakery: '#EBB656',
+  meat: '#E86A7E',
+  pantry: '#D9C2A0',
+  frozen: '#6FC9C2',
+  drinks: '#B79CF0',
+  cleaning: '#7CC4E4',
+  personal: '#EE9CC1',
+  other: '#A89C91',
 };
 
 // Word stems in Hebrew, English and Russian. Matched as substrings, so
 // "עגבניות שרי" still lands in produce. First match wins, in this order.
 const KEYWORDS: [ShoppingCategory, string[]][] = [
-  // exceptions that would otherwise hit a shorter stem first (egg → eggplant)
+  // exceptions that would otherwise hit a shorter stem first (egg → eggplant, tomato → tomato paste)
   ['produce', ['eggplant']],
+  ['pantry', ['רסק', 'רוטב עגבניות', 'tomato paste', 'tomato sauce', 'томатная паста', 'שמן זית', 'olive oil']],
   [
     'frozen',
     ['קפוא', 'שניצל תירס', 'בצק עלים', 'גלידה', 'frozen', 'ice cream', 'заморож', 'мороженое', 'пельмени'],
@@ -136,14 +124,74 @@ const KEYWORDS: [ShoppingCategory, string[]][] = [
       'хлопья', 'овсян', 'чечевиц', 'фасол', 'специ', 'мёд', 'мед', 'варенье', 'шоколад', 'лапша', 'гречк',
     ],
   ],
+  // ---- more words, same categories (first match above still wins) ----
+  ['produce', [
+    'סלק', 'צנון', 'קולרבי', 'ברוקולי', 'כרובית', 'תרד', 'בזיליקום', 'זנגביל', "ג'ינג'ר", 'רימון', 'קיווי', 'שזיפ',
+    'דובדבן', 'אננס', 'פומלה', 'קלמנטינ', 'ליים', 'סלרי', 'דלעת', 'תירס', 'עירית', 'בצלצל', 'ארטישוק', 'נבטים',
+    'broccoli', 'cauliflower', 'spinach', 'basil', 'ginger', 'pomegranate', 'kiwi', 'plum', 'cherr', 'pineapple',
+    'lime', 'celery', 'pumpkin', 'corn', 'herbs', 'beet', 'radish',
+    'брокколи', 'цветная капуст', 'шпинат', 'базилик', 'имбир', 'гранат', 'киви', 'слив', 'вишн', 'черешн',
+    'ананас', 'лайм', 'сельдере', 'тыкв', 'кукуруз', 'зелень', 'свекл', 'редис',
+  ]],
+  ['dairy', [
+    'מוצרל', 'פרמזן', 'צהובה', 'ריקוטה', 'מסקרפונה', 'קפיר', 'דנונה', 'מילקי', 'יופלה', 'פודינג', 'חלב שקדים', 'חלב סויה',
+    'mozzarella', 'parmesan', 'ricotta', 'kefir', 'pudding',
+    'моцарел', 'пармезан', 'ряженк', 'простокваш', 'пудинг',
+  ]],
+  ['meat', [
+    'אנטריקוט', 'צלעות', 'כבד', 'פסטרמה', 'המבורגר', 'קציצות', 'שוקיים', 'בקר', 'כבש', 'טלה', 'אמנון', 'דניס', 'לברק',
+    'שרימפס', 'קלמרי',
+    'burger', 'ribs', 'liver', 'lamb', 'shrimp', 'tuna', 'bacon', 'ham', 'pastrami', 'meatball',
+    'котлет', 'ребр', 'рёбр', 'печень', 'баран', 'креветк', 'тунец', 'бекон', 'ветчин', 'фрикадел',
+  ]],
+  ['bakery', [
+    'בייגל', 'לאפה', 'מלאווח', 'ג׳חנון', "ג'חנון", 'בורקס', 'רוגלך', 'מאפה', 'קרקר', 'פריכיות',
+    'bagel', 'muffin', 'cracker', 'roll',
+    'бублик', 'кекс', 'крекер', 'пирож', 'бисквит',
+  ]],
+  ['pantry', [
+    'פירורי לחם', 'שקדים', 'אגוז', 'בוטנים', 'גרעינים', 'צימוקים', 'חומץ', 'סויה', 'רוטב', 'זעתר', 'כמון', 'כורכום',
+    'קינמון', 'וניל', 'אבקת אפייה', 'שמרים', 'קקאו', 'גרנולה', 'בורגול', 'קינואה', 'ממרח', 'נוטלה', 'חמאת בוטנים',
+    'מרק', 'זיתים', 'חמוצים', 'ספגטי', 'סולת', 'פתיתים', 'spaghetti', 'semolina', 'спагетти', 'манк', 'מלפפון חמוץ', 'גריסים', 'חומוס יבש', 'סילאן',
+    'vinegar', 'soy sauce', 'sauce', 'nuts', 'almond', 'peanut', 'raisin', 'cinnamon', 'vanilla', 'baking', 'yeast',
+    'cocoa', 'granola', 'quinoa', 'bulgur', 'spread', 'nutella', 'soup', 'olives', 'pickles',
+    'уксус', 'соус', 'орех', 'миндал', 'арахис', 'изюм', 'кориц', 'ванил', 'дрожж', 'какао', 'гранол', 'киноа',
+    'булгур', 'суп', 'оливк', 'маслин',
+  ]],
+  ['drinks', [
+    'קפסולות', 'שוקו', 'וודקה', 'ויסקי', 'ערק', 'תירוש', 'אנרגיה',
+    'vodka', 'whisky', 'whiskey', 'energy drink', 'sparkling', 'lemonade',
+    'водка', 'виски', 'энергетик', 'минерал', 'лимонад',
+  ]],
+  ['frozen', ['קרטיב', 'ארטיק', 'popsicle', 'эскимо']],
+  ['cleaning', [
+    'מטהר אוויר', 'נייר כסף', 'נייר אלומיניום', 'ניילון נצמד', 'שקיות אוכל', 'שקיות הקפאה', 'כפפות', 'מלח למדיח',
+    'מבריק', 'פרסיל', 'סנו', 'נייר אפייה',
+    'foil', 'cling', 'gloves', 'dishwasher', 'laundry', 'air freshener', 'baking paper',
+    'фольга', 'плёнка', 'пленка', 'перчатк', 'посудомо', 'стирк', 'освежитель',
+  ]],
+  ['personal', [
+    'תרופ', 'אקמול', 'נורופן', 'פלסטר', 'צמר גפן', 'מקלוני אוזניים', 'קרם הגנה', 'חוט דנטלי', 'מי פה', 'סבון', 'מגבונים',
+    'soap', 'floss', 'mouthwash', 'sunscreen', 'cotton', 'band-aid', 'pads', 'medicine', 'wipes',
+    'мыло', 'зубная нить', 'ополаскиват', 'солнцезащит', 'вата', 'пластыр', 'прокладк', 'лекарств', 'влажные салфетки',
+  ]],
 ];
 
-export function guessCategory(name: string): ShoppingCategory {
-  const n = name.trim().toLowerCase();
+/** Lower-case, trimmed, single spaces: the key used to remember a product's category. */
+export function normalizeName(name: string): string {
+  return name.trim().replace(/\s+/g, ' ').toLowerCase();
+}
+
+/**
+ * Best guess from the built-in word list. Returns null when we don't know —
+ * the app then asks the user instead of silently filing it under "other".
+ */
+export function guessCategory(name: string): ShoppingCategory | null {
+  const n = normalizeName(name);
   for (const [category, words] of KEYWORDS) {
     if (words.some((w) => n.includes(w))) return category;
   }
-  return 'other';
+  return null;
 }
 
 export function isCategory(value: string | null | undefined): value is ShoppingCategory {

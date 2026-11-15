@@ -6,4 +6,5 @@ export const qk = {
   members: (hid: string) => ['household', hid, 'household_members'] as const,
   shopping: (hid: string) => ['household', hid, 'shopping_items'] as const,
   shoppingSuggestions: (hid: string) => ['household', hid, 'activity', 'shopping-suggestions'] as const,
+  categoryMemory: (hid: string) => ['household', hid, 'shopping_category_memory'] as const,
 };

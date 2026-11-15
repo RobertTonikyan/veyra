@@ -169,8 +169,7 @@
     "addNamed": "Добавить {{name}} в список",
     "buyAgain": "Купить снова",
     "addedBy": "добавил(а) {{name}}",
-    "rowHint": "Нажмите, чтобы отметить. Долгое нажатие — удалить.",
-    "deleteTitle": "Удалить «{{name}}»?",
+    "rowHint": "Нажмите, чтобы отметить. Долгое нажатие — изменить.",
     "clearChecked": "Убрать собранное",
     "allDone": "Всё собрано. Отлично!",
     "emptyTitle": "Список пуст",
@@ -186,6 +185,37 @@
       "cleaning": "Уборка",
       "personal": "Гигиена",
       "other": "Разное"
-    }
+    },
+    "search": "Поиск по списку",
+    "closeSearch": "Закрыть поиск",
+    "searchPlaceholder": "Что ищем?",
+    "noResults": "«{{query}}» нет в списке.",
+    "quantity": "Количество",
+    "noAmount": "Без количества",
+    "less": "Меньше",
+    "more": "Больше",
+    "clearAmount": "Без количества",
+    "units": {
+      "unit": "Штуки",
+      "pack": "Упаковки",
+      "kg": "кг",
+      "g": "г",
+      "l": "л",
+      "ml": "мл"
+    },
+    "unitsShort": {
+      "unit": "{{amount}} шт.",
+      "pack": "{{amount}} уп.",
+      "kg": "{{amount}} кг",
+      "g": "{{amount}} г",
+      "l": "{{amount}} л",
+      "ml": "{{amount}} мл"
+    },
+    "editTitle": "Изменить товар",
+    "itemName": "Название",
+    "category": "Категория",
+    "unsorted": "Без категории",
+    "whichCategory": "Куда отнести «{{name}}»?",
+    "whichCategoryHint": "Мы запомним выбор и в следующий раз отсортируем сами."
   }
 }
