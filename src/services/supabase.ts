@@ -5,6 +5,8 @@ import * as aesjs from 'aes-js';
 import * as SecureStore from 'expo-secure-store';
 import { AppState, Platform } from 'react-native';
 
+import type { Database } from '@/types/database';
+
 export const SUPABASE_URL = process.env.EXPO_PUBLIC_SUPABASE_URL ?? '';
 export const SUPABASE_KEY = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? '';
 
@@ -57,7 +59,8 @@ class LargeSecureStore {
 // SecureStore doesn't exist on web, so web falls back to AsyncStorage (localStorage).
 const storage = Platform.OS === 'web' ? AsyncStorage : new LargeSecureStore();
 
-export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
+// <Database> gives every query and RPC full types from our schema.
+export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_KEY, {
   auth: {
     storage,
     autoRefreshToken: true,

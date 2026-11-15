@@ -6,6 +6,7 @@ import {
   Rubik_800ExtraBold,
   useFonts,
 } from '@expo-google-fonts/rubik';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
@@ -15,6 +16,7 @@ import { View } from 'react-native';
 import { AuthProvider, useAuth } from '@/auth/AuthProvider';
 import { HouseholdProvider, useHousehold } from '@/household/HouseholdProvider';
 import { I18nProvider, useI18n } from '@/i18n';
+import { queryClient } from '@/services/queryClient';
 import { checkSupabaseConnection } from '@/services/supabase';
 import { Button, Text, colors, space } from '@/ui';
 
@@ -32,13 +34,15 @@ export default function RootLayout() {
   if (!fontsLoaded) return null;
 
   return (
-    <I18nProvider>
-      <AuthProvider>
-        <HouseholdProvider>
-          <RootNavigator />
-        </HouseholdProvider>
-      </AuthProvider>
-    </I18nProvider>
+    <QueryClientProvider client={queryClient}>
+      <I18nProvider>
+        <AuthProvider>
+          <HouseholdProvider>
+            <RootNavigator />
+          </HouseholdProvider>
+        </AuthProvider>
+      </I18nProvider>
+    </QueryClientProvider>
   );
 }
 
@@ -58,6 +62,11 @@ function RootNavigator() {
   useEffect(() => {
     if (__DEV__) checkSupabaseConnection();
   }, []);
+
+  // Never show one account's cached data to the next account on this phone.
+  useEffect(() => {
+    if (!signedIn) queryClient.clear();
+  }, [signedIn]);
 
   if (!isReady) return null;
 

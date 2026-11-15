@@ -10,3 +10,4 @@ export { EmptyState } from './EmptyState';
 export { TextField, type TextFieldProps } from './TextField';
 export { ChoiceCard } from './ChoiceCard';
 export { BackButton } from './BackButton';
+export { Avatar } from './Avatar';

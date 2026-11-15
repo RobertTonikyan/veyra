@@ -19,6 +19,9 @@ export function authErrorKey(error: unknown): string {
       return 'auth.errors.invalidEmail';
     case 'email_address_not_authorized':
       return 'auth.errors.notAuthorized';
+    case 'email_provider_disabled':
+    case 'otp_disabled':
+      return 'auth.errors.unavailable';
   }
 
   if (e?.status === 429) return 'auth.errors.rateLimit';

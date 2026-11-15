@@ -40,7 +40,8 @@
       "rateLimit": "Too many attempts. Try again in a few minutes.",
       "notAuthorized": "During testing, only approved emails can sign in.",
       "network": "No internet connection. Check it and try again.",
-      "generic": "Something went wrong. Please try again."
+      "generic": "Something went wrong. Please try again.",
+      "unavailable": "Email sign-in is unavailable right now. Please try again later."
     }
   },
   "onboarding": {
@@ -147,5 +148,38 @@
   "placeholder": {
     "title": "This screen is under construction",
     "body": "We'll build it in phase 3, following the mockup."
+  },
+  "shopping": {
+    "itemsCount": {
+      "one": "1 item",
+      "other": "{{count}} items"
+    },
+    "collectedCount": {
+      "one": "1 collected",
+      "other": "{{count}} collected"
+    },
+    "addPlaceholder": "Add an item",
+    "add": "Add to list",
+    "addNamed": "Add {{name}} to the list",
+    "buyAgain": "Buy again",
+    "addedBy": "added by {{name}}",
+    "rowHint": "Tap to mark as collected. Long press to delete.",
+    "deleteTitle": "Delete \"{{name}}\"?",
+    "clearChecked": "Clear collected",
+    "allDone": "Everything is collected. Nice work!",
+    "emptyTitle": "The list is empty",
+    "emptyBody": "Add an item above and everyone at home sees it right away.",
+    "categories": {
+      "produce": "Fruit & vegetables",
+      "dairy": "Dairy & eggs",
+      "bakery": "Bread & bakery",
+      "meat": "Meat, poultry & fish",
+      "pantry": "Pantry",
+      "frozen": "Frozen",
+      "drinks": "Drinks",
+      "cleaning": "Cleaning",
+      "personal": "Personal care",
+      "other": "Other"
+    }
   }
 }
