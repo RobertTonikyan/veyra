@@ -125,7 +125,100 @@
     "count": {
       "one": "1 chore",
       "other": "{{count}} chores"
-    }
+    },
+    "todayCount": {
+      "one": "1 for today",
+      "other": "{{count}} for today"
+    },
+    "lateCount": {
+      "one": "1 late",
+      "other": "{{count}} late"
+    },
+    "rescuesCount": {
+      "one": "1 rescue",
+      "other": "{{count}} rescues"
+    },
+    "leaderboard": "Leaderboard",
+    "period": {
+      "week": "This week",
+      "month": "This month",
+      "all": "All time"
+    },
+    "teamWeek": "Together this week",
+    "teamProgress": "{{points}} of {{goal}} points",
+    "pointsToGoal": "{{points}} pts to the weekly goal",
+    "pointsToReward": "{{points}} pts to: {{reward}}",
+    "goalReached": "You reached the weekly goal. Well done!",
+    "goalReachedReward": "Goal reached! You earned: {{reward}}",
+    "rankRow": "Place {{rank}}: {{name}}, {{points}} points, {{chores}} chores, {{rescues}} rescues",
+    "filter": {
+      "all": "All",
+      "mine": "Mine",
+      "joint": "Shared"
+    },
+    "filterEmpty": "No chores in this filter.",
+    "emptyTitle": "No open chores",
+    "emptyBody": "Add one with the + button and the whole home sees it.",
+    "section": {
+      "overdue": "Overdue",
+      "today": "Today",
+      "soon": "Coming up",
+      "anytime": "Whenever"
+    },
+    "due": {
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "yesterday": "Since yesterday",
+      "anytime": "No date",
+      "daysLate": {
+        "one": "1 day late",
+        "other": "{{count}} days late"
+      },
+      "inDays": {
+        "one": "In 1 day",
+        "other": "In {{count}} days"
+      }
+    },
+    "recurrence": {
+      "none": "Once",
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly"
+    },
+    "together": "Together",
+    "inTurns": "In turns",
+    "effort": {
+      "quick": "Quick",
+      "normal": "Normal",
+      "big": "Big"
+    },
+    "points": "{{points}} pts",
+    "pointsEach": "{{points}} pts each",
+    "rescuePoints": "Rescue = {{points}} pts",
+    "nextTurn": "Next: {{name}}",
+    "deleteTitle": "Delete \"{{title}}\"?",
+    "markDone": "Mark \"{{title}}\" as done",
+    "markDoneShort": "Done!",
+    "snooze": "Snooze",
+    "snoozeNamed": "Snooze \"{{title}}\" by a day",
+    "done": "Nice! +{{points}} pts",
+    "doneRescue": "Rescue! +{{points}} pts",
+    "addTitle": "New chore",
+    "titleLabel": "What needs doing?",
+    "titlePlaceholder": "e.g. Take out the trash",
+    "effortLabel": "How much work?",
+    "whenLabel": "When?",
+    "inAWeek": "In a week",
+    "repeatLabel": "Repeats?",
+    "jointLabel": "Do it together",
+    "jointHint": "Everyone who takes part gets the full points.",
+    "whoLabel": "Whose is it?",
+    "anyone": "Whoever is free",
+    "rotateLabel": "In turns",
+    "rotateHint": "After each time, it passes to the next person.",
+    "addSubmit": "Add chore",
+    "whoHelped": "Who did \"{{title}}\" with you?",
+    "whoHelpedHint": "Everyone gets {{points}} pts."
   },
   "quickAdd": {
     "open": "Quick add",

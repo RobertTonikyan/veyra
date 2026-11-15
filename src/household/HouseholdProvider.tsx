@@ -21,6 +21,8 @@ export type Household = {
   type: HouseholdType;
   split_mode: SplitMode;
   timezone: string;
+  /** optional shared prize for reaching the weekly chores goal */
+  weekly_reward: string | null;
 };
 
 export type Membership = {
@@ -73,7 +75,7 @@ export function HouseholdProvider({ children }: { children: ReactNode }) {
         .single(),
       supabase
         .from('household_members')
-        .select('role, color_index, households ( id, name, type, split_mode, timezone )')
+        .select('role, color_index, households ( id, name, type, split_mode, timezone, weekly_reward )')
         .eq('user_id', userId)
         .order('joined_at', { ascending: true })
         .limit(1)

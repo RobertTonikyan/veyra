@@ -126,7 +126,105 @@
       "one": "מטלה אחת",
       "two": "שתי מטלות",
       "other": "{{count}} מטלות"
-    }
+    },
+    "todayCount": {
+      "one": "מטלה אחת להיום",
+      "two": "שתי מטלות להיום",
+      "other": "{{count}} מטלות להיום"
+    },
+    "lateCount": {
+      "one": "אחת באיחור",
+      "two": "שתיים באיחור",
+      "other": "{{count}} באיחור"
+    },
+    "rescuesCount": {
+      "one": "חילוץ אחד",
+      "two": "שני חילוצים",
+      "other": "{{count}} חילוצים"
+    },
+    "leaderboard": "טבלת ניקוד",
+    "period": {
+      "week": "השבוע",
+      "month": "החודש",
+      "all": "תמיד"
+    },
+    "teamWeek": "ביחד השבוע",
+    "teamProgress": "{{points}} מתוך {{goal}} נקודות",
+    "pointsToGoal": "עוד {{points}} נק׳ ליעד השבועי",
+    "pointsToReward": "עוד {{points}} נק׳ ל: {{reward}}",
+    "goalReached": "הגעתם ליעד השבועי. כל הכבוד!",
+    "goalReachedReward": "הגעתם ליעד! מגיע לכם: {{reward}}",
+    "rankRow": "מקום {{rank}}: {{name}}, {{points}} נקודות, {{chores}} מטלות, {{rescues}} חילוצים",
+    "filter": {
+      "all": "הכל",
+      "mine": "שלי",
+      "joint": "משותפות"
+    },
+    "filterEmpty": "אין מטלות בסינון הזה.",
+    "emptyTitle": "אין מטלות פתוחות",
+    "emptyBody": "מוסיפים מטלה בכפתור +, וכל הבית רואה אותה.",
+    "section": {
+      "overdue": "באיחור",
+      "today": "היום",
+      "soon": "בקרוב",
+      "anytime": "מתי שנוח"
+    },
+    "due": {
+      "today": "היום",
+      "tomorrow": "מחר",
+      "yesterday": "מאתמול",
+      "anytime": "בלי תאריך",
+      "daysLate": {
+        "one": "באיחור של יום",
+        "two": "באיחור של יומיים",
+        "other": "באיחור של {{count}} ימים"
+      },
+      "inDays": {
+        "one": "בעוד יום",
+        "two": "בעוד יומיים",
+        "other": "בעוד {{count}} ימים"
+      }
+    },
+    "recurrence": {
+      "none": "פעם אחת",
+      "daily": "כל יום",
+      "weekly": "כל שבוע",
+      "monthly": "כל חודש"
+    },
+    "together": "ביחד",
+    "inTurns": "בתורות",
+    "effort": {
+      "quick": "מהירה",
+      "normal": "רגילה",
+      "big": "גדולה"
+    },
+    "points": "{{points}} נק׳",
+    "pointsEach": "{{points}} נק׳ לכל משתתף",
+    "rescuePoints": "חילוץ = {{points}} נק׳",
+    "nextTurn": "הבא בתור: {{name}}",
+    "deleteTitle": "למחוק את \"{{title}}\"?",
+    "markDone": "סימון \"{{title}}\" כבוצעה",
+    "markDoneShort": "בוצע!",
+    "snooze": "דחייה",
+    "snoozeNamed": "דחיית \"{{title}}\" ביום",
+    "done": "כל הכבוד! +{{points}} נק׳",
+    "doneRescue": "חילוץ! +{{points}} נק׳",
+    "addTitle": "מטלה חדשה",
+    "titleLabel": "מה צריך לעשות?",
+    "titlePlaceholder": "למשל: להוריד את הזבל",
+    "effortLabel": "כמה עבודה?",
+    "whenLabel": "מתי?",
+    "inAWeek": "בעוד שבוע",
+    "repeatLabel": "חוזרת?",
+    "jointLabel": "עושים ביחד",
+    "jointHint": "כל מי שמשתתף מקבל את מלוא הנקודות.",
+    "whoLabel": "של מי?",
+    "anyone": "כל מי שפנוי",
+    "rotateLabel": "בתורות",
+    "rotateHint": "אחרי כל ביצוע, המטלה עוברת לבא בתור.",
+    "addSubmit": "הוספת המטלה",
+    "whoHelped": "מי עשה איתך את \"{{title}}\"?",
+    "whoHelpedHint": "כל אחד מקבל {{points}} נק׳."
   },
   "quickAdd": {
     "open": "הוספה מהירה",

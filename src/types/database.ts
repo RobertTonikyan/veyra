@@ -606,6 +606,7 @@ export type Database = {
           timezone: string
           type: string
           updated_at: string
+          weekly_reward: string | null
         }
         Insert: {
           created_at?: string
@@ -616,6 +617,7 @@ export type Database = {
           timezone?: string
           type: string
           updated_at?: string
+          weekly_reward?: string | null
         }
         Update: {
           created_at?: string
@@ -626,6 +628,7 @@ export type Database = {
           timezone?: string
           type?: string
           updated_at?: string
+          weekly_reward?: string | null
         }
         Relationships: [
           {
@@ -1268,6 +1271,15 @@ export type Database = {
       create_invite: {
         Args: { p_household: string; p_max_uses?: number }
         Returns: string
+      }
+      household_scores: {
+        Args: { p_household: string; p_period?: string }
+        Returns: {
+          chores_done: number
+          points: number
+          rescues: number
+          user_id: string
+        }[]
       }
       household_today: { Args: { hid: string }; Returns: string }
       is_member: { Args: { hid: string }; Returns: boolean }

@@ -127,7 +127,110 @@
       "few": "{{count}} дела",
       "many": "{{count}} дел",
       "other": "{{count}} дела"
-    }
+    },
+    "todayCount": {
+      "one": "{{count}} на сегодня",
+      "few": "{{count}} на сегодня",
+      "many": "{{count}} на сегодня",
+      "other": "{{count}} на сегодня"
+    },
+    "lateCount": {
+      "one": "{{count}} просрочено",
+      "few": "{{count}} просрочено",
+      "many": "{{count}} просрочено",
+      "other": "{{count}} просрочено"
+    },
+    "rescuesCount": {
+      "one": "{{count}} спасение",
+      "few": "{{count}} спасения",
+      "many": "{{count}} спасений",
+      "other": "{{count}} спасения"
+    },
+    "leaderboard": "Таблица очков",
+    "period": {
+      "week": "Неделя",
+      "month": "Месяц",
+      "all": "Всё время"
+    },
+    "teamWeek": "Вместе за неделю",
+    "teamProgress": "{{points}} из {{goal}} очков",
+    "pointsToGoal": "Ещё {{points}} очк. до цели недели",
+    "pointsToReward": "Ещё {{points}} очк. до: {{reward}}",
+    "goalReached": "Цель недели достигнута. Молодцы!",
+    "goalReachedReward": "Цель достигнута! Вы заслужили: {{reward}}",
+    "rankRow": "Место {{rank}}: {{name}}, {{points}} очков, дел: {{chores}}, спасений: {{rescues}}",
+    "filter": {
+      "all": "Все",
+      "mine": "Мои",
+      "joint": "Общие"
+    },
+    "filterEmpty": "В этом фильтре дел нет.",
+    "emptyTitle": "Открытых дел нет",
+    "emptyBody": "Добавьте дело кнопкой + — его увидит весь дом.",
+    "section": {
+      "overdue": "Просрочено",
+      "today": "Сегодня",
+      "soon": "Скоро",
+      "anytime": "Когда удобно"
+    },
+    "due": {
+      "today": "Сегодня",
+      "tomorrow": "Завтра",
+      "yesterday": "Со вчера",
+      "anytime": "Без даты",
+      "daysLate": {
+        "one": "Просрочено на {{count}} день",
+        "few": "Просрочено на {{count}} дня",
+        "many": "Просрочено на {{count}} дней",
+        "other": "Просрочено на {{count}} дня"
+      },
+      "inDays": {
+        "one": "Через {{count}} день",
+        "few": "Через {{count}} дня",
+        "many": "Через {{count}} дней",
+        "other": "Через {{count}} дня"
+      }
+    },
+    "recurrence": {
+      "none": "Один раз",
+      "daily": "Каждый день",
+      "weekly": "Каждую неделю",
+      "monthly": "Каждый месяц"
+    },
+    "together": "Вместе",
+    "inTurns": "По очереди",
+    "effort": {
+      "quick": "Быстрое",
+      "normal": "Обычное",
+      "big": "Большое"
+    },
+    "points": "{{points}} очк.",
+    "pointsEach": "{{points}} очк. каждому",
+    "rescuePoints": "Спасение = {{points}} очк.",
+    "nextTurn": "Следующий: {{name}}",
+    "deleteTitle": "Удалить «{{title}}»?",
+    "markDone": "Отметить «{{title}}» как сделанное",
+    "markDoneShort": "Готово!",
+    "snooze": "Отложить",
+    "snoozeNamed": "Отложить «{{title}}» на день",
+    "done": "Отлично! +{{points}} очк.",
+    "doneRescue": "Спасение! +{{points}} очк.",
+    "addTitle": "Новое дело",
+    "titleLabel": "Что нужно сделать?",
+    "titlePlaceholder": "Например: вынести мусор",
+    "effortLabel": "Сколько работы?",
+    "whenLabel": "Когда?",
+    "inAWeek": "Через неделю",
+    "repeatLabel": "Повторять?",
+    "jointLabel": "Делаем вместе",
+    "jointHint": "Каждый участник получает все очки.",
+    "whoLabel": "Чьё дело?",
+    "anyone": "Кто свободен",
+    "rotateLabel": "По очереди",
+    "rotateHint": "После каждого раза дело переходит к следующему.",
+    "addSubmit": "Добавить дело",
+    "whoHelped": "Кто делал «{{title}}» с вами?",
+    "whoHelpedHint": "Каждый получает {{points}} очк."
   },
   "quickAdd": {
     "open": "Быстро добавить",
