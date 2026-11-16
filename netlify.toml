@@ -1,6 +1,6 @@
 # Veyra web: the same Expo app, exported as a static single-page site.
 [build]
-  command = "npx expo export --platform web"
+  command = "npx expo export --platform web && node scripts/web-head.js"
   publish = "dist"
 
 [build.environment]
