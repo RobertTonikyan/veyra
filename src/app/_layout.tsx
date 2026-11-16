@@ -6,6 +6,7 @@ import {
   Rubik_800ExtraBold,
   useFonts,
 } from '@expo-google-fonts/rubik';
+import { DarkTheme, ThemeProvider, type Theme } from '@react-navigation/native';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Stack, type ErrorBoundaryProps } from 'expo-router';
@@ -24,6 +25,19 @@ import { checkSupabaseConnection } from '@/services/supabase';
 import { Button, Text, colors, space } from '@/ui';
 
 SplashScreen.preventAutoHideAsync();
+
+/** Navigation colors = app colors, so no screen ever flashes the default white while it loads. */
+const NAV_THEME: Theme = {
+  ...DarkTheme,
+  colors: {
+    ...DarkTheme.colors,
+    primary: colors.accent,
+    background: colors.bg,
+    card: colors.bg,
+    text: colors.text,
+    border: colors.hairline,
+  },
+};
 
 /**
  * Web only: paint the browser around the app in the app's color.
@@ -94,13 +108,15 @@ export default function RootLayout() {
         dehydrateOptions: { shouldDehydrateQuery: shouldPersistQuery },
       }}
     >
-      <I18nProvider>
-        <AuthProvider>
-          <HouseholdProvider>
-            <RootNavigator />
-          </HouseholdProvider>
-        </AuthProvider>
-      </I18nProvider>
+      <ThemeProvider value={NAV_THEME}>
+        <I18nProvider>
+          <AuthProvider>
+            <HouseholdProvider>
+              <RootNavigator />
+            </HouseholdProvider>
+          </AuthProvider>
+        </I18nProvider>
+      </ThemeProvider>
     </PersistQueryClientProvider>
   );
 }

@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 
 import { NotificationScheduler } from '@/features/notifications/NotificationScheduler';
 import { RealtimeSync } from '@/household/RealtimeSync';
-import { TabBar } from '@/ui';
+import { TabBar, colors } from '@/ui';
 
 export default function TabsLayout() {
   return (
@@ -12,7 +12,7 @@ export default function TabsLayout() {
       <RealtimeSync />
       {/* reminders scheduled on this phone, kept in sync with the house data */}
       {Platform.OS !== 'web' ? <NotificationScheduler /> : null}
-      <Tabs tabBar={(props) => <TabBar {...props} />} screenOptions={{ headerShown: false }}>
+      <Tabs tabBar={(props) => <TabBar {...props} />} screenOptions={{ headerShown: false, sceneStyle: { backgroundColor: colors.bg } }}>
         <Tabs.Screen name="index" />
         <Tabs.Screen name="shopping" />
         <Tabs.Screen name="chores" />
