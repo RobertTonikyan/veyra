@@ -8,7 +8,8 @@
     "close": "Close",
     "back": "Back",
     "retry": "Try again",
-    "loading": "Loading"
+    "loading": "Loading",
+    "copied": "Invite copied. Paste it anywhere."
   },
   "errors": {
     "loadFailed": "We couldn't load your data. Check your internet connection.",
@@ -371,7 +372,8 @@
     "notifEvents": "Calendar events",
     "notifEventsHint": "Half an hour before an event starts.",
     "notifDeviceOnly": "These settings are saved on this phone. Alerts about what others do (shopping, finished chores) come in a later update.",
-    "privacy": "Privacy policy"
+    "privacy": "Privacy policy",
+    "notifWebOnly": "Notifications work in the phone app. The browser version doesn't send reminders."
   },
   "placeholder": {
     "title": "This screen is under construction",

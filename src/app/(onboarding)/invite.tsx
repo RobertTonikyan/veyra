@@ -1,7 +1,9 @@
 import { useLocalSearchParams } from 'expo-router';
 import { Share2 } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Share, View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
+
+import { shareText } from '@/services/share';
 
 import { useHousehold } from '@/household/HouseholdProvider';
 import { useI18n } from '@/i18n';
@@ -38,7 +40,7 @@ export default function InviteScreen() {
 
   async function share() {
     if (!code) return;
-    await Share.share({ message: t('onboarding.invite.shareMessage', { code }) });
+    await shareText(t('onboarding.invite.shareMessage', { code }), t('common.copied'));
   }
 
   async function finish() {

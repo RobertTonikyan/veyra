@@ -1,6 +1,8 @@
 import { Check, PiggyBank, Plus, Target, Trash2 } from 'lucide-react-native';
 import { useState } from 'react';
-import { Alert, TextInput, View } from 'react-native';
+import { TextInput, View } from 'react-native';
+
+import { Alert } from '@/services/alert';
 
 import { formatMoney, parseMoney } from '@/features/money/format';
 import { useI18n } from '@/i18n';

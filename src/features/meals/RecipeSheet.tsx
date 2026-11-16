@@ -1,6 +1,8 @@
 import { CalendarPlus, Clock, Pencil, ShoppingBasket, Trash2, Users } from 'lucide-react-native';
 import { useState } from 'react';
-import { Alert, ScrollView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
+
+import { Alert } from '@/services/alert';
 
 import { useI18n } from '@/i18n';
 import { dbErrorKey } from '@/services/errors';

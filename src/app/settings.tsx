@@ -20,7 +20,10 @@ import {
   type LucideIcon,
 } from 'lucide-react-native';
 import { useEffect, useState, type ReactNode } from 'react';
-import { Alert, KeyboardAvoidingView, Linking, Platform, Pressable, Share, Switch, View } from 'react-native';
+import { KeyboardAvoidingView, Linking, Platform, Pressable, Switch, View } from 'react-native';
+
+import { Alert } from '@/services/alert';
+import { shareText } from '@/services/share';
 
 import { useAuth } from '@/auth/AuthProvider';
 import { birthdayLabel } from '@/features/birthdays';
@@ -113,7 +116,7 @@ export default function SettingsScreen() {
 
   async function invite() {
     createInvite.mutate(undefined, {
-      onSuccess: (code) => Share.share({ message: t('onboarding.invite.shareMessage', { code }) }),
+      onSuccess: (code) => shareText(t('onboarding.invite.shareMessage', { code }), t('common.copied')),
       onError: fail,
     });
   }
@@ -222,105 +225,116 @@ export default function SettingsScreen() {
         </Section>
 
         {/* ---------------- notifications ---------------- */}
-        <Section title={t('settings.notifications')}>
-          {notif.permission === 'denied' || notif.permission === 'undetermined' ? (
-            <Card style={{ gap: space.md, borderColor: colors.honey }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: space.md }}>
-                <BellOff size={20} color={colors.honey} />
-                <Text style={{ flex: 1 }}>{t('settings.notifOff')}</Text>
-              </View>
-              <Button
-                variant="secondary"
-                label={notif.permission === 'undetermined' ? t('settings.notifAllow') : t('settings.openPhoneSettings')}
-                onPress={() =>
-                  notif.permission === 'undetermined' ? ensureNotificationPermission(true) : Linking.openSettings()
-                }
-                fullWidth
-              />
+        {Platform.OS === 'web' ? (
+          <Section title={t('settings.notifications')}>
+            <Card style={{ flexDirection: 'row', alignItems: 'center', gap: space.md }}>
+              <Bell size={20} color={colors.textSoft} />
+              <Text color="textSoft" style={{ flex: 1 }}>
+                {t('settings.notifWebOnly')}
+              </Text>
             </Card>
-          ) : null}
-
-          <Card style={{ gap: space.md }}>
-            <ToggleRow
-              Icon={Bell}
-              title={t('settings.reminderOn')}
-              hint={t('settings.reminderExplain')}
-              value={profile?.reminders_on ?? true}
-              onChange={(v) => updateProfile.mutate({ reminders_on: v }, { onError: fail })}
-            />
-            {profile?.reminders_on !== false ? (
-              <View
-                style={{ flexDirection: 'row', alignItems: 'center', gap: space.md, direction: 'ltr' }}
-                accessible
-                accessibilityRole="adjustable"
-                accessibilityLabel={t('settings.reminderTime')}
-                accessibilityValue={{ text: `${pad(hh)}:${pad(mm)}` }}
-                accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
-                onAccessibilityAction={(e) => shiftReminder(e.nativeEvent.actionName === 'increment' ? 30 : -30)}
-              >
-                <StepButton onPress={() => shiftReminder(-30)}>
-                  <Minus size={18} color={colors.text} />
-                </StepButton>
-                <Text variant="title" align="center" style={{ flex: 1, writingDirection: 'ltr' }}>
-                  {pad(hh)}:{pad(mm)}
-                </Text>
-                <StepButton onPress={() => shiftReminder(30)}>
-                  <Plus size={18} color={colors.text} />
-                </StepButton>
-              </View>
-            ) : null}
-            <Divider />
-            <ToggleRow
-              Icon={Sparkles}
-              title={t('settings.notifChores')}
-              hint={t('settings.notifChoresHint')}
-              value={notif.prefs.chores}
-              onChange={(v) => setNotificationPref('chores', v)}
-            />
-            <Divider />
-            <ToggleRow
-              Icon={Cake}
-              title={t('settings.notifBirthdays')}
-              hint={t('settings.notifBirthdaysHint')}
-              value={notif.prefs.birthdays}
-              onChange={(v) => setNotificationPref('birthdays', v)}
-            />
-            <Divider />
-            <ToggleRow
-              Icon={CalendarClock}
-              title={t('settings.notifEvents')}
-              hint={t('settings.notifEventsHint')}
-              value={notif.prefs.events}
-              onChange={(v) => setNotificationPref('events', v)}
-            />
-            <Text variant="small" color="textMuted">
-              {t('settings.notifDeviceOnly')}
-            </Text>
-            {__DEV__ ? (
-              <View style={{ gap: space.xs }}>
+          </Section>
+        ) : (
+          <Section title={t('settings.notifications')}>
+            {notif.permission === 'denied' || notif.permission === 'undetermined' ? (
+              <Card style={{ gap: space.md, borderColor: colors.honey }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: space.md }}>
+                  <BellOff size={20} color={colors.honey} />
+                  <Text style={{ flex: 1 }}>{t('settings.notifOff')}</Text>
+                </View>
                 <Button
-                  variant="ghost"
-                  label={`DEV · scheduled (${notif.permission})`}
-                  onPress={() => listScheduled().then(setScheduled).catch((e) => setMessage({ text: String(e), tone: 'error' }))}
+                  variant="secondary"
+                  label={notif.permission === 'undetermined' ? t('settings.notifAllow') : t('settings.openPhoneSettings')}
+                  onPress={() =>
+                    notif.permission === 'undetermined' ? ensureNotificationPermission(true) : Linking.openSettings()
+                  }
                   fullWidth
                 />
-                {scheduled ? (
-                  scheduled.length ? (
-                    scheduled.map((n) => (
-                      <Text key={n.id} variant="small" color="textSoft" align="left" style={{ writingDirection: 'ltr' }}>
-                        {n.when} · {n.title}
-                      </Text>
-                    ))
-                  ) : (
-                    <Text variant="small" color="textMuted" align="center">
-                      0
-                    </Text>
-                  )
-                ) : null}
-              </View>
+              </Card>
             ) : null}
-          </Card>
-        </Section>
+
+            <Card style={{ gap: space.md }}>
+              <ToggleRow
+                Icon={Bell}
+                title={t('settings.reminderOn')}
+                hint={t('settings.reminderExplain')}
+                value={profile?.reminders_on ?? true}
+                onChange={(v) => updateProfile.mutate({ reminders_on: v }, { onError: fail })}
+              />
+              {profile?.reminders_on !== false ? (
+                <View
+                  style={{ flexDirection: 'row', alignItems: 'center', gap: space.md, direction: 'ltr' }}
+                  accessible
+                  accessibilityRole="adjustable"
+                  accessibilityLabel={t('settings.reminderTime')}
+                  accessibilityValue={{ text: `${pad(hh)}:${pad(mm)}` }}
+                  accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
+                  onAccessibilityAction={(e) => shiftReminder(e.nativeEvent.actionName === 'increment' ? 30 : -30)}
+                >
+                  <StepButton onPress={() => shiftReminder(-30)}>
+                    <Minus size={18} color={colors.text} />
+                  </StepButton>
+                  <Text variant="title" align="center" style={{ flex: 1, writingDirection: 'ltr' }}>
+                    {pad(hh)}:{pad(mm)}
+                  </Text>
+                  <StepButton onPress={() => shiftReminder(30)}>
+                    <Plus size={18} color={colors.text} />
+                  </StepButton>
+                </View>
+              ) : null}
+              <Divider />
+              <ToggleRow
+                Icon={Sparkles}
+                title={t('settings.notifChores')}
+                hint={t('settings.notifChoresHint')}
+                value={notif.prefs.chores}
+                onChange={(v) => setNotificationPref('chores', v)}
+              />
+              <Divider />
+              <ToggleRow
+                Icon={Cake}
+                title={t('settings.notifBirthdays')}
+                hint={t('settings.notifBirthdaysHint')}
+                value={notif.prefs.birthdays}
+                onChange={(v) => setNotificationPref('birthdays', v)}
+              />
+              <Divider />
+              <ToggleRow
+                Icon={CalendarClock}
+                title={t('settings.notifEvents')}
+                hint={t('settings.notifEventsHint')}
+                value={notif.prefs.events}
+                onChange={(v) => setNotificationPref('events', v)}
+              />
+              <Text variant="small" color="textMuted">
+                {t('settings.notifDeviceOnly')}
+              </Text>
+              {__DEV__ ? (
+                <View style={{ gap: space.xs }}>
+                  <Button
+                    variant="ghost"
+                    label={`DEV · scheduled (${notif.permission})`}
+                    onPress={() => listScheduled().then(setScheduled).catch((e) => setMessage({ text: String(e), tone: 'error' }))}
+                    fullWidth
+                  />
+                  {scheduled ? (
+                    scheduled.length ? (
+                      scheduled.map((n) => (
+                        <Text key={n.id} variant="small" color="textSoft" align="left" style={{ writingDirection: 'ltr' }}>
+                          {n.when} · {n.title}
+                        </Text>
+                      ))
+                    ) : (
+                      <Text variant="small" color="textMuted" align="center">
+                        0
+                      </Text>
+                    )
+                  ) : null}
+                </View>
+              ) : null}
+            </Card>
+          </Section>
+        )}
 
         {/* ---------------- the house ---------------- */}
         <Section title={t('settings.house')}>

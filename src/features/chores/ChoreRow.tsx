@@ -1,5 +1,7 @@
 import { Check, Infinity as AnyoneIcon } from 'lucide-react-native';
-import { Alert, Pressable, View } from 'react-native';
+import { Pressable, View } from 'react-native';
+
+import { Alert } from '@/services/alert';
 
 import type { Member } from '@/household/useMembers';
 import { useI18n } from '@/i18n';

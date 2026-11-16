@@ -15,15 +15,17 @@ import { setPermissionState, useNotificationPrefs, type PermissionState } from '
 
 const CHANNEL = 'reminders';
 
-// Show reminders even while the app is open.
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowBanner: true,
-    shouldShowList: true,
-    shouldPlaySound: true,
-    shouldSetBadge: false,
-  }),
-});
+// Show reminders even while the app is open (not on web: the browser app schedules nothing).
+if (Platform.OS !== 'web') {
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowBanner: true,
+      shouldShowList: true,
+      shouldPlaySound: true,
+      shouldSetBadge: false,
+    }),
+  });
+}
 
 function toState(p: Notifications.NotificationPermissionsStatus): PermissionState {
   if (p.granted || p.ios?.status === Notifications.IosAuthorizationStatus.PROVISIONAL) return 'granted';

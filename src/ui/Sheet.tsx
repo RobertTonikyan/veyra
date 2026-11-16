@@ -50,6 +50,9 @@ export function Sheet({ visible, onClose, title, children }: SheetProps) {
           <View
             accessibilityViewIsModal
             style={{
+              width: '100%',
+              maxWidth: 520, // phone-width on a wide browser window
+              alignSelf: 'center',
               maxHeight: '92%',
               backgroundColor: colors.surface,
               borderTopLeftRadius: radius.xl,

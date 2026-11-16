@@ -1,7 +1,9 @@
 import { ArrowLeftRight, ChevronLeft, ChevronRight, Scale, Wallet } from 'lucide-react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState, type ReactNode } from 'react';
-import { ActivityIndicator, Alert, Pressable, View } from 'react-native';
+import { ActivityIndicator, Pressable, View } from 'react-native';
+
+import { Alert } from '@/services/alert';
 
 import { useAuth } from '@/auth/AuthProvider';
 import { AddExpenseSheet } from '@/features/money/AddExpenseSheet';

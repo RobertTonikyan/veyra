@@ -11,7 +11,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 
 import { AuthProvider, useAuth } from '@/auth/AuthProvider';
 import { HouseholdProvider, useHousehold } from '@/household/HouseholdProvider';
@@ -71,7 +71,9 @@ function RootNavigator() {
   if (!isReady) return null;
 
   return (
-    <View style={{ flex: 1, direction, backgroundColor: colors.bg }}>
+    <View style={{ flex: 1, backgroundColor: colors.bg }}>
+      {/* On a wide browser window the app stays phone-width, centered. */}
+      <View style={[{ flex: 1, direction, backgroundColor: colors.bg }, Platform.OS === 'web' && WEB_FRAME]}>
       <StatusBar style="light" />
       {signedIn && error ? (
         <LoadError />
@@ -93,9 +95,19 @@ function RootNavigator() {
           </Stack.Protected>
         </Stack>
       )}
+      </View>
     </View>
   );
 }
+
+const WEB_FRAME = {
+  width: '100%',
+  maxWidth: 520,
+  alignSelf: 'center',
+  borderLeftWidth: 1,
+  borderRightWidth: 1,
+  borderColor: colors.hairline,
+} as const;
 
 function LoadError() {
   const { t } = useI18n();
