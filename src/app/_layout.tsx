@@ -22,6 +22,34 @@ import { Button, Text, colors, space } from '@/ui';
 
 SplashScreen.preventAutoHideAsync();
 
+/**
+ * Web only: paint the browser around the app in the app's color.
+ * Without this, mobile Safari shows a white bar above the app (status bar area / overscroll).
+ */
+function paintBrowserChrome() {
+  if (Platform.OS !== 'web' || typeof document === 'undefined') return;
+  const root = document.documentElement;
+  root.style.backgroundColor = colors.bg;
+  root.style.colorScheme = 'dark';
+  document.body.style.backgroundColor = colors.bg;
+
+  const meta = (name: string, content: string) => {
+    let el = document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`);
+    if (!el) {
+      el = document.createElement('meta');
+      el.name = name;
+      document.head.appendChild(el);
+    }
+    el.content = content;
+  };
+  meta('theme-color', colors.bg);
+  meta('color-scheme', 'dark');
+  meta('apple-mobile-web-app-capable', 'yes');
+  meta('apple-mobile-web-app-status-bar-style', 'black-translucent');
+  meta('viewport', 'width=device-width, initial-scale=1, viewport-fit=cover');
+}
+paintBrowserChrome();
+
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
     Rubik_400Regular,

@@ -33,7 +33,11 @@
     },
     "web": {
       "output": "single",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "backgroundColor": "#1A1614",
+      "themeColor": "#1A1614",
+      "name": "Veyra",
+      "shortName": "Veyra"
     },
     "plugins": [
       "expo-router",
@@ -64,6 +68,7 @@
         "projectId": "b9045797-5b7d-4703-a46e-54872cc6f721"
       }
     },
-    "owner": "roberttonikyan"
+    "owner": "roberttonikyan",
+    "backgroundColor": "#1A1614"
   }
 }
