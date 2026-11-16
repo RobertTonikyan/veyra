@@ -24,6 +24,8 @@ const head = `
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <style id="veyra-web">
   html, body { background: ${BG}; overscroll-behavior: none; }
+  /* iPhone home-screen app: 100% stops one status bar short of the bottom; 100vh is the full screen */
+  @media all and (display-mode: standalone) { html, body, #root { height: 100vh; } }
 </style>
 `;
 if (!html.includes('id="veyra-web"')) html = html.replace('</head>', `${head}</head>`);
