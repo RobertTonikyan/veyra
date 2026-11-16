@@ -323,9 +323,9 @@
     "notSet": "Not set",
     "saved": "Saved",
     "reminder": "Morning reminder",
-    "reminderOn": "Daily summary",
+    "reminderOn": "Morning summary",
     "reminderTime": "Reminder time",
-    "reminderExplain": "Once a day we send a short summary: what needs doing today and what's on the list. Phone notifications arrive in the next update.",
+    "reminderExplain": "What's due today and what's on the calendar. Nothing on? Nothing is sent.",
     "house": "Home",
     "ownerOnly": "Only the person who created the home can change these.",
     "weeklyReward": "Weekly reward",
@@ -359,7 +359,20 @@
     "deleteNow": "Delete now",
     "deleteNowTitle": "Delete now",
     "deleteNowBody": "There's no undo: your account and all your data are deleted now.",
-    "deleteNowConfirm": "Yes, delete now"
+    "deleteNowConfirm": "Yes, delete now",
+    "notifications": "Notifications",
+    "notifOff": "Notifications are off on this phone, so no reminders will arrive.",
+    "notifAllow": "Turn on notifications",
+    "openPhoneSettings": "Open phone settings",
+    "notifChores": "Chores still open",
+    "notifChoresHint": "At 19:00, if one of today's chores isn't ticked yet.",
+    "notifBirthdays": "Birthdays",
+    "notifBirthdaysHint": "On the day at 9:00 (and 3 days before, if on in house settings).",
+    "notifEvents": "Calendar events",
+    "notifEventsHint": "Half an hour before an event starts.",
+    "notifDeviceOnly": "These settings are saved on this phone. Alerts about what others do (shopping, finished chores) come in a later update.",
+    "notifTest": "Send a test notification",
+    "notifTestSent": "Sent. It arrives in 5 seconds (even if you leave the app)."
   },
   "placeholder": {
     "title": "This screen is under construction",
@@ -638,7 +651,6 @@
     "noteText": "Note",
     "notePlaceholder": "e.g. Building code 1234#",
     "color": "Color {{n}}",
-    "pinToTop": "Pin to top",
     "noGoals": "No goals yet",
     "noGoalsBody": "A holiday, a new sofa, or \"run 5k together\". Add one with +.",
     "savedOf": "{{saved}} of {{target}}",
@@ -652,6 +664,43 @@
     "goalTarget": "Target amount (₪)",
     "goalTargetHint": "Optional. A goal can be without money.",
     "putIn": "Put in",
-    "takeOut": "Take out"
+    "takeOut": "Take out",
+    "ratingWord": {
+      "1": "Meh",
+      "2": "Okay",
+      "3": "Nice",
+      "4": "Great fun",
+      "5": "Perfect!"
+    },
+    "tapStars": "Tap the stars",
+    "saveRating": "Save rating",
+    "importantPin": "Red pin: important, always on top"
+  },
+  "notif": {
+    "channel": "Reminders",
+    "morningTitle": "Good morning ☀️",
+    "choresToday": {
+      "one": "Chore for today: {{first}}",
+      "other": "{{count}} chores today: {{first}} and more"
+    },
+    "eventsToday": {
+      "one": "On the calendar: {{first}}",
+      "other": "{{count}} things on the calendar, first: {{first}}"
+    },
+    "choreEveningTitle": "Not ticked yet ✓",
+    "choreEvening": {
+      "one": "{{first}} is still waiting for today",
+      "other": "{{first}} and {{rest}} more are still waiting for today"
+    },
+    "birthdayTitle": "It's {{name}}'s birthday today 🎂",
+    "birthdayBody": "Time for a wish (and maybe cake).",
+    "myBirthdayTitle": "Happy birthday! 🎉",
+    "myBirthdayBody": "The whole house is celebrating with you today.",
+    "headsUpTitle": "3 days to {{name}}'s birthday",
+    "headsUpBody": "Still time to sort out a gift 🎁",
+    "eventBody": "Starts at {{time}}",
+    "eventNow": "Starting now",
+    "testTitle": "Veyra 👋",
+    "testBody": "Notifications work on this phone."
   }
 }
