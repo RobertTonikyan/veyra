@@ -37,7 +37,13 @@ export function RealtimeSync() {
     const channel = supabase.channel(`household:${hid}`);
 
     for (const table of TABLES) {
-      const refresh = () => queryClient.invalidateQueries({ queryKey: qk.table(hid, table) });
+      const refresh = () => {
+        queryClient.invalidateQueries({ queryKey: qk.table(hid, table) });
+        // balances, settle-up and monthly totals are built from both of these
+        if (table === 'expenses' || table === 'settlements') {
+          queryClient.invalidateQueries({ queryKey: qk.money(hid) });
+        }
+      };
 
       // Inserts and updates can be filtered to this house.
       channel.on(

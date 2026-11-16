@@ -10,4 +10,10 @@ export const qk = {
   chores: (hid: string) => ['household', hid, 'chores'] as const,
   // under chore_logs so a realtime change to the logs refreshes every leaderboard
   scores: (hid: string, period: string) => ['household', hid, 'chore_logs', 'scores', period] as const,
+  // everything on the money screen lives under one prefix, refreshed on any expense/settlement change
+  money: (hid: string) => ['household', hid, 'money'] as const,
+  expenses: (hid: string, month: string) => ['household', hid, 'money', 'expenses', month] as const,
+  monthSpend: (hid: string, month: string) => ['household', hid, 'money', 'month-spend', month] as const,
+  balances: (hid: string) => ['household', hid, 'money', 'balances'] as const,
+  settleUp: (hid: string) => ['household', hid, 'money', 'settle-up'] as const,
 };

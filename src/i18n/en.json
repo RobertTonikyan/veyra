@@ -304,5 +304,91 @@
     "unsorted": "To sort",
     "whichCategory": "Where does \"{{name}}\" go?",
     "whichCategoryHint": "We'll remember your choice and sort it automatically next time."
+  },
+  "money": {
+    "me": "Me",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "twoDaysAgo": "2 days ago",
+    "prevMonth": "Previous month",
+    "nextMonth": "Next month",
+    "sharedThisMonth": "Shared expenses this month",
+    "spentThisMonth": "Spent this month",
+    "perPerson": {
+      "one": "1 person · {{amount}} each",
+      "other": "{{count}} people · {{amount}} each"
+    },
+    "moreThanLast": "{{pct}}% more than last month",
+    "lessThanLast": "{{pct}}% less than last month",
+    "sameAsLast": "Same as last month",
+    "overBudget": "{{amount}} over a {{budget}} budget",
+    "budgetLeft": "Budget {{budget}} · {{left}} left · {{perDay}} a day",
+    "balanced": "All square — nobody owes anybody",
+    "transfersNeeded": {
+      "one": "1 transfer settles everything",
+      "other": "{{count}} transfers settle everything"
+    },
+    "transferA11y": "{{from}} pays {{to}} {{amount}}",
+    "youPay": "You pay {{name}}",
+    "paysYou": "{{name}} pays you",
+    "paysTo": "{{from}} → {{to}}",
+    "markPaid": "Mark as paid",
+    "markPaidTitle": "Was it paid?",
+    "markPaidBody": "{{from}} paid {{to}} {{amount}}. We'll record it and update the balances.",
+    "myBalancePlus": "You are owed {{amount}} in total",
+    "myBalanceMinus": "You owe {{amount}} in total",
+    "emptyTitle": "No expenses this month",
+    "emptyBody": "Add one with the + button and everyone's balance updates.",
+    "whoPaid": "Who paid this month",
+    "byCategory": "By category",
+    "recent": "Expenses",
+    "splitWith": {
+      "one": "just 1 person",
+      "other": "split by {{count}}"
+    },
+    "deleteNotYours": "You can only delete an expense you added or paid.",
+    "deleteTitle": "Delete \"{{title}}\"?",
+    "deleteBody": "Everyone's balance will be recalculated.",
+    "addTitle": "New expense",
+    "amount": "Amount",
+    "whatFor": "What for?",
+    "category": "Category",
+    "paidBy": "Who paid?",
+    "splitBetween": "Split between",
+    "splitPercentNote": "Split by your set percentages, only between those selected.",
+    "splitEqualNote": "{{amount}} each",
+    "splitEqualHint": "Split evenly between those selected.",
+    "when": "When?",
+    "addSubmit": "Add expense",
+    "addSubmitAmount": "Add {{amount}}",
+    "errors": {
+      "amount": "Enter an amount, e.g. 45 or 12.90.",
+      "participants": "Pick at least one person."
+    },
+    "categories": {
+      "groceries": "Groceries",
+      "dining": "Eating out",
+      "bills": "Bills",
+      "rent": "Rent",
+      "home": "Home",
+      "transport": "Transport",
+      "fun": "Going out",
+      "health": "Health",
+      "other": "Other"
+    },
+    "howWeSplit": "How we split",
+    "ownerOnly": "Only the person who created the home can change how you split.",
+    "split": {
+      "equal": "Equally",
+      "percent": "By percentage",
+      "equalExplain": "Every expense is split evenly between the people in it. If someone has a bigger room or only lives here part of the month, switch to \"By percentage\" and set each share.",
+      "percentExplain": "Everyone pays a fixed share of each expense, e.g. 60/40 by income or room size. When an expense is only for some people, the shares are recalculated between them."
+    },
+    "editShares": "Edit shares",
+    "sharesMust100": "Shares must add up to 100% (now {{total}}%).",
+    "sharesTitle": "Who pays how much",
+    "sharesHint": "Shares apply to new expenses. Expenses already recorded don't change.",
+    "shareOf": "{{name}}'s share",
+    "sharesTotal": "Total {{total}}%"
   }
 }

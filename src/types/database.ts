@@ -601,6 +601,7 @@ export type Database = {
           created_at: string
           created_by: string | null
           id: string
+          monthly_budget_agorot: number | null
           name: string
           split_mode: string
           timezone: string
@@ -612,6 +613,7 @@ export type Database = {
           created_at?: string
           created_by?: string | null
           id?: string
+          monthly_budget_agorot?: number | null
           name: string
           split_mode?: string
           timezone?: string
@@ -623,6 +625,7 @@ export type Database = {
           created_at?: string
           created_by?: string | null
           id?: string
+          monthly_budget_agorot?: number | null
           name?: string
           split_mode?: string
           timezone?: string

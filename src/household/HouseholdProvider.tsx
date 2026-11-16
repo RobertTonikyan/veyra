@@ -23,6 +23,8 @@ export type Household = {
   timezone: string;
   /** optional shared prize for reaching the weekly chores goal */
   weekly_reward: string | null;
+  /** optional monthly budget, in agorot */
+  monthly_budget_agorot: number | null;
 };
 
 export type Membership = {
@@ -75,7 +77,7 @@ export function HouseholdProvider({ children }: { children: ReactNode }) {
         .single(),
       supabase
         .from('household_members')
-        .select('role, color_index, households ( id, name, type, split_mode, timezone, weekly_reward )')
+        .select('role, color_index, households ( id, name, type, split_mode, timezone, weekly_reward, monthly_budget_agorot )')
         .eq('user_id', userId)
         .order('joined_at', { ascending: true })
         .limit(1)
