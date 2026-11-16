@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { Mail } from 'lucide-react-native';
+import Mail from 'lucide-react-native/icons/mail';
 import { useState } from 'react';
 import { KeyboardAvoidingView, Platform, View } from 'react-native';
 

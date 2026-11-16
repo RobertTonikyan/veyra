@@ -1,4 +1,4 @@
-import { Infinity as AnyoneIcon } from 'lucide-react-native';
+import AnyoneIcon from 'lucide-react-native/icons/infinity';
 import { useState, type ReactNode } from 'react';
 import { Pressable, ScrollView, Switch, View } from 'react-native';
 

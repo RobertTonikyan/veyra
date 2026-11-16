@@ -1,4 +1,5 @@
-import { Cake, Gift } from 'lucide-react-native';
+import Cake from 'lucide-react-native/icons/cake';
+import Gift from 'lucide-react-native/icons/gift';
 import { useState } from 'react';
 import { View } from 'react-native';
 

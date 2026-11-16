@@ -1,4 +1,5 @@
-import { CircleCheck, PartyPopper } from 'lucide-react-native';
+import CircleCheck from 'lucide-react-native/icons/circle-check';
+import PartyPopper from 'lucide-react-native/icons/party-popper';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { AccessibilityInfo, ActivityIndicator, Animated, Pressable, ScrollView, View } from 'react-native';

@@ -1,5 +1,9 @@
 import { useRouter } from 'expo-router';
-import { ChefHat, Clock, Search, ShoppingBasket, UtensilsCrossed } from 'lucide-react-native';
+import ChefHat from 'lucide-react-native/icons/chef-hat';
+import Clock from 'lucide-react-native/icons/clock';
+import Search from 'lucide-react-native/icons/search';
+import ShoppingBasket from 'lucide-react-native/icons/shopping-basket';
+import UtensilsCrossed from 'lucide-react-native/icons/utensils-crossed';
 import { useState } from 'react';
 import { ActivityIndicator, Pressable, TextInput, View } from 'react-native';
 

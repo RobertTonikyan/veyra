@@ -1,5 +1,9 @@
 import { useRouter } from 'expo-router';
-import { Cake, CalendarDays, CircleCheck, MapPin, UtensilsCrossed } from 'lucide-react-native';
+import Cake from 'lucide-react-native/icons/cake';
+import CalendarDays from 'lucide-react-native/icons/calendar-days';
+import CircleCheck from 'lucide-react-native/icons/circle-check';
+import MapPin from 'lucide-react-native/icons/map-pin';
+import UtensilsCrossed from 'lucide-react-native/icons/utensils-crossed';
 import { useState, type ReactNode } from 'react';
 import { Pressable, View } from 'react-native';
 

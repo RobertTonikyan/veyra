@@ -1,4 +1,5 @@
-import { Minus, Plus } from 'lucide-react-native';
+import Minus from 'lucide-react-native/icons/minus';
+import Plus from 'lucide-react-native/icons/plus';
 import type { ReactNode } from 'react';
 import { Pressable, View } from 'react-native';
 

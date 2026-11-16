@@ -1,5 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { useAuth } from '@/auth/AuthProvider';
 import { supabase } from '@/services/supabase';
 
@@ -57,6 +59,7 @@ type Data = {
 };
 
 const EMPTY: Data = { profile: null, household: null, membership: null };
+const cacheKey = (userId: string) => `veyra.household.${userId}`;
 
 export function HouseholdProvider({ children }: { children: ReactNode }) {
   const { session } = useAuth();
@@ -65,6 +68,23 @@ export function HouseholdProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<Data>(EMPTY);
   const [loadedFor, setLoadedFor] = useState<string | null>(null);
   const [error, setError] = useState(false);
+
+  // Show the last known profile + house right away (from the device), then refresh.
+  useEffect(() => {
+    if (!userId) return;
+    let cancelled = false;
+    AsyncStorage.getItem(cacheKey(userId))
+      .then((raw) => {
+        if (cancelled || !raw) return;
+        const cached = JSON.parse(raw) as Data;
+        setData((d) => (d.profile ? d : cached));
+        setLoadedFor((l) => l ?? userId);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [userId]);
 
   const load = useCallback(async () => {
     if (!userId) {
@@ -91,7 +111,9 @@ export function HouseholdProvider({ children }: { children: ReactNode }) {
 
     if (profileRes.error || memberRes.error) {
       if (__DEV__) console.warn('[household] load failed', profileRes.error ?? memberRes.error);
-      setError(true);
+      // With a saved copy on screen, a failed refresh is not worth an error page.
+      const hasCopy = !!(await AsyncStorage.getItem(cacheKey(userId)).catch(() => null));
+      setError(!hasCopy);
       setLoadedFor(userId);
       return;
     }
@@ -100,11 +122,13 @@ export function HouseholdProvider({ children }: { children: ReactNode }) {
       | { role: Membership['role']; color_index: number; households: Household | null }
       | null;
 
-    setData({
+    const next: Data = {
       profile: profileRes.data as Profile,
       household: member?.households ?? null,
       membership: member ? { role: member.role, color_index: member.color_index } : null,
-    });
+    };
+    setData(next);
+    AsyncStorage.setItem(cacheKey(userId), JSON.stringify(next)).catch(() => {});
     setError(false);
     setLoadedFor(userId);
   }, [userId]);

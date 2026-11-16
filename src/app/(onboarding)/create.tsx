@@ -1,5 +1,9 @@
 import { useRouter } from 'expo-router';
-import { Equal, Heart, House, Percent, Users } from 'lucide-react-native';
+import Equal from 'lucide-react-native/icons/equal';
+import Heart from 'lucide-react-native/icons/heart';
+import House from 'lucide-react-native/icons/house';
+import Percent from 'lucide-react-native/icons/percent';
+import Users from 'lucide-react-native/icons/users';
 import { useState } from 'react';
 import { KeyboardAvoidingView, Platform, View } from 'react-native';
 

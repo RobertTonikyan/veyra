@@ -1,4 +1,8 @@
-import { Check, PiggyBank, Plus, Target, Trash2 } from 'lucide-react-native';
+import Check from 'lucide-react-native/icons/check';
+import PiggyBank from 'lucide-react-native/icons/piggy-bank';
+import Plus from 'lucide-react-native/icons/plus';
+import Target from 'lucide-react-native/icons/target';
+import Trash2 from 'lucide-react-native/icons/trash-2';
 import { useState } from 'react';
 import { TextInput, View } from 'react-native';
 

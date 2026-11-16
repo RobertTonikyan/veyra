@@ -1,14 +1,12 @@
 import { useRouter, type Href } from 'expo-router';
-import {
-  ChevronLeft,
-  ChevronRight,
-  CircleCheck,
-  ReceiptText,
-  ShoppingBasket,
-  Sparkles,
-  UtensilsCrossed,
-  type LucideIcon,
-} from 'lucide-react-native';
+import ChevronLeft from 'lucide-react-native/icons/chevron-left';
+import ChevronRight from 'lucide-react-native/icons/chevron-right';
+import CircleCheck from 'lucide-react-native/icons/circle-check';
+import ReceiptText from 'lucide-react-native/icons/receipt-text';
+import ShoppingBasket from 'lucide-react-native/icons/shopping-basket';
+import Sparkles from 'lucide-react-native/icons/sparkles';
+import UtensilsCrossed from 'lucide-react-native/icons/utensils-crossed';
+import type { LucideIcon } from 'lucide-react-native';
 import { useState } from 'react';
 import { Pressable, View } from 'react-native';
 

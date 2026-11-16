@@ -1,5 +1,5 @@
 import { useLocalSearchParams } from 'expo-router';
-import { Share2 } from 'lucide-react-native';
+import Share2 from 'lucide-react-native/icons/share-2';
 import { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 

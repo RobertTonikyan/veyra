@@ -1,24 +1,22 @@
 import { useRouter } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
-import {
-  Bell,
-  BellOff,
-  Cake,
-  CalendarClock,
-  ChevronLeft,
-  ChevronRight,
-  Crown,
-  LogOut,
-  Minus,
-  PauseCircle,
-  Plus,
-  Share2,
-  ShieldCheck,
-  Sparkles,
-  Trash2,
-  UserMinus,
-  type LucideIcon,
-} from 'lucide-react-native';
+import Bell from 'lucide-react-native/icons/bell';
+import BellOff from 'lucide-react-native/icons/bell-off';
+import Cake from 'lucide-react-native/icons/cake';
+import CalendarClock from 'lucide-react-native/icons/calendar-clock';
+import ChevronLeft from 'lucide-react-native/icons/chevron-left';
+import ChevronRight from 'lucide-react-native/icons/chevron-right';
+import Crown from 'lucide-react-native/icons/crown';
+import LogOut from 'lucide-react-native/icons/log-out';
+import Minus from 'lucide-react-native/icons/minus';
+import PauseCircle from 'lucide-react-native/icons/pause-circle';
+import Plus from 'lucide-react-native/icons/plus';
+import Share2 from 'lucide-react-native/icons/share-2';
+import ShieldCheck from 'lucide-react-native/icons/shield-check';
+import Sparkles from 'lucide-react-native/icons/sparkles';
+import Trash2 from 'lucide-react-native/icons/trash-2';
+import UserMinus from 'lucide-react-native/icons/user-minus';
+import type { LucideIcon } from 'lucide-react-native';
 import { useEffect, useState, type ReactNode } from 'react';
 import { KeyboardAvoidingView, Linking, Platform, Pressable, Switch, View } from 'react-native';
 

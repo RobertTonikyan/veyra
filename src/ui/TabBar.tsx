@@ -1,5 +1,10 @@
 import { useRouter, type Href, type Tabs } from 'expo-router';
-import { CircleCheck, Ellipsis, House, ShoppingBasket, Wallet, type LucideIcon } from 'lucide-react-native';
+import CircleCheck from 'lucide-react-native/icons/circle-check';
+import Ellipsis from 'lucide-react-native/icons/ellipsis';
+import House from 'lucide-react-native/icons/house';
+import ShoppingBasket from 'lucide-react-native/icons/shopping-basket';
+import Wallet from 'lucide-react-native/icons/wallet';
+import type { LucideIcon } from 'lucide-react-native';
 import type { ComponentProps } from 'react';
 import { Pressable, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

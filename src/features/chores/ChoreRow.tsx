@@ -1,4 +1,5 @@
-import { Check, Infinity as AnyoneIcon } from 'lucide-react-native';
+import Check from 'lucide-react-native/icons/check';
+import AnyoneIcon from 'lucide-react-native/icons/infinity';
 import { Pressable, View } from 'react-native';
 
 import { Alert } from '@/services/alert';

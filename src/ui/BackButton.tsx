@@ -1,4 +1,5 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react-native';
+import ChevronLeft from 'lucide-react-native/icons/chevron-left';
+import ChevronRight from 'lucide-react-native/icons/chevron-right';
 import { Pressable } from 'react-native';
 
 import { useIsRTL } from '@/i18n';

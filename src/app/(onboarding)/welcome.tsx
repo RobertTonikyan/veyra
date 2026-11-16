@@ -1,5 +1,6 @@
 import { useRouter } from 'expo-router';
-import { House, KeyRound } from 'lucide-react-native';
+import House from 'lucide-react-native/icons/house';
+import KeyRound from 'lucide-react-native/icons/key-round';
 import { useState } from 'react';
 import { KeyboardAvoidingView, Platform, View } from 'react-native';
 

@@ -6,7 +6,7 @@ import {
   Rubik_800ExtraBold,
   useFonts,
 } from '@expo-google-fonts/rubik';
-import { QueryClientProvider } from '@tanstack/react-query';
+import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
@@ -16,7 +16,7 @@ import { Platform, View } from 'react-native';
 import { AuthProvider, useAuth } from '@/auth/AuthProvider';
 import { HouseholdProvider, useHousehold } from '@/household/HouseholdProvider';
 import { I18nProvider, useI18n } from '@/i18n';
-import { queryClient } from '@/services/queryClient';
+import { CACHE_MAX_AGE, queryClient, queryPersister } from '@/services/queryClient';
 import { checkSupabaseConnection } from '@/services/supabase';
 import { Button, Text, colors, space } from '@/ui';
 
@@ -62,7 +62,10 @@ export default function RootLayout() {
   if (!fontsLoaded) return null;
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <PersistQueryClientProvider
+      client={queryClient}
+      persistOptions={{ persister: queryPersister, maxAge: CACHE_MAX_AGE, buster: 'v1' }}
+    >
       <I18nProvider>
         <AuthProvider>
           <HouseholdProvider>
@@ -70,7 +73,7 @@ export default function RootLayout() {
           </HouseholdProvider>
         </AuthProvider>
       </I18nProvider>
-    </QueryClientProvider>
+    </PersistQueryClientProvider>
   );
 }
 

@@ -1,13 +1,11 @@
 import { useRouter, type Href } from 'expo-router';
-import {
-  CalendarDays,
-  ChevronLeft,
-  ChevronRight,
-  Heart,
-  Settings,
-  UtensilsCrossed,
-  type LucideIcon,
-} from 'lucide-react-native';
+import CalendarDays from 'lucide-react-native/icons/calendar-days';
+import ChevronLeft from 'lucide-react-native/icons/chevron-left';
+import ChevronRight from 'lucide-react-native/icons/chevron-right';
+import Heart from 'lucide-react-native/icons/heart';
+import Settings from 'lucide-react-native/icons/settings';
+import UtensilsCrossed from 'lucide-react-native/icons/utensils-crossed';
+import type { LucideIcon } from 'lucide-react-native';
 import { Pressable, View } from 'react-native';
 
 import { useI18n } from '@/i18n';

@@ -1,4 +1,4 @@
-import { Trash2 } from 'lucide-react-native';
+import Trash2 from 'lucide-react-native/icons/trash-2';
 import { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 

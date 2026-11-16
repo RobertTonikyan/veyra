@@ -1,4 +1,4 @@
-import { HandHeart } from 'lucide-react-native';
+import HandHeart from 'lucide-react-native/icons/hand-heart';
 import { Pressable, View } from 'react-native';
 
 import { formatMoney } from '@/features/money/format';

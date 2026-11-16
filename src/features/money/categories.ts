@@ -1,15 +1,13 @@
-import {
-  Bus,
-  HeartPulse,
-  House,
-  KeyRound,
-  Popcorn,
-  Receipt,
-  ShoppingCart,
-  Sparkles,
-  UtensilsCrossed,
-  type LucideIcon,
-} from 'lucide-react-native';
+import Bus from 'lucide-react-native/icons/bus';
+import HeartPulse from 'lucide-react-native/icons/heart-pulse';
+import House from 'lucide-react-native/icons/house';
+import KeyRound from 'lucide-react-native/icons/key-round';
+import Popcorn from 'lucide-react-native/icons/popcorn';
+import Receipt from 'lucide-react-native/icons/receipt';
+import ShoppingCart from 'lucide-react-native/icons/shopping-cart';
+import Sparkles from 'lucide-react-native/icons/sparkles';
+import UtensilsCrossed from 'lucide-react-native/icons/utensils-crossed';
+import type { LucideIcon } from 'lucide-react-native';
 
 export type ExpenseCategory =
   | 'groceries'

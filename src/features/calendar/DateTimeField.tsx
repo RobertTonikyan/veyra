@@ -1,5 +1,6 @@
 import DateTimePicker, { DateTimePickerAndroid, type DateTimePickerEvent } from '@react-native-community/datetimepicker';
-import { Calendar, Clock } from 'lucide-react-native';
+import Calendar from 'lucide-react-native/icons/calendar';
+import Clock from 'lucide-react-native/icons/clock';
 import { createElement } from 'react';
 import { Platform, Pressable, View } from 'react-native';
 

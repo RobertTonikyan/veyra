@@ -1,4 +1,4 @@
-import { Info } from 'lucide-react-native';
+import Info from 'lucide-react-native/icons/info';
 import { useEffect, useState } from 'react';
 import { TextInput, View } from 'react-native';
 

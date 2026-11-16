@@ -1,4 +1,10 @@
-import { ChevronDown, ChevronUp, Plus, Scale, Search, ShoppingBasket, X } from 'lucide-react-native';
+import ChevronDown from 'lucide-react-native/icons/chevron-down';
+import ChevronUp from 'lucide-react-native/icons/chevron-up';
+import Plus from 'lucide-react-native/icons/plus';
+import Scale from 'lucide-react-native/icons/scale';
+import Search from 'lucide-react-native/icons/search';
+import ShoppingBasket from 'lucide-react-native/icons/shopping-basket';
+import X from 'lucide-react-native/icons/x';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useRef, useState, type ComponentRef, type ReactNode } from 'react';
 import { ActivityIndicator, Pressable, TextInput, View } from 'react-native';

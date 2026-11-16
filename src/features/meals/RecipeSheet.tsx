@@ -1,4 +1,9 @@
-import { CalendarPlus, Clock, Pencil, ShoppingBasket, Trash2, Users } from 'lucide-react-native';
+import CalendarPlus from 'lucide-react-native/icons/calendar-plus';
+import Clock from 'lucide-react-native/icons/clock';
+import Pencil from 'lucide-react-native/icons/pencil';
+import ShoppingBasket from 'lucide-react-native/icons/shopping-basket';
+import Trash2 from 'lucide-react-native/icons/trash-2';
+import Users from 'lucide-react-native/icons/users';
 import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 

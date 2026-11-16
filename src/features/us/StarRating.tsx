@@ -1,4 +1,4 @@
-import { Star } from 'lucide-react-native';
+import Star from 'lucide-react-native/icons/star';
 import { useEffect, useRef } from 'react';
 import { Animated, Easing, Pressable, View } from 'react-native';
 

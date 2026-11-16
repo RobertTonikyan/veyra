@@ -1,4 +1,6 @@
-import { Pin, StickyNote, Trash2 } from 'lucide-react-native';
+import Pin from 'lucide-react-native/icons/pin';
+import StickyNote from 'lucide-react-native/icons/sticky-note';
+import Trash2 from 'lucide-react-native/icons/trash-2';
 import { useEffect, useState } from 'react';
 import { Pressable, Switch, View } from 'react-native';
 

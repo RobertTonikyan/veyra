@@ -1,4 +1,8 @@
-import { ArrowLeftRight, ChevronLeft, ChevronRight, Scale, Wallet } from 'lucide-react-native';
+import ArrowLeftRight from 'lucide-react-native/icons/arrow-left-right';
+import ChevronLeft from 'lucide-react-native/icons/chevron-left';
+import ChevronRight from 'lucide-react-native/icons/chevron-right';
+import Scale from 'lucide-react-native/icons/scale';
+import Wallet from 'lucide-react-native/icons/wallet';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState, type ReactNode } from 'react';
 import { ActivityIndicator, Pressable, View } from 'react-native';

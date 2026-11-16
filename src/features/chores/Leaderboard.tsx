@@ -1,4 +1,4 @@
-import { Trophy } from 'lucide-react-native';
+import Trophy from 'lucide-react-native/icons/trophy';
 import { useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 

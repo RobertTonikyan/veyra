@@ -1,4 +1,13 @@
-import { Bookmark, BookmarkCheck, Check, Dices, Mountain, Sofa, Ticket, Trash2, TreePine, type LucideIcon } from 'lucide-react-native';
+import Bookmark from 'lucide-react-native/icons/bookmark';
+import BookmarkCheck from 'lucide-react-native/icons/bookmark-check';
+import Check from 'lucide-react-native/icons/check';
+import Dices from 'lucide-react-native/icons/dices';
+import Mountain from 'lucide-react-native/icons/mountain';
+import Sofa from 'lucide-react-native/icons/sofa';
+import Ticket from 'lucide-react-native/icons/ticket';
+import Trash2 from 'lucide-react-native/icons/trash-2';
+import TreePine from 'lucide-react-native/icons/tree-pine';
+import type { LucideIcon } from 'lucide-react-native';
 import { useState } from 'react';
 import { Pressable, View } from 'react-native';
 
