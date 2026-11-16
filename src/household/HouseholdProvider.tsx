@@ -12,7 +12,10 @@ export type Profile = {
   language: string;
   reminder_time: string;
   reminders_on: boolean;
-  status: string;
+  status: 'active' | 'paused' | 'pending_deletion';
+  delete_after: string | null;
+  birth_month: number | null;
+  birth_day: number | null;
 };
 
 export type Household = {
@@ -25,6 +28,8 @@ export type Household = {
   weekly_reward: string | null;
   /** optional monthly budget, in agorot */
   monthly_budget_agorot: number | null;
+  /** reminder a few days before a birthday; null = automatic (on for couples) */
+  birthday_heads_up: boolean | null;
 };
 
 export type Membership = {
@@ -72,12 +77,12 @@ export function HouseholdProvider({ children }: { children: ReactNode }) {
     const [profileRes, memberRes] = await Promise.all([
       supabase
         .from('profiles')
-        .select('id, display_name, language, reminder_time, reminders_on, status')
+        .select('id, display_name, language, reminder_time, reminders_on, status, delete_after, birth_month, birth_day')
         .eq('id', userId)
         .single(),
       supabase
         .from('household_members')
-        .select('role, color_index, households ( id, name, type, split_mode, timezone, weekly_reward, monthly_budget_agorot )')
+        .select('role, color_index, households ( id, name, type, split_mode, timezone, weekly_reward, monthly_budget_agorot, birthday_heads_up )')
         .eq('user_id', userId)
         .order('joined_at', { ascending: true })
         .limit(1)

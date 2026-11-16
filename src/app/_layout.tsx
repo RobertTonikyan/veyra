@@ -80,6 +80,7 @@ function RootNavigator() {
           {/* signed out → sign in · signed in, no house → onboarding · otherwise → the app */}
           <Stack.Protected guard={signedIn && hasHouse}>
             <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="settings" />
           </Stack.Protected>
           <Stack.Protected guard={signedIn && !hasHouse}>
             <Stack.Screen name="(onboarding)" />

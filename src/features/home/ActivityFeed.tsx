@@ -45,6 +45,10 @@ function describe(t: T, entry: FeedEntry, name: (id: string | null) => string): 
       return t('home.feed.joined', { name: who });
     case 'kudos':
       return t('home.feed.kudos', { name: who, to: name(str(p.to)) });
+    case 'birthday':
+      return t('home.feed.birthday', { name: who });
+    case 'birthday_wish':
+      return t('home.feed.birthdayWish', { name: who, to: name(str(p.to)) });
     default:
       return who;
   }

@@ -177,7 +177,24 @@
       "expense": "{{name}} paid {{amount}} for {{title}}",
       "settled": "{{name}} paid {{to}} {{amount}}",
       "joined": "{{name}} joined the home",
-      "kudos": "{{name}} thanked {{to}}"
+      "kudos": "{{name}} thanked {{to}}",
+      "birthday": "It's {{name}}'s birthday today 🎂",
+      "birthdayWish": "{{name}} wished {{to}} a happy birthday"
+    },
+    "deletionPending": "Your account will be deleted on {{date}}.",
+    "cancelDeletion": "Cancel deletion",
+    "paused": "Your account is paused. No notifications are sent.",
+    "resume": "Turn it back on",
+    "birthday": {
+      "today": "It's {{name}}'s birthday today!",
+      "mine": "Happy birthday!",
+      "mineSub": "The whole home knows 🎉",
+      "wish": "Say happy birthday",
+      "wished": "Wished",
+      "soon": {
+        "one": "{{name}}'s birthday is tomorrow — maybe think of a gift",
+        "other": "{{name}}'s birthday is in {{count}} days — maybe think of a gift"
+      }
     }
   },
   "chores": {
@@ -290,12 +307,59 @@
     "meals": "Meals",
     "us": "Us",
     "calendar": "Calendar",
-    "settings": "Settings"
+    "settings": "Settings",
+    "soon": "Soon"
   },
   "settings": {
     "language": "Language",
     "signOut": "Sign out",
-    "signedInAs": "Signed in as {{email}}"
+    "signedInAs": "Signed in as {{email}}",
+    "me": "Me",
+    "birthday": "Birthday",
+    "birthdayHint": "Just day and month, no year. Your home gets a reminder on the day.",
+    "birthdayRemove": "Remove birthday",
+    "month": "Month",
+    "day": "Day",
+    "notSet": "Not set",
+    "saved": "Saved",
+    "reminder": "Morning reminder",
+    "reminderOn": "Daily summary",
+    "reminderTime": "Reminder time",
+    "reminderExplain": "Once a day we send a short summary: what needs doing today and what's on the list. Phone notifications arrive in the next update.",
+    "house": "Home",
+    "ownerOnly": "Only the person who created the home can change these.",
+    "weeklyReward": "Weekly reward",
+    "weeklyRewardHint": "What you get when you reach the weekly chores goal together.",
+    "weeklyRewardPlaceholder": "e.g. Movie night with pizza",
+    "budget": "Monthly budget (₪)",
+    "budgetHint": "Optional. Shown on the money and home screens.",
+    "budgetNow": "Now: {{amount}}",
+    "birthdayHeadsUp": "Birthday heads-up",
+    "birthdayHeadsUpHint": "3 days before, so there's time for a gift.",
+    "members": {
+      "one": "People at home · 1",
+      "other": "People at home · {{count}}"
+    },
+    "owner": "Created the home",
+    "invite": "Invite someone",
+    "account": "Account",
+    "leave": "Leave this home",
+    "leaveHint": "Only when your balance here is zero.",
+    "leaveTitle": "Leave this home?",
+    "leaveBody": "You'll stop seeing its lists, chores and expenses. If you're the last one, the home is deleted.",
+    "pause": "Pause account",
+    "pauseHint": "A break. Your data stays and you can come back anytime.",
+    "pauseTitle": "Pause your account?",
+    "pauseBody": "No notifications while paused. Sign in again and turn it back on with one tap.",
+    "delete": "Delete account",
+    "deleteHint": "Permanently delete your account and data.",
+    "deleteTitle": "Delete your account?",
+    "deleteBody": "Delete in 30 days (cancel anytime until then) or right now. Expenses you paid are removed and the home's balances are recalculated.",
+    "deleteIn30": "In 30 days",
+    "deleteNow": "Delete now",
+    "deleteNowTitle": "Delete now",
+    "deleteNowBody": "There's no undo: your account and all your data are deleted now.",
+    "deleteNowConfirm": "Yes, delete now"
   },
   "placeholder": {
     "title": "This screen is under construction",

@@ -598,6 +598,7 @@ export type Database = {
       }
       households: {
         Row: {
+          birthday_heads_up: boolean | null
           created_at: string
           created_by: string | null
           id: string
@@ -610,6 +611,7 @@ export type Database = {
           weekly_reward: string | null
         }
         Insert: {
+          birthday_heads_up?: boolean | null
           created_at?: string
           created_by?: string | null
           id?: string
@@ -622,6 +624,7 @@ export type Database = {
           weekly_reward?: string | null
         }
         Update: {
+          birthday_heads_up?: boolean | null
           created_at?: string
           created_by?: string | null
           id?: string
@@ -872,6 +875,8 @@ export type Database = {
       }
       profiles: {
         Row: {
+          birth_day: number | null
+          birth_month: number | null
           created_at: string
           delete_after: string | null
           display_name: string
@@ -883,6 +888,8 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          birth_day?: number | null
+          birth_month?: number | null
           created_at?: string
           delete_after?: string | null
           display_name?: string
@@ -894,6 +901,8 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          birth_day?: number | null
+          birth_month?: number | null
           created_at?: string
           delete_after?: string | null
           display_name?: string
@@ -1285,10 +1294,15 @@ export type Database = {
         }[]
       }
       household_today: { Args: { hid: string }; Returns: string }
+      is_birthday_on: {
+        Args: { d: number; m: number; on_date: string }
+        Returns: boolean
+      }
       is_member: { Args: { hid: string }; Returns: boolean }
       is_member_text: { Args: { hid: string }; Returns: boolean }
       is_owner: { Args: { hid: string }; Returns: boolean }
       leave_household: { Args: { p_household: string }; Returns: undefined }
+      log_birthdays: { Args: never; Returns: number }
       pause_account: { Args: never; Returns: undefined }
       purge_deleted_accounts: { Args: never; Returns: number }
       redeem_invite: { Args: { p_code: string }; Returns: string }
@@ -1297,6 +1311,10 @@ export type Database = {
         Returns: string
       }
       resume_account: { Args: never; Returns: undefined }
+      send_birthday_wish: {
+        Args: { p_household: string; p_to: string }
+        Returns: undefined
+      }
       shares_household: { Args: { other: string }; Returns: boolean }
       snooze_chore: { Args: { p_chore: string }; Returns: string }
       suggest_settlements: {

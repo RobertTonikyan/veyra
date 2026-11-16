@@ -22,6 +22,8 @@ import {
 } from '@/features/chores/api';
 import { sectionOf } from '@/features/chores/dates';
 import { ActivityFeed } from '@/features/home/ActivityFeed';
+import { BirthdayCard } from '@/features/home/BirthdayCard';
+import { useAccountActions } from '@/features/settings/api';
 import { useBalances, useMonthTotal } from '@/features/money/api';
 import { formatMoney, monthOf } from '@/features/money/format';
 import { useShoppingItems } from '@/features/shopping/api';
@@ -53,6 +55,7 @@ export default function HomeScreen() {
   const { data: balances } = useBalances();
   const { data: monthTotal = 0 } = useMonthTotal(monthOf());
   const completeChore = useCompleteChore();
+  const account = useAccountActions();
   const snoozeChore = useSnoozeChore();
 
   const [quickAdd, setQuickAdd] = useState(false);
@@ -115,6 +118,37 @@ export default function HomeScreen() {
           </View>
           {meMember ? <Avatar name={meMember.display_name} colorIndex={meMember.color_index} size={44} /> : null}
         </View>
+
+        {/* ---------- account paused / about to be deleted ---------- */}
+        {profile?.status === 'pending_deletion' ? (
+          <Card style={{ gap: space.sm, borderColor: 'rgba(232,106,126,0.45)' }}>
+            <Text variant="bodyStrong" color="roseText">
+              {t('home.deletionPending', {
+                date: profile.delete_after
+                  ? new Intl.DateTimeFormat(language, { day: 'numeric', month: 'long' }).format(new Date(profile.delete_after))
+                  : '',
+              })}
+            </Text>
+            <Button
+              variant="secondary"
+              label={t('home.cancelDeletion')}
+              loading={account.cancelDeletion.isPending}
+              onPress={() => account.cancelDeletion.mutate(undefined, { onError })}
+            />
+          </Card>
+        ) : profile?.status === 'paused' ? (
+          <Card style={{ gap: space.sm }}>
+            <Text variant="bodyStrong">{t('home.paused')}</Text>
+            <Button
+              label={t('home.resume')}
+              loading={account.resume.isPending}
+              onPress={() => account.resume.mutate(undefined, { onError })}
+            />
+          </Card>
+        ) : null}
+
+        {/* ---------- birthdays ---------- */}
+        <BirthdayCard me={me} members={members} />
 
         {/* ---------- the house asks ---------- */}
         {ask ? (

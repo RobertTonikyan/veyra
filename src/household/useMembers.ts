@@ -12,6 +12,8 @@ export type Member = {
   display_name: string;
   /** used when the house splits expenses by percentage */
   share_percent: number | null;
+  birth_month: number | null;
+  birth_day: number | null;
 };
 
 /** Everyone in the current household, in join order. */
@@ -26,7 +28,7 @@ export function useMembers() {
     queryFn: async (): Promise<Member[]> => {
       const { data, error } = await supabase
         .from('household_members')
-        .select('user_id, role, color_index, share_percent, joined_at, profiles ( display_name )')
+        .select('user_id, role, color_index, share_percent, joined_at, profiles ( display_name, birth_month, birth_day )')
         .eq('household_id', hid)
         .order('joined_at', { ascending: true });
       if (error) throw error;
@@ -37,6 +39,8 @@ export function useMembers() {
         color_index: m.color_index,
         share_percent: m.share_percent,
         display_name: m.profiles?.display_name ?? '',
+        birth_month: m.profiles?.birth_month ?? null,
+        birth_day: m.profiles?.birth_day ?? null,
       }));
     },
   });
