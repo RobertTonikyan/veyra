@@ -11,7 +11,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { Platform, View } from 'react-native';
+import { Platform, View, useWindowDimensions } from 'react-native';
 
 import { AuthProvider, useAuth } from '@/auth/AuthProvider';
 import { registerServiceWorker } from '@/features/notifications/webPush';
@@ -98,6 +98,9 @@ function RootNavigator() {
   const signedIn = !!session;
   const hasHouse = !!household;
   const isReady = i18nReady && !authLoading && householdReady;
+  const { width } = useWindowDimensions();
+  // side lines only when the browser is wider than the app (desktop), not on a phone
+  const webFrame = Platform.OS === 'web' ? [WEB_FRAME, width > WEB_FRAME.maxWidth && WEB_FRAME_LINES] : null;
 
   useEffect(() => {
     if (isReady) SplashScreen.hideAsync();
@@ -117,7 +120,7 @@ function RootNavigator() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
       {/* On a wide browser window the app stays phone-width, centered. */}
-      <View style={[{ flex: 1, direction, backgroundColor: colors.bg }, Platform.OS === 'web' && WEB_FRAME]}>
+      <View style={[{ flex: 1, direction, backgroundColor: colors.bg }, webFrame]}>
       <StatusBar style="light" />
       {signedIn && error ? (
         <LoadError />
@@ -148,6 +151,8 @@ const WEB_FRAME = {
   width: '100%',
   maxWidth: 520,
   alignSelf: 'center',
+} as const;
+const WEB_FRAME_LINES = {
   borderLeftWidth: 1,
   borderRightWidth: 1,
   borderColor: colors.hairline,
