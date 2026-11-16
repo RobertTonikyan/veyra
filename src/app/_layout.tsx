@@ -9,6 +9,7 @@ import {
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Stack, type ErrorBoundaryProps } from 'expo-router';
+import { FontDisplay } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
@@ -18,7 +19,7 @@ import { AuthProvider, useAuth } from '@/auth/AuthProvider';
 import { registerServiceWorker } from '@/features/notifications/webPush';
 import { HouseholdProvider, useHousehold } from '@/household/HouseholdProvider';
 import { I18nProvider, useI18n } from '@/i18n';
-import { CACHE_MAX_AGE, queryClient, queryPersister } from '@/services/queryClient';
+import { CACHE_BUSTER, CACHE_MAX_AGE, queryClient, queryPersister, shouldPersistQuery } from '@/services/queryClient';
 import { checkSupabaseConnection } from '@/services/supabase';
 import { Button, Text, colors, space } from '@/ui';
 
@@ -65,12 +66,13 @@ function paintBrowserChrome() {
 paintBrowserChrome();
 
 export default function RootLayout() {
+  // swap: on web, text shows right away in the system font instead of staying invisible while Rubik loads
   const [fontsLoaded, fontError] = useFonts({
-    Rubik_400Regular,
-    Rubik_500Medium,
-    Rubik_600SemiBold,
-    Rubik_700Bold,
-    Rubik_800ExtraBold,
+    Rubik_400Regular: { uri: Rubik_400Regular, display: FontDisplay.SWAP },
+    Rubik_500Medium: { uri: Rubik_500Medium, display: FontDisplay.SWAP },
+    Rubik_600SemiBold: { uri: Rubik_600SemiBold, display: FontDisplay.SWAP },
+    Rubik_700Bold: { uri: Rubik_700Bold, display: FontDisplay.SWAP },
+    Rubik_800ExtraBold: { uri: Rubik_800ExtraBold, display: FontDisplay.SWAP },
   });
 
   // Never wait forever for fonts: if they fail or are slow, start with the system font.
@@ -85,7 +87,12 @@ export default function RootLayout() {
   return (
     <PersistQueryClientProvider
       client={queryClient}
-      persistOptions={{ persister: queryPersister, maxAge: CACHE_MAX_AGE, buster: 'v1' }}
+      persistOptions={{
+        persister: queryPersister,
+        maxAge: CACHE_MAX_AGE,
+        buster: CACHE_BUSTER,
+        dehydrateOptions: { shouldDehydrateQuery: shouldPersistQuery },
+      }}
     >
       <I18nProvider>
         <AuthProvider>

@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister';
-import { QueryClient, focusManager } from '@tanstack/react-query';
+import { QueryClient, defaultShouldDehydrateQuery, focusManager, type Query } from '@tanstack/react-query';
 import { AppState, Platform, type AppStateStatus } from 'react-native';
 
 /** How long a saved copy of the data may be shown while fresh data loads. */
@@ -29,6 +29,18 @@ export const queryPersister = createAsyncStoragePersister({
   key: 'veyra.query-cache.v1',
   throttleTime: 1000,
 });
+
+/**
+ * Only plain JSON data is saved. A Map or Set would come back from storage as a plain
+ * object and crash code that calls .get / .has on it, so those queries just refetch.
+ */
+export function shouldPersistQuery(query: Query): boolean {
+  const data = query.state.data;
+  return defaultShouldDehydrateQuery(query) && !(data instanceof Map) && !(data instanceof Set);
+}
+
+/** Bump to throw away caches saved by older versions of the app. */
+export const CACHE_BUSTER = 'v2';
 
 // Refetch stale data when the app comes back to the foreground.
 if (Platform.OS !== 'web') {
