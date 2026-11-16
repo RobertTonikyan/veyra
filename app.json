@@ -13,7 +13,8 @@
       "supportsTablet": false,
       "config": {
         "usesNonExemptEncryption": false
-      }
+      },
+      "infoPlist": {}
     },
     "android": {
       "package": "com.roberttonikyan.veyra",
@@ -52,6 +53,17 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "b9045797-5b7d-4703-a46e-54872cc6f721"
+      }
+    },
+    "owner": "roberttonikyan"
   }
 }
