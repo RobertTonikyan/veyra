@@ -119,7 +119,76 @@
   },
   "home": {
     "greeting": "Доброе утро, {{name}}",
-    "houseAsks": "Дом просит"
+    "houseAsks": "Дом просит",
+    "greetMorning": "Доброе утро, {{name}}",
+    "greetNoon": "Добрый день, {{name}}",
+    "greetEvening": "Добрый вечер, {{name}}",
+    "greetNight": "Доброй ночи, {{name}}",
+    "houseLine": {
+      "one": "{{name}} · {{count}} сосед",
+      "few": "{{name}} · {{count}} соседа",
+      "many": "{{name}} · {{count}} соседей",
+      "other": "{{name}} · {{count}} соседа"
+    },
+    "askRescue": "«{{title}}» ({{name}}) ждёт. Кто спасёт?",
+    "askOverdue": "«{{title}}» просрочено. Кто возьмёт?",
+    "askToday": "Сегодня ваша очередь: {{title}}",
+    "onIt": "Беру на себя · {{points}} очк.",
+    "snoozeTomorrow": "Отложить на завтра",
+    "allClear": "Ничего срочного. Спокойного дня!",
+    "choresToday": "дел на сегодня",
+    "myChoresToday": "моих дел сегодня",
+    "onTheList": "в списке покупок",
+    "leftInBudget": "осталось в бюджете",
+    "owedToYou": "вам должны",
+    "youOwe": "вы должны",
+    "balanced": "всё ровно",
+    "weeklyGoal": "Наша общая цель недели",
+    "weeklyGoalGroup": "Цель дома на неделю",
+    "daysLeft": {
+      "one": "ещё {{count}} день",
+      "few": "ещё {{count}} дня",
+      "many": "ещё {{count}} дней",
+      "other": "ещё {{count}} дня"
+    },
+    "restOfToday": "Ещё сегодня",
+    "allChores": "Все дела",
+    "whatHappened": "Что произошло дома",
+    "someone": "Кто-то",
+    "thank": "Спасибо",
+    "thanked": "Спасибо отправлено",
+    "thankNamed": "Сказать спасибо: {{name}}",
+    "ago": {
+      "now": "только что",
+      "minutes": {
+        "one": "{{count}} минуту назад",
+        "few": "{{count}} минуты назад",
+        "many": "{{count}} минут назад",
+        "other": "{{count}} минуты назад"
+      },
+      "hours": {
+        "one": "{{count}} час назад",
+        "few": "{{count}} часа назад",
+        "many": "{{count}} часов назад",
+        "other": "{{count}} часа назад"
+      },
+      "yesterday": "вчера"
+    },
+    "feed": {
+      "shoppingOne": "{{name}} добавил(а) {{item}} в список",
+      "shoppingMany": {
+        "one": "{{name}} добавил(а) {{count}} товар",
+        "few": "{{name}} добавил(а) {{count}} товара",
+        "many": "{{name}} добавил(а) {{count}} товаров",
+        "other": "{{name}} добавил(а) {{count}} товара"
+      },
+      "chore": "{{name}} сделал(а): {{title}}",
+      "choreRescue": "{{name}} спас(ла): {{title}}",
+      "expense": "{{name}} заплатил(а) {{amount}} за {{title}}",
+      "settled": "{{name}} перевёл(а) {{to}} {{amount}}",
+      "joined": "{{name}} присоединился(ась) к дому",
+      "kudos": "{{name}} сказал(а) спасибо: {{to}}"
+    }
   },
   "chores": {
     "count": {

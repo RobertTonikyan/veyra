@@ -1,5 +1,6 @@
 import { ArrowLeftRight, ChevronLeft, ChevronRight, Scale, Wallet } from 'lucide-react-native';
-import { useState, type ReactNode } from 'react';
+import { useLocalSearchParams } from 'expo-router';
+import { useEffect, useState, type ReactNode } from 'react';
 import { ActivityIndicator, Alert, Pressable, View } from 'react-native';
 
 import { useAuth } from '@/auth/AuthProvider';
@@ -48,6 +49,12 @@ export default function MoneyScreen() {
   const [adding, setAdding] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const onError = (e: unknown) => setError(t(dbErrorKey(e)));
+
+  // opened from the home quick-add button
+  const { add: quickAdd } = useLocalSearchParams<{ add?: string }>();
+  useEffect(() => {
+    if (quickAdd) setAdding(true);
+  }, [quickAdd]);
 
   // ---- month numbers ----
   const vsPrev = prevTotal && prevTotal > 0 ? Math.round(((total - prevTotal) / prevTotal) * 100) : null;

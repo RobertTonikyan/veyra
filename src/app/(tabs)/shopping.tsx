@@ -1,5 +1,6 @@
 import { ChevronDown, ChevronUp, Plus, Scale, Search, ShoppingBasket, X } from 'lucide-react-native';
-import { useMemo, useRef, useState, type ReactNode } from 'react';
+import { useLocalSearchParams } from 'expo-router';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { ActivityIndicator, Pressable, TextInput, View } from 'react-native';
 
 import {
@@ -46,6 +47,15 @@ export default function ShoppingScreen() {
   const [showChecked, setShowChecked] = useState(false);
   const [editing, setEditing] = useState<ShoppingItem | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  // opened from the home quick-add button: jump straight to typing
+  const { add: quickAdd } = useLocalSearchParams<{ add?: string }>();
+  useEffect(() => {
+    if (!quickAdd) return;
+    setSearching(false);
+    const id = setTimeout(() => inputRef.current?.focus(), 250);
+    return () => clearTimeout(id);
+  }, [quickAdd]);
 
   const textAlign = isRTL ? 'right' : 'left';
   const writingDirection = isRTL ? 'rtl' : 'ltr';

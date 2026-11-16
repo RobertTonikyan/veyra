@@ -119,7 +119,66 @@
   },
   "home": {
     "greeting": "Good morning, {{name}}",
-    "houseAsks": "The house asks"
+    "houseAsks": "The house asks",
+    "greetMorning": "Good morning, {{name}}",
+    "greetNoon": "Good afternoon, {{name}}",
+    "greetEvening": "Good evening, {{name}}",
+    "greetNight": "Good night, {{name}}",
+    "houseLine": {
+      "one": "{{name}} · 1 roommate",
+      "other": "{{name}} · {{count}} roommates"
+    },
+    "askRescue": "{{name}}'s \"{{title}}\" is waiting. Who saves the day?",
+    "askOverdue": "\"{{title}}\" is overdue. Who takes it?",
+    "askToday": "Your turn today: {{title}}",
+    "onIt": "I'm on it · {{points}} pts",
+    "snoozeTomorrow": "Snooze to tomorrow",
+    "allClear": "Nothing urgent. Enjoy a calm day!",
+    "choresToday": "chores today",
+    "myChoresToday": "my chores today",
+    "onTheList": "on the shopping list",
+    "leftInBudget": "left in budget",
+    "owedToYou": "owed to you",
+    "youOwe": "you owe",
+    "balanced": "all square",
+    "weeklyGoal": "Our shared goal this week",
+    "weeklyGoalGroup": "The home's goal this week",
+    "daysLeft": {
+      "one": "1 day left",
+      "other": "{{count}} days left"
+    },
+    "restOfToday": "Still today",
+    "allChores": "All chores",
+    "whatHappened": "What happened at home",
+    "someone": "Someone",
+    "thank": "Thanks",
+    "thanked": "Thanked",
+    "thankNamed": "Say thanks to {{name}}",
+    "ago": {
+      "now": "just now",
+      "minutes": {
+        "one": "1 minute ago",
+        "other": "{{count}} minutes ago"
+      },
+      "hours": {
+        "one": "1 hour ago",
+        "other": "{{count}} hours ago"
+      },
+      "yesterday": "yesterday"
+    },
+    "feed": {
+      "shoppingOne": "{{name}} added {{item}} to the list",
+      "shoppingMany": {
+        "one": "{{name}} added 1 item to the list",
+        "other": "{{name}} added {{count}} items to the list"
+      },
+      "chore": "{{name}} finished: {{title}}",
+      "choreRescue": "{{name}} rescued: {{title}}",
+      "expense": "{{name}} paid {{amount}} for {{title}}",
+      "settled": "{{name}} paid {{to}} {{amount}}",
+      "joined": "{{name}} joined the home",
+      "kudos": "{{name}} thanked {{to}}"
+    }
   },
   "chores": {
     "count": {

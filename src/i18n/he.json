@@ -119,7 +119,71 @@
   },
   "home": {
     "greeting": "בוקר טוב, {{name}}",
-    "houseAsks": "הבית מבקש"
+    "houseAsks": "הבית מבקש",
+    "greetMorning": "בוקר טוב, {{name}}",
+    "greetNoon": "צהריים טובים, {{name}}",
+    "greetEvening": "ערב טוב, {{name}}",
+    "greetNight": "לילה טוב, {{name}}",
+    "houseLine": {
+      "one": "{{name}} · שותף אחד",
+      "two": "{{name}} · שני שותפים",
+      "other": "{{name}} · {{count}} שותפים"
+    },
+    "askRescue": "\"{{title}}\" של {{name}} מחכה. מי מציל?",
+    "askOverdue": "\"{{title}}\" באיחור. מי לוקח?",
+    "askToday": "היום תורך: {{title}}",
+    "onIt": "אני על זה · {{points}} נק׳",
+    "snoozeTomorrow": "דחייה למחר",
+    "allClear": "אין שום דבר דחוף. יום רגוע!",
+    "choresToday": "מטלות היום",
+    "myChoresToday": "מטלות שלי היום",
+    "onTheList": "ברשימת קניות",
+    "leftInBudget": "נשאר בתקציב",
+    "owedToYou": "מגיעים לך",
+    "youOwe": "אני חייב/ת",
+    "balanced": "מאוזן",
+    "weeklyGoal": "היעד המשותף שלנו השבוע",
+    "weeklyGoalGroup": "היעד של הבית השבוע",
+    "daysLeft": {
+      "one": "עוד יום",
+      "two": "עוד יומיים",
+      "other": "עוד {{count}} ימים"
+    },
+    "restOfToday": "עוד היום",
+    "allChores": "לכל המטלות",
+    "whatHappened": "מה קרה בבית",
+    "someone": "מישהו",
+    "thank": "תודה",
+    "thanked": "נשלחה תודה",
+    "thankNamed": "לשלוח תודה ל{{name}}",
+    "ago": {
+      "now": "עכשיו",
+      "minutes": {
+        "one": "לפני דקה",
+        "two": "לפני 2 דקות",
+        "other": "לפני {{count}} דקות"
+      },
+      "hours": {
+        "one": "לפני שעה",
+        "two": "לפני שעתיים",
+        "other": "לפני {{count}} שעות"
+      },
+      "yesterday": "אתמול"
+    },
+    "feed": {
+      "shoppingOne": "{{name}} הוסיף/ה {{item}} לרשימה",
+      "shoppingMany": {
+        "one": "{{name}} הוסיף/ה פריט לרשימה",
+        "two": "{{name}} הוסיף/ה 2 פריטים לרשימה",
+        "other": "{{name}} הוסיף/ה {{count}} פריטים לרשימה"
+      },
+      "chore": "{{name}} סיים/ה: {{title}}",
+      "choreRescue": "{{name}} חילץ/ה: {{title}}",
+      "expense": "{{name}} שילם/ה {{amount}} על {{title}}",
+      "settled": "{{name}} העביר/ה {{amount}} ל{{to}}",
+      "joined": "{{name}} הצטרף/ה לבית",
+      "kudos": "{{name}} אמר/ה תודה ל{{to}}"
+    }
   },
   "chores": {
     "count": {

@@ -16,4 +16,6 @@ export const qk = {
   monthSpend: (hid: string, month: string) => ['household', hid, 'money', 'month-spend', month] as const,
   balances: (hid: string) => ['household', hid, 'money', 'balances'] as const,
   settleUp: (hid: string) => ['household', hid, 'money', 'settle-up'] as const,
+  activity: (hid: string) => ['household', hid, 'activity', 'feed'] as const,
+  kudosGiven: (hid: string) => ['household', hid, 'kudos', 'mine'] as const,
 };

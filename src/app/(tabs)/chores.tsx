@@ -1,4 +1,5 @@
 import { CircleCheck, PartyPopper } from 'lucide-react-native';
+import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { AccessibilityInfo, ActivityIndicator, Animated, Pressable, ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -55,6 +56,12 @@ export default function ChoresScreen() {
   const [jointFor, setJointFor] = useState<Chore | null>(null);
   const [error, setError] = useState<string | null>(null);
   const toast = useToast();
+
+  // opened from the home quick-add button
+  const { add: quickAdd } = useLocalSearchParams<{ add?: string }>();
+  useEffect(() => {
+    if (quickAdd) setAdding(true);
+  }, [quickAdd]);
 
   const others = members.filter((m) => m.user_id !== me);
 
