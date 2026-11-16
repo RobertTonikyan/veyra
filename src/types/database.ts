@@ -915,6 +915,76 @@ export type Database = {
         }
         Relationships: []
       }
+      push_log: {
+        Row: {
+          key: string
+          sent_at: string
+          user_id: string
+        }
+        Insert: {
+          key: string
+          sent_at?: string
+          user_id: string
+        }
+        Update: {
+          key?: string
+          sent_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "push_log_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      push_subscriptions: {
+        Row: {
+          activity: boolean
+          auth: string
+          created_at: string
+          endpoint: string
+          id: string
+          last_ok_at: string | null
+          p256dh: string
+          reminders: boolean
+          user_id: string
+        }
+        Insert: {
+          activity?: boolean
+          auth: string
+          created_at?: string
+          endpoint: string
+          id?: string
+          last_ok_at?: string | null
+          p256dh: string
+          reminders?: boolean
+          user_id?: string
+        }
+        Update: {
+          activity?: boolean
+          auth?: string
+          created_at?: string
+          endpoint?: string
+          id?: string
+          last_ok_at?: string | null
+          p256dh?: string
+          reminders?: boolean
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "push_subscriptions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       receipt_items: {
         Row: {
           created_at: string
@@ -1271,6 +1341,7 @@ export type Database = {
         Args: { p_household: string; p_recipe: string }
         Returns: number
       }
+      call_push: { Args: { p_body: Json }; Returns: undefined }
       cancel_account_deletion: { Args: never; Returns: undefined }
       complete_chore: {
         Args: { p_chore: string; p_with?: string[] }
@@ -1305,12 +1376,23 @@ export type Database = {
       log_birthdays: { Args: never; Returns: number }
       pause_account: { Args: never; Returns: undefined }
       purge_deleted_accounts: { Args: never; Returns: number }
+      push_secret_ok: { Args: { p_secret: string }; Returns: boolean }
       redeem_invite: { Args: { p_code: string }; Returns: string }
       request_account_deletion: {
         Args: { p_immediate?: boolean }
         Returns: string
       }
       resume_account: { Args: never; Returns: undefined }
+      save_push_subscription: {
+        Args: {
+          p_activity?: boolean
+          p_auth: string
+          p_endpoint: string
+          p_p256dh: string
+          p_reminders?: boolean
+        }
+        Returns: string
+      }
       send_birthday_wish: {
         Args: { p_household: string; p_to: string }
         Returns: undefined

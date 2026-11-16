@@ -31,6 +31,7 @@ import {
   listScheduled,
 } from '@/features/notifications/NotificationScheduler';
 import { setNotificationPref, useNotificationPrefs } from '@/features/notifications/prefs';
+import { WebPushCard } from '@/features/notifications/WebPushCard';
 import { BirthdayPicker } from '@/features/settings/BirthdayPicker';
 import {
   type ProfilePatch,
@@ -225,12 +226,7 @@ export default function SettingsScreen() {
         {/* ---------------- notifications ---------------- */}
         {Platform.OS === 'web' ? (
           <Section title={t('settings.notifications')}>
-            <Card style={{ flexDirection: 'row', alignItems: 'center', gap: space.md }}>
-              <Bell size={20} color={colors.textSoft} />
-              <Text color="textSoft" style={{ flex: 1 }}>
-                {t('settings.notifWebOnly')}
-              </Text>
-            </Card>
+            <WebPushCard />
           </Section>
         ) : (
           <Section title={t('settings.notifications')}>

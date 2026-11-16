@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 import { Platform, View } from 'react-native';
 
 import { AuthProvider, useAuth } from '@/auth/AuthProvider';
+import { registerServiceWorker } from '@/features/notifications/webPush';
 import { HouseholdProvider, useHousehold } from '@/household/HouseholdProvider';
 import { I18nProvider, useI18n } from '@/i18n';
 import { CACHE_MAX_AGE, queryClient, queryPersister } from '@/services/queryClient';
@@ -47,6 +48,18 @@ function paintBrowserChrome() {
   meta('apple-mobile-web-app-capable', 'yes');
   meta('apple-mobile-web-app-status-bar-style', 'black-translucent');
   meta('viewport', 'width=device-width, initial-scale=1, viewport-fit=cover');
+
+  // installable web app (needed for notifications on iPhone) + its service worker
+  const link = (rel: string, href: string) => {
+    if (document.querySelector(`link[rel="${rel}"]`)) return;
+    const el = document.createElement('link');
+    el.rel = rel;
+    el.href = href;
+    document.head.appendChild(el);
+  };
+  link('manifest', '/manifest.json');
+  link('apple-touch-icon', '/apple-touch-icon.png');
+  registerServiceWorker();
 }
 paintBrowserChrome();
 

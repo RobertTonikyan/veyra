@@ -372,8 +372,7 @@
     "notifEvents": "Calendar events",
     "notifEventsHint": "Half an hour before an event starts.",
     "notifDeviceOnly": "These settings are saved on this phone. Alerts about what others do (shopping, finished chores) come in a later update.",
-    "privacy": "Privacy policy",
-    "notifWebOnly": "Notifications work in the phone app. The browser version doesn't send reminders."
+    "privacy": "Privacy policy"
   },
   "placeholder": {
     "title": "This screen is under construction",
@@ -701,5 +700,18 @@
     "headsUpBody": "Still time to sort out a gift 🎁",
     "eventBody": "Starts at {{time}}",
     "eventNow": "Starting now"
+  },
+  "webPush": {
+    "unsupported": "This browser doesn't support notifications. On iPhone use Safari; on computers and Android use Chrome, Edge or Firefox.",
+    "installTitle": "On iPhone, notifications work after adding to the Home Screen",
+    "installSteps": "In Safari: tap Share → \"Add to Home Screen\", open Veyra from the icon and come back here.",
+    "denied": "Notifications are blocked for this site. Allow them in the browser's site settings (or Settings → Notifications on iPhone).",
+    "offBody": "Get notifications here: reminders, birthdays and what the others at home are doing.",
+    "enable": "Turn on notifications on this device",
+    "activity": "What happens at home",
+    "activityHint": "Shopping, chores and expenses from the others.",
+    "reminders": "Reminders",
+    "remindersHint": "Morning summary, open chores at 19:00, birthdays and events.",
+    "disable": "Turn off notifications on this device"
   }
 }
