@@ -7,7 +7,7 @@ import Wallet from 'lucide-react-native/icons/wallet';
 import type { LucideIcon } from 'lucide-react-native';
 import type { ComponentProps } from 'react';
 import { Pressable, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useInsets } from './insets';
 
 import { useI18n } from '@/i18n';
 
@@ -37,7 +37,7 @@ function hrefFor(routeName: string): Href {
 export function TabBar({ state }: TabBarProps) {
   const { t } = useI18n();
   const router = useRouter();
-  const insets = useSafeAreaInsets();
+  const insets = useInsets();
 
   return (
     <View

@@ -1,6 +1,6 @@
 import Plus from 'lucide-react-native/icons/plus';
 import { Pressable } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useInsets } from './insets';
 
 import { TAB_BAR_HEIGHT, tabBarBottomOffset } from './TabBar';
 import { colors, radius, space } from './tokens';
@@ -11,7 +11,7 @@ type FabProps = {
 };
 
 export function Fab({ onPress, accessibilityLabel }: FabProps) {
-  const insets = useSafeAreaInsets();
+  const insets = useInsets();
 
   return (
     <Pressable

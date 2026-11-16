@@ -3,7 +3,7 @@ import PartyPopper from 'lucide-react-native/icons/party-popper';
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { AccessibilityInfo, ActivityIndicator, Animated, Pressable, ScrollView, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useInsets } from '@/ui/insets';
 
 import { useAuth } from '@/auth/AuthProvider';
 import { AddChoreSheet } from '@/features/chores/AddChoreSheet';
@@ -299,7 +299,7 @@ function WhoHelpedSheet({
 // ---------- tiny celebration toast ----------
 
 function useToast() {
-  const insets = useSafeAreaInsets();
+  const insets = useInsets();
   const opacity = useRef(new Animated.Value(0)).current;
   const [message, setMessage] = useState<string | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);

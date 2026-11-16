@@ -7,7 +7,8 @@ import {
   useFonts,
 } from '@expo-google-fonts/rubik';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
-import { Stack } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Stack, type ErrorBoundaryProps } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
@@ -64,7 +65,7 @@ function paintBrowserChrome() {
 paintBrowserChrome();
 
 export default function RootLayout() {
-  const [fontsLoaded] = useFonts({
+  const [fontsLoaded, fontError] = useFonts({
     Rubik_400Regular,
     Rubik_500Medium,
     Rubik_600SemiBold,
@@ -72,7 +73,14 @@ export default function RootLayout() {
     Rubik_800ExtraBold,
   });
 
-  if (!fontsLoaded) return null;
+  // Never wait forever for fonts: if they fail or are slow, start with the system font.
+  const [fontTimeout, setFontTimeout] = useState(false);
+  useEffect(() => {
+    const id = setTimeout(() => setFontTimeout(true), 3000);
+    return () => clearTimeout(id);
+  }, []);
+
+  if (!fontsLoaded && !fontError && !fontTimeout) return null;
 
   return (
     <PersistQueryClientProvider
@@ -115,7 +123,22 @@ function RootNavigator() {
     if (!signedIn) queryClient.clear();
   }, [signedIn]);
 
-  if (!isReady) return null;
+  // If loading never finishes, say so on screen instead of showing an empty page.
+  const [stuck, setStuck] = useState(false);
+  useEffect(() => {
+    if (isReady) return;
+    const id = setTimeout(() => setStuck(true), 8000);
+    return () => clearTimeout(id);
+  }, [isReady]);
+
+  if (!isReady) {
+    if (!stuck) return null;
+    return (
+      <Rescue
+        message={`Loading did not finish (i18n ${i18nReady ? 'ok' : 'waiting'}, auth ${authLoading ? 'waiting' : 'ok'}, home ${householdReady ? 'ok' : 'waiting'})`}
+      />
+    );
+  }
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
@@ -175,6 +198,35 @@ function LoadError() {
           setRetrying(true);
           await refresh();
           setRetrying(false);
+        }}
+      />
+    </View>
+  );
+}
+
+/** Shown by Expo Router when a screen crashes: the error, and a way out. */
+export function ErrorBoundary({ error }: ErrorBoundaryProps) {
+  return <Rescue message={error?.message ?? String(error)} />;
+}
+
+/**
+ * Last-resort screen (plain English on purpose: it must work even if translations failed).
+ * "Reset" clears what this device saved and reloads; the account and its data stay on the server.
+ */
+function Rescue({ message }: { message: string }) {
+  return (
+    <View style={{ flex: 1, backgroundColor: colors.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 16 }}>
+      <Text variant="heading" align="center" accessibilityRole="alert">
+        Something went wrong
+      </Text>
+      <Text align="center" selectable>
+        {message}
+      </Text>
+      <Button
+        label="Reset and reload"
+        onPress={async () => {
+          await AsyncStorage.clear().catch(() => {});
+          if (Platform.OS === 'web' && typeof window !== 'undefined') window.location.reload();
         }}
       />
     </View>

@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { Keyboard, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useInsets } from './insets';
 
 import { useI18n } from '@/i18n';
 
@@ -32,7 +32,7 @@ function useKeyboardOpen() {
 
 export function Sheet({ visible, onClose, title, children }: SheetProps) {
   const { t, direction } = useI18n();
-  const insets = useSafeAreaInsets();
+  const insets = useInsets();
   const keyboardOpen = useKeyboardOpen();
 
   return (

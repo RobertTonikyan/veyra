@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
 import { ScrollView, View, type StyleProp, type ViewStyle } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useI18n } from '@/i18n';
 
+import { useInsets } from './insets';
 import { colors, space } from './tokens';
 
 type ScreenProps = {
@@ -14,9 +14,10 @@ type ScreenProps = {
 
 export function Screen({ children, scroll = true, contentStyle }: ScreenProps) {
   const { direction } = useI18n();
+  const insets = useInsets();
 
   return (
-    <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: colors.bg, direction }}>
+    <View style={{ flex: 1, backgroundColor: colors.bg, direction, paddingTop: insets.top }}>
       {scroll ? (
         <ScrollView
           contentContainerStyle={[{ padding: space.xl, gap: space.lg, paddingBottom: 140 }, contentStyle]}
@@ -27,6 +28,6 @@ export function Screen({ children, scroll = true, contentStyle }: ScreenProps) {
       ) : (
         <View style={[{ flex: 1, padding: space.xl, gap: space.lg }, contentStyle]}>{children}</View>
       )}
-    </SafeAreaView>
+    </View>
   );
 }
