@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Veyra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="lang.js"></script>
+</head>
+<body>
+<main>
+  <header>
+    <a class="brand" href="index.html" data-keep-lang><span aria-hidden="true"></span>Veyra</a>
+    <nav class="langs" aria-label="Language">
+      <button data-set="he">עברית</button><button data-set="en">English</button><button data-set="ru">Русский</button>
+    </nav>
+  </header>
+  <section data-lang="he" hidden>
+    <h1>הבית המשותף שלכם, במקום אחד</h1>
+    <p>קניות, מטלות, הוצאות, יומן, ארוחות ורגעים משותפים, לזוגות, שותפים ומשפחות.</p>
+  </section>
+  <section data-lang="en" hidden>
+    <h1>Your shared home, in one place</h1>
+    <p>Shopping, chores, expenses, calendar, meals and time together, for couples, roommates and families.</p>
+  </section>
+  <section data-lang="ru" hidden>
+    <h1>Ваш общий дом в одном месте</h1>
+    <p>Покупки, дела, расходы, календарь, еда и время вместе — для пар, соседей и семей.</p>
+  </section>
+  <div class="card">
+    <p><a href="privacy.html" data-keep-lang><span data-lang="he">מדיניות פרטיות</span><span data-lang="en">Privacy policy</span><span data-lang="ru">Политика конфиденциальности</span></a></p>
+    <p><a href="delete.html" data-keep-lang><span data-lang="he">מחיקת חשבון</span><span data-lang="en">Delete account</span><span data-lang="ru">Удаление аккаунта</span></a></p>
+    <p class="muted"><span data-lang="he">יצירת קשר:</span><span data-lang="en">Contact:</span><span data-lang="ru">Контакты:</span> <a href="mailto:you@example.com">you@example.com</a></p>
+  </div>
+</main>
+</body>
+</html>

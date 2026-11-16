@@ -5,58 +5,64 @@ import { Pressable, Switch, View } from 'react-native';
 import { useMembers } from '@/household/useMembers';
 import { useI18n } from '@/i18n';
 import { dbErrorKey } from '@/services/errors';
-import { Button, EmptyState, Sheet, Text, TextField, colors, memberColor, radius, space } from '@/ui';
+import { Button, Sheet, Text, TextField, colors, space } from '@/ui';
 
 import { useDeleteNote, useNotes, useSaveNote, type Note } from './api';
+import { Corkboard, PAPER, PaperNote } from './Corkboard';
 
 /** A shared board: door code, Wi-Fi password, "the plumber comes Tuesday". */
 export function NotesTab({ addOpen, onCloseAdd }: { addOpen: boolean; onCloseAdd: () => void }) {
   const { t } = useI18n();
-  const { data: notes = [] } = useNotes();
+  const { data: notes = [], isSuccess } = useNotes();
   const { data: members = [] } = useMembers();
   const [editing, setEditing] = useState<Note | null>(null);
+
+  // Notes that appear after the first load get the "just pinned" animation.
+  const [known, setKnown] = useState<Set<string> | null>(null);
+  useEffect(() => {
+    if (!isSuccess) return;
+    if (known === null) {
+      setKnown(new Set(notes.map((n) => n.id)));
+      return;
+    }
+    if (notes.every((n) => known.has(n.id))) return;
+    const timer = setTimeout(() => setKnown(new Set(notes.map((n) => n.id))), 1200);
+    return () => clearTimeout(timer);
+  }, [isSuccess, notes, known]);
+  const isNew = (id: string) => known !== null && !known.has(id);
 
   const author = (id: string | null) => members.find((m) => m.user_id === id)?.display_name;
 
   return (
     <View style={{ gap: space.md }}>
       {notes.length === 0 ? (
-        <EmptyState Icon={StickyNote} title={t('us.noNotes')} body={t('us.noNotesBody')} />
+        <Corkboard>
+          <View style={{ width: '100%', paddingVertical: space.xxl, alignItems: 'center', gap: space.sm }}>
+            <StickyNote size={32} color="#FFF3E0" />
+            <Text variant="bodyStrong" align="center" style={{ color: '#FFF3E0' }}>
+              {t('us.noNotes')}
+            </Text>
+            <Text variant="small" align="center" style={{ color: '#FFF3E0', opacity: 0.85 }}>
+              {t('us.noNotesBody')}
+            </Text>
+          </View>
+        </Corkboard>
       ) : (
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: space.sm }}>
-          {notes.map((n) => {
-            const color = memberColor(n.color_index);
-            return (
-              <Pressable
-                key={n.id}
-                onPress={() => setEditing(n)}
-                accessibilityRole="button"
-                accessibilityLabel={`${n.pinned ? t('us.pinned') + ', ' : ''}${n.body}`}
-                style={({ pressed }) => ({
-                  width: '48.5%',
-                  minHeight: 110,
-                  padding: space.md,
-                  gap: space.sm,
-                  borderRadius: radius.md,
-                  backgroundColor: `${color}1F`,
-                  borderWidth: 1,
-                  borderColor: `${color}55`,
-                  opacity: pressed ? 0.85 : 1,
-                })}
-              >
-                {n.pinned ? <Pin size={14} color={color} /> : null}
-                <Text numberOfLines={6} style={{ flex: 1 }}>
-                  {n.body}
-                </Text>
-                {author(n.created_by) ? (
-                  <Text variant="small" color="textMuted">
-                    {author(n.created_by)}
-                  </Text>
-                ) : null}
-              </Pressable>
-            );
-          })}
-        </View>
+        <Corkboard>
+          {notes.map((n) => (
+            <PaperNote
+              key={n.id}
+              id={n.id}
+              body={n.body}
+              author={author(n.created_by)}
+              colorIndex={n.color_index}
+              important={n.pinned}
+              isNew={isNew(n.id)}
+              onPress={() => setEditing(n)}
+              accessibilityLabel={`${n.pinned ? t('us.pinned') + ', ' : ''}${n.body}${author(n.created_by) ? ', ' + author(n.created_by) : ''}`}
+            />
+          ))}
+        </Corkboard>
       )}
 
       <NoteSheet visible={addOpen || !!editing} note={editing} onClose={() => (editing ? setEditing(null) : onCloseAdd())} />
@@ -114,20 +120,20 @@ function NoteSheet({ visible, note, onClose }: { visible: boolean; note: Note | 
               width: 30,
               height: 30,
               borderRadius: 15,
-              backgroundColor: memberColor(i),
-              borderWidth: colorIndex === i ? 3 : 0,
-              borderColor: colors.text,
+              backgroundColor: PAPER[i],
+              borderWidth: colorIndex === i ? 3 : 1,
+              borderColor: colorIndex === i ? colors.accent : colors.border,
             }}
           />
         ))}
       </View>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: space.md }}>
         <Pin size={18} color={colors.textSoft} />
-        <Text style={{ flex: 1 }}>{t('us.pinToTop')}</Text>
+        <Text style={{ flex: 1 }}>{t('us.importantPin')}</Text>
         <Switch
           value={pinned}
           onValueChange={setPinned}
-          accessibilityLabel={t('us.pinToTop')}
+          accessibilityLabel={t('us.importantPin')}
           trackColor={{ false: colors.raised, true: colors.accent }}
           thumbColor={colors.text}
         />

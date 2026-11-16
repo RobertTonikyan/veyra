@@ -1,4 +1,5 @@
 import { useRouter } from 'expo-router';
+import * as WebBrowser from 'expo-web-browser';
 import {
   Bell,
   BellOff,
@@ -12,6 +13,7 @@ import {
   PauseCircle,
   Plus,
   Share2,
+  ShieldCheck,
   Sparkles,
   Trash2,
   UserMinus,
@@ -26,7 +28,6 @@ import { formatMoney, parseMoney } from '@/features/money/format';
 import {
   ensureNotificationPermission,
   listScheduled,
-  sendTestNotification,
 } from '@/features/notifications/NotificationScheduler';
 import { setNotificationPref, useNotificationPrefs } from '@/features/notifications/prefs';
 import { BirthdayPicker } from '@/features/settings/BirthdayPicker';
@@ -42,6 +43,7 @@ import { useHousehold } from '@/household/HouseholdProvider';
 import { useMembers } from '@/household/useMembers';
 import { LANGUAGES, useI18n } from '@/i18n';
 import { dbErrorKey } from '@/services/errors';
+import { privacyUrl } from '@/services/links';
 import { Avatar, BackButton, Button, Card, Screen, Text, TextField, colors, radius, space, touch } from '@/ui';
 
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -73,15 +75,6 @@ export default function SettingsScreen() {
   const notif = useNotificationPrefs();
   const [scheduled, setScheduled] = useState<{ id: string; title: string; when: string }[] | null>(null);
 
-  async function testNotification() {
-    try {
-      const state = await sendTestNotification(t('notif.testTitle'), t('notif.testBody'));
-      if (state === 'granted') ok(t('settings.notifTestSent'));
-      else setMessage({ text: t('settings.notifOff'), tone: 'error' });
-    } catch (e) {
-      setMessage({ text: String(e), tone: 'error' });
-    }
-  }
   const [hh, mm] = (profile?.reminder_time ?? '08:30').split(':').map(Number);
   const reminderMinutes = hh * 60 + mm;
   function shiftReminder(delta: number) {
@@ -303,7 +296,6 @@ export default function SettingsScreen() {
             <Text variant="small" color="textMuted">
               {t('settings.notifDeviceOnly')}
             </Text>
-            <Button variant="secondary" label={t('settings.notifTest')} onPress={testNotification} fullWidth />
             {__DEV__ ? (
               <View style={{ gap: space.xs }}>
                 <Button
@@ -440,6 +432,12 @@ export default function SettingsScreen() {
             <Text variant="small" color="textMuted" style={{ paddingHorizontal: space.lg, paddingTop: space.md }}>
               {t('settings.signedInAs', { email: session?.user.email ?? '' })}
             </Text>
+            <Row
+              Icon={ShieldCheck}
+              title={t('settings.privacy')}
+              onPress={() => WebBrowser.openBrowserAsync(privacyUrl(language)).catch(() => {})}
+              inset
+            />
             <Row Icon={LogOut} title={t('settings.signOut')} onPress={() => signOut()} inset />
             <Row Icon={UserMinus} title={t('settings.leave')} hint={t('settings.leaveHint')} onPress={confirmLeave} inset />
             <Row Icon={PauseCircle} title={t('settings.pause')} hint={t('settings.pauseHint')} onPress={confirmPause} inset />

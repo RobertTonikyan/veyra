@@ -1,4 +1,4 @@
-import { Bookmark, BookmarkCheck, Check, Dices, Mountain, Sofa, Star, Ticket, Trash2, TreePine, type LucideIcon } from 'lucide-react-native';
+import { Bookmark, BookmarkCheck, Check, Dices, Mountain, Sofa, Ticket, Trash2, TreePine, type LucideIcon } from 'lucide-react-native';
 import { useState } from 'react';
 import { Alert, Pressable, View } from 'react-native';
 
@@ -6,6 +6,7 @@ import { useI18n } from '@/i18n';
 import { dbErrorKey } from '@/services/errors';
 import { Button, Card, Segmented, Sheet, Text, TextField, colors, radius, space } from '@/ui';
 
+import { StarRating } from './StarRating';
 import { useAddIdea, useDateIdeas, useDeleteIdea, useIdeaMarks, useMarkIdea, type DateIdea, type IdeaCategory } from './api';
 
 const CATS: { value: IdeaCategory; Icon: LucideIcon; color: string }[] = [
@@ -30,6 +31,18 @@ export function IdeasTab({ addOpen, onCloseAdd }: { addOpen: boolean; onCloseAdd
   const [cat, setCat] = useState<IdeaCategory | null>(null);
   const [surprise, setSurprise] = useState<DateIdea | null>(null);
   const [rating, setRating] = useState<DateIdea | null>(null);
+  const [stars, setStars] = useState(0);
+
+  function openRating(i: DateIdea) {
+    setStars(0);
+    setRating(i);
+  }
+
+  function finishRating(value: number | null) {
+    if (!rating) return;
+    markIdea.mutate({ idea_id: rating.id, saved: false, done_on: today(), rating: value });
+    setRating(null);
+  }
 
   const shown = ideas.filter((i) => {
     const m = marks?.get(i.id);
@@ -150,7 +163,7 @@ export function IdeasTab({ addOpen, onCloseAdd }: { addOpen: boolean; onCloseAdd
                   variant={m?.done_on ? 'ghost' : 'secondary'}
                   label={m?.done_on ? t('us.doneAgain') : t('us.didIt')}
                   icon={<Check size={16} color={colors.text} />}
-                  onPress={() => setRating(i)}
+                  onPress={() => openRating(i)}
                 />
                 {i.household_id ? (
                   <Button
@@ -192,35 +205,26 @@ export function IdeasTab({ addOpen, onCloseAdd }: { addOpen: boolean; onCloseAdd
         ) : null}
       </Sheet>
 
-      {/* did it → rate */}
+      {/* did it → rate: stars fill in, then confirm */}
       <Sheet visible={!!rating} onClose={() => setRating(null)} title={t('us.howWasIt')}>
-        <View style={{ flexDirection: 'row', justifyContent: 'center', gap: space.sm }} accessibilityRole="radiogroup">
-          {[1, 2, 3, 4, 5].map((n) => (
-            <Pressable
-              key={n}
-              accessibilityRole="radio"
-              accessibilityLabel={t('us.stars', { count: n })}
-              onPress={() => {
-                if (!rating) return;
-                markIdea.mutate({ idea_id: rating.id, saved: false, done_on: today(), rating: n });
-                setRating(null);
-              }}
-              style={{ padding: space.xs }}
-            >
-              <Star size={36} color={colors.honey} fill={colors.honey} />
-            </Pressable>
-          ))}
+        {rating ? (
+          <Text color="textSoft" align="center">
+            {rating.title}
+          </Text>
+        ) : null}
+        <StarRating value={stars} onChange={setStars} />
+        <Text variant="small" color="textMuted" align="center" accessibilityLiveRegion="polite">
+          {stars ? t(`us.ratingWord.${stars}`) : t('us.tapStars')}
+        </Text>
+        <View style={{ gap: space.sm }}>
+          <Button
+            label={t('us.saveRating')}
+            disabled={stars === 0}
+            onPress={() => finishRating(stars)}
+            fullWidth
+          />
+          <Button variant="ghost" label={t('us.skipRating')} onPress={() => finishRating(null)} fullWidth />
         </View>
-        <Button
-          variant="ghost"
-          label={t('us.skipRating')}
-          onPress={() => {
-            if (!rating) return;
-            markIdea.mutate({ idea_id: rating.id, saved: false, done_on: today(), rating: null });
-            setRating(null);
-          }}
-          fullWidth
-        />
       </Sheet>
 
       <AddIdeaSheet visible={addOpen} onClose={onCloseAdd} />

@@ -371,8 +371,7 @@
     "notifEvents": "Calendar events",
     "notifEventsHint": "Half an hour before an event starts.",
     "notifDeviceOnly": "These settings are saved on this phone. Alerts about what others do (shopping, finished chores) come in a later update.",
-    "notifTest": "Send a test notification",
-    "notifTestSent": "Sent. It arrives in 5 seconds (even if you leave the app)."
+    "privacy": "Privacy policy"
   },
   "placeholder": {
     "title": "This screen is under construction",
@@ -699,8 +698,6 @@
     "headsUpTitle": "3 days to {{name}}'s birthday",
     "headsUpBody": "Still time to sort out a gift 🎁",
     "eventBody": "Starts at {{time}}",
-    "eventNow": "Starting now",
-    "testTitle": "Veyra 👋",
-    "testBody": "Notifications work on this phone."
+    "eventNow": "Starting now"
   }
 }

@@ -129,6 +129,14 @@ export function NotificationScheduler() {
     return () => clearTimeout(timer);
   }, [plan, permission]);
 
+  // Signing out or leaving the house unmounts the app: remove this account's reminders
+  // so the next person on this phone never sees them.
+  useEffect(() => {
+    return () => {
+      Notifications.cancelAllScheduledNotificationsAsync().catch(() => {});
+    };
+  }, []);
+
   // tapping a reminder opens the right screen
   const response = Notifications.useLastNotificationResponse();
   const handled = useRef<string | null>(null);
@@ -142,18 +150,6 @@ export function NotificationScheduler() {
   }, [response, router]);
 
   return null;
-}
-
-/** A reminder in a few seconds, to check that notifications reach this phone. */
-export async function sendTestNotification(title: string, body: string): Promise<PermissionState> {
-  const state = await ensureNotificationPermission(true);
-  if (state !== 'granted') return state;
-  await Notifications.scheduleNotificationAsync({
-    identifier: `test:${Date.now()}`,
-    content: { title, body, sound: true },
-    trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: 5, channelId: CHANNEL },
-  });
-  return state;
 }
 
 /** For the dev panel: what is waiting to fire on this phone. */

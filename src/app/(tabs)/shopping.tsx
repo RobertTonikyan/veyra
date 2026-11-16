@@ -1,6 +1,6 @@
 import { ChevronDown, ChevronUp, Plus, Scale, Search, ShoppingBasket, X } from 'lucide-react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ComponentRef, type ReactNode } from 'react';
 import { ActivityIndicator, Pressable, TextInput, View } from 'react-native';
 
 import {
@@ -30,7 +30,7 @@ type Group = { category: ShoppingCategory | null; items: ShoppingItem[] };
 export default function ShoppingScreen() {
   const { t, isRTL } = useI18n();
   const members = useMemberMap();
-  const inputRef = useRef<TextInput>(null);
+  const inputRef = useRef<ComponentRef<typeof TextInput>>(null);
 
   const { data: items = [], isPending, isError, refetch } = useShoppingItems();
   const addItem = useAddShoppingItem();

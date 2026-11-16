@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Veyra · Delete account</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="lang.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+</head>
+<body>
+<main>
+  <header>
+    <a class="brand" href="index.html" data-keep-lang><span aria-hidden="true"></span>Veyra</a>
+    <nav class="langs" aria-label="Language">
+      <button data-set="he">עברית</button><button data-set="en">English</button><button data-set="ru">Русский</button>
+    </nav>
+  </header>
+
+  <h1 data-t="title"></h1>
+  <p data-t="intro"></p>
+  <ul>
+    <li data-t="what1"></li>
+    <li data-t="what2"></li>
+    <li data-t="what3"></li>
+  </ul>
+  <p class="muted" data-t="inApp"></p>
+
+  <!-- step 1: email -->
+  <section class="card" id="step-email">
+    <form id="form-email">
+      <label for="email" data-t="emailLabel"></label>
+      <input id="email" class="ltr" type="email" autocomplete="email" inputmode="email" required />
+      <button class="primary" type="submit" data-t="sendCode"></button>
+    </form>
+  </section>
+
+  <!-- step 2: code -->
+  <section class="card" id="step-code" hidden>
+    <form id="form-code">
+      <label for="code" data-t="codeLabel"></label>
+      <input id="code" class="ltr" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" required />
+      <button class="primary" type="submit" data-t="verify"></button>
+      <button class="ghost" type="button" id="back" data-t="back"></button>
+    </form>
+  </section>
+
+  <!-- step 3: choose -->
+  <section class="card" id="step-choose" hidden>
+    <p data-t="chooseIntro"></p>
+    <button class="ghost" type="button" id="later" data-t="in30"></button>
+    <p class="muted" data-t="in30Hint"></p>
+    <button class="danger" type="button" id="now" data-t="now"></button>
+    <p class="muted" data-t="nowHint"></p>
+  </section>
+
+  <!-- step 4: done -->
+  <section class="card" id="step-done" hidden>
+    <p class="ok" id="done-text" role="status"></p>
+  </section>
+
+  <p id="msg" class="error" role="alert" aria-live="polite"></p>
+
+  <footer>
+    <a href="index.html" data-keep-lang>Veyra</a>
+    <a href="privacy.html" data-keep-lang><span data-lang="he">מדיניות פרטיות</span><span data-lang="en">Privacy policy</span><span data-lang="ru">Конфиденциальность</span></a>
+  </footer>
+</main>
+
+<script>
+  const SUPABASE_URL = 'https://eftymtavksmqennoyguf.supabase.co';
+  // Publishable key: safe to be public. Access is controlled by the database (RLS).
+  const SUPABASE_KEY = 'sb_publishable_kRYDD_D8ykTYttR3CTY39Q_EzJu7gb5';
+  const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+    auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+  });
+
+  const T = {
+    he: {
+      title: 'מחיקת חשבון Veyra',
+      intro: 'כאן אפשר למחוק את החשבון שלכם גם בלי האפליקציה. כדי לוודא שזה באמת אתם, נשלח קוד למייל שאיתו אתם נכנסים.',
+      what1: 'נמחקים: הפרופיל, השם ויום ההולדת, החברות בבתים וההוצאות ששילמתם. יתרות הבית מחושבות מחדש.',
+      what2: 'נשארים לשאר בני הבית, בלי השם שלכם: פריטים משותפים שהוספתם, כמו פריט ברשימת הקניות.',
+      what3: 'אם אתם האחרונים בבית, הבית נמחק כולו.',
+      inApp: 'אפשר גם למחוק מתוך האפליקציה: הגדרות ← מחיקת החשבון.',
+      emailLabel: 'המייל שאיתו נכנסים ל־Veyra', sendCode: 'שליחת קוד', codeLabel: 'הקוד בן 6 הספרות שקיבלתם במייל',
+      verify: 'אימות', back: 'חזרה', chooseIntro: 'מתי למחוק?',
+      in30: 'בעוד 30 יום', in30Hint: 'עד אז אפשר לבטל: פשוט נכנסים לאפליקציה ומחזירים את החשבון.',
+      now: 'מחיקה מיידית', nowHint: 'אין דרך חזרה. החשבון וכל הנתונים שלכם יימחקו עכשיו.',
+      confirmNow: 'למחוק את החשבון עכשיו? אי אפשר לבטל את זה.',
+      doneLater: 'החשבון יימחק ב־{date}. עד אז אפשר לבטל מתוך האפליקציה.', doneNow: 'החשבון נמחק. תודה שהייתם איתנו.',
+      sent: 'שלחנו קוד ל־{email}.', badEmail: 'כתובת המייל לא נראית תקינה.', noAccount: 'לא מצאנו חשבון עם המייל הזה.',
+      badCode: 'הקוד שגוי או שפג תוקפו. נסו שוב.', rate: 'יותר מדי ניסיונות. חכו כמה דקות ונסו שוב.', generic: 'משהו השתבש. נסו שוב.',
+    },
+    en: {
+      title: 'Delete your Veyra account',
+      intro: "You can delete your account here, even without the app. To make sure it's you, we'll email a code to the address you sign in with.",
+      what1: 'Deleted: your profile, name and birthday, your household memberships and the expenses you paid. Household balances are recalculated.',
+      what2: 'Kept for the other members, without your name: shared items you added, such as a shopping list item.',
+      what3: "If you're the last member of a home, the whole home is deleted.",
+      inApp: 'You can also delete from the app: Settings → Delete account.',
+      emailLabel: 'The email you use for Veyra', sendCode: 'Send code', codeLabel: 'The 6-digit code from the email',
+      verify: 'Verify', back: 'Back', chooseIntro: 'When should we delete it?',
+      in30: 'In 30 days', in30Hint: 'You can cancel until then: just open the app and restore your account.',
+      now: 'Delete now', nowHint: 'This cannot be undone. Your account and all your data are deleted right away.',
+      confirmNow: 'Delete your account now? This cannot be undone.',
+      doneLater: 'Your account will be deleted on {date}. You can cancel from the app until then.', doneNow: 'Your account was deleted. Thanks for being with us.',
+      sent: 'We sent a code to {email}.', badEmail: "That email address doesn't look right.", noAccount: "We couldn't find an account with that email.",
+      badCode: 'The code is wrong or expired. Try again.', rate: 'Too many attempts. Wait a few minutes and try again.', generic: 'Something went wrong. Try again.',
+    },
+    ru: {
+      title: 'Удаление аккаунта Veyra',
+      intro: 'Здесь можно удалить аккаунт даже без приложения. Чтобы убедиться, что это вы, мы отправим код на почту, с которой вы входите.',
+      what1: 'Удаляются: профиль, имя и день рождения, участие в домах и оплаченные вами расходы. Балансы дома пересчитываются.',
+      what2: 'Остаются у других участников, без вашего имени: общие записи, которые вы добавили, например пункт списка покупок.',
+      what3: 'Если вы последний участник дома, дом удаляется целиком.',
+      inApp: 'Удалить аккаунт можно и в приложении: Настройки → Удаление аккаунта.',
+      emailLabel: 'Почта, с которой вы входите в Veyra', sendCode: 'Отправить код', codeLabel: '6-значный код из письма',
+      verify: 'Подтвердить', back: 'Назад', chooseIntro: 'Когда удалить?',
+      in30: 'Через 30 дней', in30Hint: 'До этого можно отменить: просто откройте приложение и восстановите аккаунт.',
+      now: 'Удалить сейчас', nowHint: 'Это нельзя отменить. Аккаунт и все ваши данные будут удалены сразу.',
+      confirmNow: 'Удалить аккаунт сейчас? Это нельзя отменить.',
+      doneLater: 'Аккаунт будет удалён {date}. До этого можно отменить в приложении.', doneNow: 'Аккаунт удалён. Спасибо, что были с нами.',
+      sent: 'Мы отправили код на {email}.', badEmail: 'Похоже, адрес почты указан неверно.', noAccount: 'Аккаунт с этой почтой не найден.',
+      badCode: 'Неверный или просроченный код. Попробуйте ещё раз.', rate: 'Слишком много попыток. Подождите несколько минут.', generic: 'Что-то пошло не так. Попробуйте ещё раз.',
+    },
+  };
+
+  const $ = (id) => document.getElementById(id);
+  const t = (k, p = {}) => T[veyraLang()][k].replace(/\{(\w+)\}/g, (_, n) => p[n] ?? '');
+  let email = '';
+  let lastMsg = null; // re-render the message when the language changes
+  let doneMsg = null;
+
+  function render() {
+    document.querySelectorAll('[data-t]').forEach((el) => (el.textContent = t(el.dataset.t)));
+    if (lastMsg) say(...lastMsg);
+    if (doneMsg) $('done-text').textContent = t(doneMsg[0], doneMsg[1]);
+  }
+  window.addEventListener('langchange', render);
+
+  function say(key, params, tone = 'error') {
+    lastMsg = key ? [key, params, tone] : null;
+    $('msg').className = tone;
+    $('msg').textContent = key ? t(key, params) : '';
+  }
+  function show(step) {
+    ['email', 'code', 'choose', 'done'].forEach((s) => ($('step-' + s).hidden = s !== step));
+    const first = $('step-' + step).querySelector('input, button');
+    if (first) first.focus();
+  }
+  function errKey(e) {
+    const code = e && (e.code || '');
+    if (e && (e.status === 429 || /rate_limit/.test(code))) return 'rate';
+    if (code === 'otp_expired') return 'badCode';
+    if (code === 'otp_disabled' || code === 'signup_disabled' || code === 'user_not_found') return 'noAccount';
+    if (code === 'email_address_invalid' || code === 'validation_failed') return 'badEmail';
+    return 'generic';
+  }
+  async function busy(form, fn) {
+    const buttons = form.querySelectorAll('button');
+    buttons.forEach((b) => (b.disabled = true));
+    try { await fn(); } finally { buttons.forEach((b) => (b.disabled = false)); }
+  }
+
+  $('form-email').addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    busy(ev.target, async () => {
+      email = $('email').value.trim().toLowerCase();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return say('badEmail');
+      // shouldCreateUser: false → never creates an account from this page
+      const { error } = await db.auth.signInWithOtp({ email, options: { shouldCreateUser: false } });
+      if (error) return say(errKey(error));
+      say('sent', { email }, 'ok');
+      show('code');
+    });
+  });
+
+  $('form-code').addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    busy(ev.target, async () => {
+      const token = $('code').value.replace(/\D/g, '');
+      const { error } = await db.auth.verifyOtp({ email, token, type: 'email' });
+      if (error) return say(errKey(error));
+      say(null);
+      show('choose');
+    });
+  });
+
+  $('back').addEventListener('click', () => { say(null); show('email'); });
+
+  async function remove(immediate) {
+    if (immediate && !confirm(t('confirmNow'))) return;
+    const buttons = [$('later'), $('now')];
+    buttons.forEach((b) => (b.disabled = true));
+    try {
+      const { data, error } = await db.rpc('request_account_deletion', { p_immediate: immediate });
+      if (error) return say(errKey(error));
+      say(null);
+      const iso = data;
+      doneMsg = immediate ? ['doneNow', {}] : ['doneLater', { get date() { return new Date(iso).toLocaleDateString(veyraLang(), { day: 'numeric', month: 'long', year: 'numeric' }); } }];
+      $('done-text').textContent = t(doneMsg[0], doneMsg[1]);
+      show('done');
+      await db.auth.signOut().catch(() => {});
+    } finally {
+      buttons.forEach((b) => (b.disabled = false));
+    }
+  }
+  $('later').addEventListener('click', () => remove(false));
+  $('now').addEventListener('click', () => remove(true));
+
+  document.addEventListener('DOMContentLoaded', render);
+</script>
+</body>
+</html>

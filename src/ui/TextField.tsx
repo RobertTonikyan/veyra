@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef, useState, type ComponentRef } from 'react';
 import { TextInput, View, type TextInputProps } from 'react-native';
 
 import { useIsRTL } from '@/i18n';
@@ -6,7 +6,10 @@ import { useIsRTL } from '@/i18n';
 import { Text } from './Text';
 import { colors, fonts, radius, space, touch } from './tokens';
 
-export type TextFieldProps = TextInputProps & {
+/** What a ref to the input gives you (focus, blur, clear). RN 0.88+: TextInput is no longer a class type. */
+export type TextInputHandle = ComponentRef<typeof TextInput>;
+
+export type TextFieldProps = Omit<TextInputProps, 'ref'> & {
   label: string;
   hint?: string;
   error?: string | null;
@@ -14,7 +17,7 @@ export type TextFieldProps = TextInputProps & {
   forceLTR?: boolean;
 };
 
-export const TextField = forwardRef<TextInput, TextFieldProps>(function TextField(
+export const TextField = forwardRef<TextInputHandle, TextFieldProps>(function TextField(
   { label, hint, error, forceLTR = false, style, onFocus, onBlur, ...rest },
   ref,
 ) {

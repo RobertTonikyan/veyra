@@ -1,5 +1,5 @@
 import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ComponentRef } from 'react';
 import { KeyboardAvoidingView, Platform, View, type TextInput } from 'react-native';
 
 import { authErrorKey } from '@/auth/errors';
@@ -13,7 +13,7 @@ export default function VerifyScreen() {
   const { t } = useI18n();
   const router = useRouter();
   const { email } = useLocalSearchParams<{ email?: string }>();
-  const inputRef = useRef<TextInput>(null);
+  const inputRef = useRef<ComponentRef<typeof TextInput>>(null);
 
   const [code, setCode] = useState('');
   const [error, setError] = useState<string | null>(null);
