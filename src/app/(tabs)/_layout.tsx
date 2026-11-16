@@ -12,7 +12,12 @@ export default function TabsLayout() {
       <RealtimeSync />
       {/* reminders scheduled on this phone, kept in sync with the house data */}
       {Platform.OS !== 'web' ? <NotificationScheduler /> : null}
-      <Tabs tabBar={(props) => <TabBar {...props} />} screenOptions={{ headerShown: false, sceneStyle: { backgroundColor: colors.bg } }}>
+      <Tabs tabBar={(props) => <TabBar {...props} />} screenOptions={{
+          headerShown: false,
+          sceneStyle: { backgroundColor: colors.bg },
+          // open every tab in the background right away, so its data is already there when you tap it
+          lazy: false,
+        }}>
         <Tabs.Screen name="index" />
         <Tabs.Screen name="shopping" />
         <Tabs.Screen name="chores" />
