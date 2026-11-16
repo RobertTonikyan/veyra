@@ -20,4 +20,9 @@ export const qk = {
   kudosGiven: (hid: string) => ['household', hid, 'kudos', 'mine'] as const,
   recipes: (hid: string, language: string) => ['household', hid, 'recipes', language] as const,
   mealPlan: (hid: string, from: string) => ['household', hid, 'meal_plan', from] as const,
+  events: (hid: string, from: string) => ['household', hid, 'events', from] as const,
+  notes: (hid: string) => ['household', hid, 'notes'] as const,
+  goals: (hid: string) => ['household', hid, 'goals'] as const,
+  dateIdeas: (hid: string, language: string) => ['household', hid, 'date_ideas', language] as const,
+  ideaMarks: (hid: string) => ['household', hid, 'date_ideas', 'marks'] as const,
 };

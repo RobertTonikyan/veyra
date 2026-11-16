@@ -17,8 +17,8 @@ type Item = { key: string; Icon: LucideIcon; href?: Href };
 
 const ITEMS: Item[] = [
   { key: 'more.meals', Icon: UtensilsCrossed, href: '/meals' },
-  { key: 'more.us', Icon: Heart },
-  { key: 'more.calendar', Icon: CalendarDays },
+  { key: 'more.us', Icon: Heart, href: '/us' },
+  { key: 'more.calendar', Icon: CalendarDays, href: '/calendar' },
   { key: 'more.settings', Icon: Settings, href: '/settings' },
 ];
 
