@@ -43,7 +43,7 @@ export const CATEGORY_COLOR: Record<ShoppingCategory, string> = {
 const KEYWORDS: [ShoppingCategory, string[]][] = [
   // exceptions that would otherwise hit a shorter stem first (egg → eggplant, tomato → tomato paste)
   ['produce', ['eggplant']],
-  ['pantry', ['רסק', 'רוטב עגבניות', 'tomato paste', 'tomato sauce', 'томатная паста', 'שמן זית', 'olive oil']],
+  ['pantry', ['רסק', 'רוטב עגבניות', 'tomato paste', 'tomato sauce', 'томатная паста', 'томатный соус', 'שמן זית', 'olive oil', 'פירורי לחם', 'breadcrumbs', 'панировочн']],
   [
     'frozen',
     ['קפוא', 'שניצל תירס', 'בצק עלים', 'גלידה', 'frozen', 'ice cream', 'заморож', 'мороженое', 'пельмени'],
@@ -126,7 +126,7 @@ const KEYWORDS: [ShoppingCategory, string[]][] = [
   ],
   // ---- more words, same categories (first match above still wins) ----
   ['produce', [
-    'סלק', 'צנון', 'קולרבי', 'ברוקולי', 'כרובית', 'תרד', 'בזיליקום', 'זנגביל', "ג'ינג'ר", 'רימון', 'קיווי', 'שזיפ',
+    'סלק', 'צנון', 'ג׳ינג׳ר', 'קולרבי', 'ברוקולי', 'כרובית', 'תרד', 'בזיליקום', 'זנגביל', "ג'ינג'ר", 'רימון', 'קיווי', 'שזיפ',
     'דובדבן', 'אננס', 'פומלה', 'קלמנטינ', 'ליים', 'סלרי', 'דלעת', 'תירס', 'עירית', 'בצלצל', 'ארטישוק', 'נבטים',
     'broccoli', 'cauliflower', 'spinach', 'basil', 'ginger', 'pomegranate', 'kiwi', 'plum', 'cherr', 'pineapple',
     'lime', 'celery', 'pumpkin', 'corn', 'herbs', 'beet', 'radish',
@@ -139,7 +139,7 @@ const KEYWORDS: [ShoppingCategory, string[]][] = [
     'моцарел', 'пармезан', 'ряженк', 'простокваш', 'пудинг',
   ]],
   ['meat', [
-    'אנטריקוט', 'צלעות', 'כבד', 'פסטרמה', 'המבורגר', 'קציצות', 'שוקיים', 'בקר', 'כבש', 'טלה', 'אמנון', 'דניס', 'לברק',
+    'курин', 'אנטריקוט', 'צלעות', 'כבד', 'פסטרמה', 'המבורגר', 'קציצות', 'שוקיים', 'בקר', 'כבש', 'טלה', 'אמנון', 'דניס', 'לברק',
     'שרימפס', 'קלמרי',
     'burger', 'ribs', 'liver', 'lamb', 'shrimp', 'tuna', 'bacon', 'ham', 'pastrami', 'meatball',
     'котлет', 'ребр', 'рёбр', 'печень', 'баран', 'креветк', 'тунец', 'бекон', 'ветчин', 'фрикадел',
@@ -156,7 +156,8 @@ const KEYWORDS: [ShoppingCategory, string[]][] = [
     'vinegar', 'soy sauce', 'sauce', 'nuts', 'almond', 'peanut', 'raisin', 'cinnamon', 'vanilla', 'baking', 'yeast',
     'cocoa', 'granola', 'quinoa', 'bulgur', 'spread', 'nutella', 'soup', 'olives', 'pickles',
     'уксус', 'соус', 'орех', 'миндал', 'арахис', 'изюм', 'кориц', 'ванил', 'дрожж', 'какао', 'гранол', 'киноа',
-    'булгур', 'суп', 'оливк', 'маслин',
+    'булгур', 'суп', 'оливк', 'маслин', 'бульон', 'птитим', 'кумин', 'куркум', 'паприк',
+    'paprika', 'cumin', 'turmeric', 'ptitim',
   ]],
   ['drinks', [
     'קפסולות', 'שוקו', 'וודקה', 'ויסקי', 'ערק', 'תירוש', 'אנרגיה',

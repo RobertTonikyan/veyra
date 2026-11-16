@@ -6,6 +6,7 @@ import {
   ReceiptText,
   ShoppingBasket,
   Sparkles,
+  UtensilsCrossed,
   type LucideIcon,
 } from 'lucide-react-native';
 import { useState } from 'react';
@@ -20,8 +21,9 @@ import {
   useSnoozeChore,
   type Chore,
 } from '@/features/chores/api';
-import { sectionOf } from '@/features/chores/dates';
+import { addDays, sectionOf, todayISO } from '@/features/chores/dates';
 import { ActivityFeed } from '@/features/home/ActivityFeed';
+import { useAddIngredientsToList, useMealPlan } from '@/features/meals/api';
 import { BirthdayCard } from '@/features/home/BirthdayCard';
 import { useAccountActions } from '@/features/settings/api';
 import { useBalances, useMonthTotal } from '@/features/money/api';
@@ -56,6 +58,9 @@ export default function HomeScreen() {
   const { data: monthTotal = 0 } = useMonthTotal(monthOf());
   const completeChore = useCompleteChore();
   const account = useAccountActions();
+  const { data: todayMeals = [] } = useMealPlan(todayISO(), addDays(todayISO(), 1));
+  const dinner = todayMeals.find((m) => m.slot === 'dinner') ?? null;
+  const addToList = useAddIngredientsToList();
   const snoozeChore = useSnoozeChore();
 
   const [quickAdd, setQuickAdd] = useState(false);
@@ -275,6 +280,35 @@ export default function HomeScreen() {
                   );
                 })}
               </View>
+            </Card>
+          </Pressable>
+        ) : null}
+
+        {/* ---------- tonight's dinner ---------- */}
+        {dinner ? (
+          <Pressable onPress={() => go('/meals')} accessibilityRole="button">
+            <Card style={{ flexDirection: 'row', alignItems: 'center', gap: space.md }}>
+              <UtensilsCrossed size={22} color={colors.honey} />
+              <View style={{ flex: 1, gap: 2 }}>
+                <Text variant="label" color="textMuted">
+                  {t('meals.tonight')}
+                </Text>
+                <Text variant="bodyStrong">{dinner.recipes?.title ?? dinner.title}</Text>
+              </View>
+              {dinner.recipes ? (
+                <Button
+                  variant="ghost"
+                  label={t('meals.ingredientsShort')}
+                  loading={addToList.isPending}
+                  onPress={() =>
+                    addToList.mutate([dinner.recipes!.ingredients], {
+                      onSuccess: (n) =>
+                        setNotice(n > 0 ? t('meals.addedToList', { count: n }) : t('meals.allOnList')),
+                      onError,
+                    })
+                  }
+                />
+              ) : null}
             </Card>
           </Pressable>
         ) : null}

@@ -531,5 +531,69 @@
     "sharesHint": "האחוזים חלים על הוצאות חדשות. הוצאות שכבר נרשמו לא משתנות.",
     "shareOf": "האחוז של {{name}}",
     "sharesTotal": "סה״כ {{total}}%"
+  },
+  "meals": {
+    "thisWeek": "השבוע",
+    "recipes": "מתכונים",
+    "tonight": "ארוחת ערב הערב",
+    "ingredientsShort": "+ מצרכים",
+    "planDinner": "לתכנן ארוחת ערב",
+    "notPlanned": "לא תוכנן",
+    "tapToPlan": "הקשה לתכנון",
+    "planFor": "ארוחת ערב · {{day}}",
+    "addWeekToList": "כל המצרכים של השבוע לרשימה",
+    "weekHint": "מתכננים ארוחה, ואז מוסיפים את כל המצרכים לרשימה בלחיצה.",
+    "addedToList": {
+      "one": "נוסף פריט אחד לרשימה",
+      "two": "נוספו 2 פריטים לרשימה",
+      "other": "נוספו {{count}} פריטים לרשימה"
+    },
+    "allOnList": "כל המצרכים כבר ברשימה.",
+    "searchRecipes": "חיפוש מתכון",
+    "filterAll": "הכל",
+    "filterOurs": "שלנו",
+    "filterIdeas": "רעיונות",
+    "noOurs": "עוד אין מתכונים שלכם",
+    "noOursBody": "מוסיפים מתכון בכפתור +, והוא זמין לכל הבית.",
+    "noResults": "לא נמצא מתכון",
+    "ours": "שלנו",
+    "idea": "רעיון",
+    "minutes": {
+      "one": "דקה",
+      "two": "2 דקות",
+      "other": "{{count}} דק׳"
+    },
+    "servings": {
+      "one": "מנה אחת",
+      "two": "2 מנות",
+      "other": "{{count}} מנות"
+    },
+    "ingredients": "מצרכים",
+    "steps": "הכנה",
+    "addIngredients": "מצרכים לרשימת הקניות",
+    "planIt": "לתכנן לארוחת ערב",
+    "edit": "עריכה",
+    "deleteTitle": "למחוק את \"{{title}}\"?",
+    "newTitle": "מתכון חדש",
+    "editTitle": "עריכת מתכון",
+    "recipeName": "שם המתכון",
+    "description": "תיאור קצר",
+    "minutesLabel": "זמן (דקות)",
+    "servingsLabel": "מנות",
+    "ingredientsHint": "מצרך בכל שורה, למשל \"2 ביצים\" או \"פסטה - 500 גרם\".",
+    "ingredientsCount": {
+      "one": "מצרך אחד",
+      "two": "2 מצרכים",
+      "other": "{{count}} מצרכים"
+    },
+    "stepsHint": "שלב בכל שורה.",
+    "titleRequired": "צריך שם למתכון.",
+    "pickRecipe": "מתכון",
+    "orSomethingElse": "או משהו אחר",
+    "somethingElsePlaceholder": "למשל: משלוח, שאריות, אצל ההורים",
+    "whoCooks": "מי מבשל?",
+    "notDecided": "עוד לא נקבע",
+    "pickSomething": "בחרו מתכון או כתבו מה אוכלים.",
+    "clearPlan": "ביטול התכנון"
   }
 }

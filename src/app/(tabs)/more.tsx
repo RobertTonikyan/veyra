@@ -16,7 +16,7 @@ import { Card, Screen, Text, colors, radius, space } from '@/ui';
 type Item = { key: string; Icon: LucideIcon; href?: Href };
 
 const ITEMS: Item[] = [
-  { key: 'more.meals', Icon: UtensilsCrossed },
+  { key: 'more.meals', Icon: UtensilsCrossed, href: '/meals' },
   { key: 'more.us', Icon: Heart },
   { key: 'more.calendar', Icon: CalendarDays },
   { key: 'more.settings', Icon: Settings, href: '/settings' },

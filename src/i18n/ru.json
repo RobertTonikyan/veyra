@@ -549,5 +549,73 @@
     "sharesHint": "Доли применяются к новым расходам. Уже записанные не меняются.",
     "shareOf": "Доля: {{name}}",
     "sharesTotal": "Итого {{total}}%"
+  },
+  "meals": {
+    "thisWeek": "Неделя",
+    "recipes": "Рецепты",
+    "tonight": "Ужин сегодня",
+    "ingredientsShort": "+ продукты",
+    "planDinner": "Запланировать ужин",
+    "notPlanned": "не запланировано",
+    "tapToPlan": "Нажмите, чтобы запланировать",
+    "planFor": "Ужин · {{day}}",
+    "addWeekToList": "Все продукты недели в список",
+    "weekHint": "Запланируйте блюдо и добавьте продукты в список одним нажатием.",
+    "addedToList": {
+      "one": "Добавлен {{count}} товар",
+      "few": "Добавлено {{count}} товара",
+      "many": "Добавлено {{count}} товаров",
+      "other": "Добавлено {{count}} товара"
+    },
+    "allOnList": "Всё уже есть в списке.",
+    "searchRecipes": "Поиск рецепта",
+    "filterAll": "Все",
+    "filterOurs": "Наши",
+    "filterIdeas": "Идеи",
+    "noOurs": "Своих рецептов пока нет",
+    "noOursBody": "Добавьте рецепт кнопкой + — он будет доступен всему дому.",
+    "noResults": "Рецепт не найден",
+    "ours": "наш",
+    "idea": "идея",
+    "minutes": {
+      "one": "{{count}} мин",
+      "few": "{{count}} мин",
+      "many": "{{count}} мин",
+      "other": "{{count}} мин"
+    },
+    "servings": {
+      "one": "{{count}} порция",
+      "few": "{{count}} порции",
+      "many": "{{count}} порций",
+      "other": "{{count}} порции"
+    },
+    "ingredients": "Продукты",
+    "steps": "Приготовление",
+    "addIngredients": "Продукты в список покупок",
+    "planIt": "Запланировать на ужин",
+    "edit": "Изменить",
+    "deleteTitle": "Удалить «{{title}}»?",
+    "newTitle": "Новый рецепт",
+    "editTitle": "Изменить рецепт",
+    "recipeName": "Название",
+    "description": "Короткое описание",
+    "minutesLabel": "Время (мин)",
+    "servingsLabel": "Порции",
+    "ingredientsHint": "По одному в строке, например «2 яйца» или «паста - 500 г».",
+    "ingredientsCount": {
+      "one": "{{count}} продукт",
+      "few": "{{count}} продукта",
+      "many": "{{count}} продуктов",
+      "other": "{{count}} продукта"
+    },
+    "stepsHint": "Один шаг в строке.",
+    "titleRequired": "Нужно название.",
+    "pickRecipe": "Рецепт",
+    "orSomethingElse": "Или что-то другое",
+    "somethingElsePlaceholder": "Например: доставка, остатки, у родителей",
+    "whoCooks": "Кто готовит?",
+    "notDecided": "Не решено",
+    "pickSomething": "Выберите рецепт или напишите, что едим.",
+    "clearPlan": "Отменить план"
   }
 }

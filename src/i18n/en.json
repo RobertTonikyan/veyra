@@ -513,5 +513,65 @@
     "sharesHint": "Shares apply to new expenses. Expenses already recorded don't change.",
     "shareOf": "{{name}}'s share",
     "sharesTotal": "Total {{total}}%"
+  },
+  "meals": {
+    "thisWeek": "This week",
+    "recipes": "Recipes",
+    "tonight": "Dinner tonight",
+    "ingredientsShort": "+ ingredients",
+    "planDinner": "Plan dinner",
+    "notPlanned": "not planned",
+    "tapToPlan": "Tap to plan",
+    "planFor": "Dinner · {{day}}",
+    "addWeekToList": "Add the week's ingredients to the list",
+    "weekHint": "Plan a meal, then add all its ingredients to the list in one tap.",
+    "addedToList": {
+      "one": "1 item added to the list",
+      "other": "{{count}} items added to the list"
+    },
+    "allOnList": "Everything is already on the list.",
+    "searchRecipes": "Search recipes",
+    "filterAll": "All",
+    "filterOurs": "Ours",
+    "filterIdeas": "Ideas",
+    "noOurs": "No recipes of your own yet",
+    "noOursBody": "Add one with the + button and the whole home can use it.",
+    "noResults": "No recipe found",
+    "ours": "ours",
+    "idea": "idea",
+    "minutes": {
+      "one": "1 min",
+      "other": "{{count}} min"
+    },
+    "servings": {
+      "one": "1 serving",
+      "other": "{{count}} servings"
+    },
+    "ingredients": "Ingredients",
+    "steps": "Method",
+    "addIngredients": "Add ingredients to shopping list",
+    "planIt": "Plan for dinner",
+    "edit": "Edit",
+    "deleteTitle": "Delete \"{{title}}\"?",
+    "newTitle": "New recipe",
+    "editTitle": "Edit recipe",
+    "recipeName": "Recipe name",
+    "description": "Short description",
+    "minutesLabel": "Time (minutes)",
+    "servingsLabel": "Servings",
+    "ingredientsHint": "One per line, e.g. \"2 eggs\" or \"pasta - 500 g\".",
+    "ingredientsCount": {
+      "one": "1 ingredient",
+      "other": "{{count}} ingredients"
+    },
+    "stepsHint": "One step per line.",
+    "titleRequired": "The recipe needs a name.",
+    "pickRecipe": "Recipe",
+    "orSomethingElse": "Or something else",
+    "somethingElsePlaceholder": "e.g. delivery, leftovers, at the parents'",
+    "whoCooks": "Who's cooking?",
+    "notDecided": "Not decided",
+    "pickSomething": "Pick a recipe or write what you're eating.",
+    "clearPlan": "Clear the plan"
   }
 }

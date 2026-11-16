@@ -18,4 +18,6 @@ export const qk = {
   settleUp: (hid: string) => ['household', hid, 'money', 'settle-up'] as const,
   activity: (hid: string) => ['household', hid, 'activity', 'feed'] as const,
   kudosGiven: (hid: string) => ['household', hid, 'kudos', 'mine'] as const,
+  recipes: (hid: string, language: string) => ['household', hid, 'recipes', language] as const,
+  mealPlan: (hid: string, from: string) => ['household', hid, 'meal_plan', from] as const,
 };

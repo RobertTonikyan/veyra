@@ -81,6 +81,7 @@ function RootNavigator() {
           <Stack.Protected guard={signedIn && hasHouse}>
             <Stack.Screen name="(tabs)" />
             <Stack.Screen name="settings" />
+            <Stack.Screen name="meals" />
           </Stack.Protected>
           <Stack.Protected guard={signedIn && !hasHouse}>
             <Stack.Screen name="(onboarding)" />
